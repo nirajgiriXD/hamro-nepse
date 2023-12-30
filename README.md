@@ -25,8 +25,8 @@ It is a comprehensive web application designed for stock enthusiasts, investors,
 - **Installation:**
 
 ```bash
-git clone https://github.com/your-username/nepse-stock-analyzer.git
-cd nepse-stock-analyzer
+git clone https://github.com/your-username/nsa.git
+cd nsa
 ```
 
 - **Dependencies:**
@@ -59,7 +59,7 @@ We welcome contributions from the community! Whether you're a developer, designe
 
 - If you'd like to contribute, fork the repository, make your changes, and create a pull request. We appreciate your efforts in improving Stock Analyzer!
 
-- If you have any ideas or suggestions, feel free to share them in the [discussions](https://github.com/nirajgiriXD/stock-analyzer/discussions) section. We appreciate your feedback and are open to collaborative discussions to enhance Stock Analyzer!
+- If you have any ideas or suggestions, feel free to share them in the [discussions](https://github.com/ChandraByte/nsa/discussions) section. We appreciate your feedback and are open to collaborative discussions to enhance Stock Analyzer!
 
 ## License 📜
 
