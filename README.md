@@ -20,6 +20,39 @@ It is a comprehensive web application designed for stock enthusiasts, investors,
 
 - **Backend:** Powered by WordPress for efficient content management and data handling.
 
+## Getting Started
+
+- **Installation:**
+
+```bash
+git clone https://github.com/your-username/nepse-stock-analyzer.git
+cd nepse-stock-analyzer
+```
+
+- **Dependencies:**
+
+```bash
+npm install
+```
+
+- **Development Server:**
+
+```bash
+npm run dev
+```
+
+- **Build:**
+
+```bash
+npm run build
+```
+
+- **Linting:**
+
+```bash
+npm run lint
+```
+
 ## Contribute 🤝
 
 We welcome contributions from the community! Whether you're a developer, designer, or financial expert, your input is valuable.
