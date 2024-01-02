@@ -63,4 +63,4 @@ We welcome contributions from the community! Whether you're a developer, designe
 
 ## License 📜
 
-This project is licensed under the GPL License. The GNU General Public License (GNU GPL or simply GPL) is a series of widely used free software licenses or copyleft that guarantee end users the four freedoms to run, study, share, and modify the software.
+This project is licensed under the [CC0 1.0 Universal](https://creativecommons.org/).
