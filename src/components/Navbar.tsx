@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.png"; //logo image
 import SearchBar from "./SearchBar";
+import { navLinks } from "./constant";
+import Dropdown from "./Dropdown";
+import DropdownIcon from "./DropdownIcon";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,69 +31,13 @@ const Navbar: React.FC = () => {
     setIsDropdownOpen(false);
   };
 
-  const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Contacts", href: "#" },
-    { label: "Features", href: "#" },
-    { label: "Chart", href: "#" },
-  ];
-
-  const dropdownItems = [
-    { label: "IPO Checker", href: "#" },
-    { label: "IPO/FPO Updates", href: "#" },
-    { label: "Trading Signal", href: "#" },
-    { label: "Portfolio Checker", href: "#" },
-    { label: "Charts", href: "#" },
-    { label: "Company Analyzer", href: "#" },
-    { label: "Compare Company", href: "#" },
-    { label: "Share Calculator", href: "#" },
-  ];
-
-  const DropdownIcon = ({ onMouseOver }: { onMouseOver: () => void }) => (
-    <div className="cursor-pointer inline-block" onMouseOver={onMouseOver}>
-      <svg
-        className="fill-current h-4 w-4 ml-1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-      </svg>
-    </div>
-  );
-
-  const Dropdown = () => {
-    return (
-      <>
-        <div
-          className={
-            "absolute w-52 top-8 p-4 bg-white rounded drop-shadow-xl z-10"
-          }
-          onMouseOver={handleDropdownMouseOver}
-          onMouseOut={handleDropdownMouseOut}
-        >
-          {dropdownItems.map((subItem, subIndex) => (
-            <div className="p-1 shadow-inner">
-              <a
-                key={subIndex}
-                href={subItem.href}
-                className="block text-gray-800 hover:text-blue-500 "
-              >
-                {subItem.label}
-              </a>
-            </div>
-          ))}
-        </div>
-      </>
-    );
-  };
-
   return (
     <div className="container flex items-center justify-between flex-wrap">
       {/* Logo, Title, and Menu */}
       <div className="flex items-center">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-14 mr-2" />
-          <span className="text-black font-bold text-2xl mr-5 md:mr-2">
+          <span className="text-black font-bold text-2xl mr-5 md:mr-5">
             NSA
           </span>
         </div>
@@ -111,9 +58,14 @@ const Navbar: React.FC = () => {
                         className="text-black hover:text-blue-500 flex items-center"
                       >
                         {link.label}
-                        <DropdownIcon onMouseOver={handleMouseOver} />
+                        <DropdownIcon handleMouseOver={handleMouseOver} />
                       </a>
-                      {isDropdownOpen && <Dropdown />}
+                      {isDropdownOpen && (
+                        <Dropdown
+                          handleDropdownMouseOver={handleDropdownMouseOver}
+                          handleDropdownMouseOut={handleDropdownMouseOut}
+                        />
+                      )}
                     </div>
                   </>
                 ) : (
