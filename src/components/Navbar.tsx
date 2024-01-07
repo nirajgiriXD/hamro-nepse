@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleMouseOver = () => {
     setIsDropdownOpen(true);
   };
