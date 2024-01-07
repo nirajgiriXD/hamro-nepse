@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.jpg"; //logo image
+import logo from "../assets/images/logo.png"; //logo image
 import SearchBar from "./SearchBar";
 
 const Navbar: React.FC = () => {
