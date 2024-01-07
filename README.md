@@ -26,7 +26,7 @@ It is a comprehensive web application designed for stock enthusiasts, investors,
 
 ```bash
 git clone https://github.com/your-username/hamro-nepse.git
-cd nsa
+cd hamro-nepse
 ```
 
 - **Dependencies:**
