@@ -7,7 +7,7 @@ import React, { useState } from "react";
  * Internal dependencies.
  */
 import { navItems } from "../../constant";
-import SearchBar from "../SearchBar";
+import SearchBar from "./SearchBar";
 import NavItem from "./NavItem";
 
 interface NavbarProp {
