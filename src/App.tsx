@@ -5,7 +5,7 @@ import "./index.css";
 function App() {
   return (
     <>
-      <div className="container p-10">
+      <div className="container mx-auto p-8">
         <Navbar />
         <Banner />
       </div>
