@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.png"; //logo image
 import SearchBar from "./SearchBar";
+import { navLinks } from "./constant";
+import Dropdown from "./Dropdown";
+import DropdownIcon from "./DropdownIcon";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,32 +12,70 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Contacts", href: "#" },
-    { label: "Features", href: "#" },
-    { label: "Chart", href: "#" },
-  ];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const handleMouseOver = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsDropdownOpen(false);
+  };
+
+  const handleDropdownMouseOver = () => {
+    // Keep the dropdown open when the mouse is inside the dropdown
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownMouseOut = () => {
+    // Close the dropdown when the mouse leaves the dropdown
+    setIsDropdownOpen(false);
+  };
 
   return (
     <div className="container flex items-center justify-between flex-wrap">
       {/* Logo, Title, and Menu */}
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-14 mr-2" />
-          <span className="text-black font-bold text-2xl mr-5 md:mr-2">
+          <span className="text-black font-bold text-2xl mr-5 md:mr-5">
             NSA
           </span>
         </div>
 
         {/* Desktop Menu (Home, Contacts, Features, Chart) */}
-        <ul className="hidden md:flex items-center lg:space-x-8 md:space-x-4">
+        <ul className="hidden relative md:flex items-center lg:space-x-8 md:space-x-2">
           {navLinks.map(
             (link, index): React.ReactNode => (
               <li key={index}>
-                <a href={link.href} className="text-black hover:text-blue-500">
-                  {link.label}
-                </a>
+                {link.label === "Features" ? (
+                  <>
+                    <div
+                      className="flex items-center p-3"
+                      onMouseOut={handleMouseOut}
+                    >
+                      <a
+                        href={link.href}
+                        className="text-black hover:text-blue-500 flex items-center"
+                      >
+                        {link.label}
+                        <DropdownIcon handleMouseOver={handleMouseOver} />
+                      </a>
+                      {isDropdownOpen && (
+                        <Dropdown
+                          handleDropdownMouseOver={handleDropdownMouseOver}
+                          handleDropdownMouseOut={handleDropdownMouseOut}
+                        />
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <a
+                    href={link.href}
+                    className="text-black hover:text-blue-500"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             )
           )}
