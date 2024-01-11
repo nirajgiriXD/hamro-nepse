@@ -63,4 +63,4 @@ We welcome contributions from the community! Whether you're a developer, designe
 
 ## License 📜
 
-This project is licensed under the [CC0 1.0 Universal](https://creativecommons.org/).
+This project is licensed under the [Creative Commons Attribution-NonCommercial (CC-BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/).

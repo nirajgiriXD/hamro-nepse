@@ -62,7 +62,7 @@ const NavItem = ({ navItemDetails }: NavItemProp) => {
         )}
       </a>
 
-      {isDropdownOpen && (
+      {navItemDetails.hasSubMenu && isDropdownOpen && (
         <SubMenu
           handleDropdownMouseOver={handleDropdownMouseOver}
           handleDropdownMouseOut={handleDropdownMouseOut}
