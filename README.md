@@ -61,7 +61,7 @@ We welcome contributions from the community! Whether you're a developer, designe
 
 - If you have any ideas or suggestions, feel free to share them in the [discussions](https://github.com/ChandraByte/hamro-nepse/discussions) section. We appreciate your feedback and are open to collaborative discussions to enhance Stock Analyzer!
 
-## Acknowledgement
+## Acknowledgement 🙏
 
 - Logo: [Freepik](https://www.freepik.com/free-vector/bull-logo-design-template_42925533.htm#page=3&query=stock%20logo&position=7&from_view=search&track=ais&uuid=dc4cc0a2-3169-4285-89b2-721a9bee056c)
 
