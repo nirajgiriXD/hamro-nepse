@@ -40,11 +40,7 @@ const Footer = ({ logo }: FooterProp) => {
         </div>
         <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-200 lg:my-8" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2024{" "}
-          <a href="#" className="hover:underline">
-            HamroNepse™
-          </a>
-          . All Rights Reserved.
+          © 2024 HamroNepse | All Rights Reserved.
         </span>
       </div>
     </footer>
