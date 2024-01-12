@@ -33,7 +33,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         </div>
 
         {/* Desktop Menu (Home, Contacts, Features, Chart) */}
-        <ul className="hidden relative md:flex items-center lg:space-x-8 md:space-x-2">
+        <ul className="hidden relative lg:flex items-center lg:space-x-8 md:space-x-2">
           {navItems.map((navItem, index): React.ReactNode => {
             return (
               <li key={index}>
@@ -45,7 +45,7 @@ const Navbar = ({ logo }: NavbarProp) => {
       </div>
 
       {/* Desktop Search Bar and Login Button*/}
-      <div className="hidden md:flex items-center space-x-4">
+      <div className="hidden lg:flex items-center space-x-4">
         {/* Search Bar */}
         <div className="relative">
           <SearchBar />
@@ -69,7 +69,7 @@ const Navbar = ({ logo }: NavbarProp) => {
       </div>
 
       {/* Toggle for Mobile Menu  */}
-      <div className="md:hidden flex items-center">
+      <div className="lg:hidden flex items-center">
         {/* Mobile Menu Toggle Icon */}
         <button className="text-black focus:outline-none" onClick={toggleMenu}>
           <svg
@@ -91,7 +91,7 @@ const Navbar = ({ logo }: NavbarProp) => {
 
       {/* Mobile Menu, Search Bar, and Login Button*/}
       <div
-        className={`md:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
+        className={`lg:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
       >
         {/* Mobile Menu (Home, Contacts, Features, Chart) */}
         <ul className="flex flex-col items-start space-y-2">
