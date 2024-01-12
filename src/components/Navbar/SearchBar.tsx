@@ -4,7 +4,7 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search"
-        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-sky-600"
       />
       <div className="absolute inset-y-0 end-0 flex items-center">
         <button
