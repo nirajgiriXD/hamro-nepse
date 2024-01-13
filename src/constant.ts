@@ -8,6 +8,13 @@ export const navItems = [
   { label: "Chart", href: "#", openInNewTab: false, hasSubMenu: false },
 ];
 
+export const footerItems = [
+  { label: " About", href: "#", openInNewTab: false},
+  { label: " Privacy Policy", href: "#", openInNewTab: false},
+  { label: "Licensing", href: "#", openInNewTab: false},
+  { label: "Contact", href: "#", openInNewTab: false},
+];
+
 export const subMenuItems = [
   { label: "IPO Checker", href: "#", openInNewTab: false, hasSubMenu: false },
   {
