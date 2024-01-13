@@ -6,6 +6,7 @@ export const navItems = [
   { label: "Contacts", href: "#", openInNewTab: false, hasSubMenu: false },
   { label: "Features", href: "#", openInNewTab: false, hasSubMenu: true },
   { label: "Chart", href: "#", openInNewTab: false, hasSubMenu: false },
+  {label: "Services", href:"service.jsx", openInNewTab:true, hasSubMenu:false},
 ];
 
 export const footerItems = [
