@@ -1,3 +1,6 @@
+import { footerItems } from "../../constant";
+import FooterItem from "./FooterItem";
+
 interface FooterProp {
   logo: string;
 }
@@ -16,26 +19,13 @@ const Footer = ({ logo }: FooterProp) => {
             </span>
           </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Licensing
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Contact
-              </a>
-            </li>
+            {footerItems.map((footerItem, index) => {
+              return (
+                <li key={index}>
+                  <FooterItem footerItemDetails={footerItem} />
+                </li>
+              );
+            })}
           </ul>
         </div>
         <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-200 lg:my-8" />
