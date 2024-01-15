@@ -12,7 +12,7 @@ const SearchBar = () => {
           className="p-3 ms-2 text-sm font-medium text-white"
         >
           <svg
-            className="w-4 h-4 transform scale-100 hover:scale-110 transition-transform duration-100"
+            className="w-4 h-4 transform scale-100 hover:scale-110 transition-transform duration-100 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

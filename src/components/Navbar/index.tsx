@@ -22,12 +22,12 @@ const Navbar = ({ logo }: NavbarProp) => {
   };
 
   return (
-    <div className="flex items-center justify-between flex-wrap">
+    <div className="flex items-center dark:bg-gray-900 justify-between flex-wrap">
       {/* Logo, Title, and Menu */}
       <div className="flex items-center">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-14 mr-2" />
-          <span className="text-black font-bold text-2xl mr-5 md:mr-5">
+          <span className="text-black font-semibold text-2xl mr-5 md:mr-5 dark:text-white">
             HamroNepse
           </span>
         </div>
@@ -54,10 +54,10 @@ const Navbar = ({ logo }: NavbarProp) => {
         {/* Login Button */}
         <button
           type="button"
-          className="text-blue-700 border border-black-700 hover:bg-blue-100 hover:text-white focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-300 dark:hover:bg-blue-100"
+          className="text-blue-700 border border-black-700 hover:bg-blue-100 hover:text-white focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:bg-white dark:focus:ring-blue-300 dark:hover:bg-blue-100"
         >
           <svg
-            className="w-9 h-9"
+            className="w-9 h-9 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="dark"
@@ -71,7 +71,7 @@ const Navbar = ({ logo }: NavbarProp) => {
       {/* Toggle for Mobile Menu  */}
       <div className="lg:hidden flex items-center">
         {/* Mobile Menu Toggle Icon */}
-        <button className="text-black focus:outline-none" onClick={toggleMenu}>
+        <button className="text-black focus:outline-none dark:text-white" onClick={toggleMenu}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -94,13 +94,15 @@ const Navbar = ({ logo }: NavbarProp) => {
         className={`lg:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
       >
         {/* Mobile Menu (Home, Contacts, Features, Chart) */}
-        <ul className="flex flex-col items-start space-y-2">
+
+        <ul className="flex flex-col items-start space-y-2 ">
+
           {navItems.map(
             (navItem, index): React.ReactNode => (
               <li key={index}>
                 <a
                   href={navItem.href}
-                  className="text-black hover:text-blue-500"
+                  className="text-black hover:text-blue-500 dark:text-white"
                 >
                   {navItem.label}
                 </a>
