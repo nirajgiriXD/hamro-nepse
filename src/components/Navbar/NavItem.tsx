@@ -46,7 +46,7 @@ const NavItem = ({ navItemDetails }: NavItemProp) => {
     >
       <a
         href={navItemDetails.href}
-        className="text-black hover:text-sky-600 flex items-center"
+        className="text-black hover:text-sky-600 flex items-center dark:text-white"
       >
         <span>{navItemDetails.label}</span>
         {navItemDetails.hasSubMenu && (

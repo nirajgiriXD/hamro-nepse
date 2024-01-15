@@ -14,7 +14,7 @@ const SubMenu = ({
 }: SubMenuProps) => {
   return (
     <div
-      className={"absolute w-52 top-8 p-4 bg-white rounded drop-shadow-xl z-10"}
+      className={"absolute w-52 top-10 p-4 bg-white rounded drop-shadow-xl z-10 dark:bg-gray-900 dark:border dark:border-white"}
       onMouseOver={handleDropdownMouseOver}
       onMouseOut={handleDropdownMouseOut}
     >
@@ -22,7 +22,7 @@ const SubMenu = ({
         <div className="p-1" key={index}>
           <a
             href={subMenuItem.href}
-            className="block text-gray-800 hover:text-blue-500 "
+            className="block text-gray-800 hover:text-blue-500 dark:text-white"
           >
             {subMenuItem.label}
           </a>
