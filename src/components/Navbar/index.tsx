@@ -71,7 +71,7 @@ const Navbar = ({ logo }: NavbarProp) => {
       {/* Toggle for Mobile Menu  */}
       <div className="lg:hidden flex items-center">
         {/* Mobile Menu Toggle Icon */}
-        <button className="text-black focus:outline-none" onClick={toggleMenu}>
+        <button className="text-black focus:outline-none dark:text-white" onClick={toggleMenu}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -94,13 +94,15 @@ const Navbar = ({ logo }: NavbarProp) => {
         className={`lg:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
       >
         {/* Mobile Menu (Home, Contacts, Features, Chart) */}
-        <ul className="flex flex-col items-start space-y-2">
+
+        <ul className="flex flex-col items-start space-y-2 ">
+
           {navItems.map(
             (navItem, index): React.ReactNode => (
               <li key={index}>
                 <a
                   href={navItem.href}
-                  className="text-black hover:text-blue-500"
+                  className="text-black hover:text-blue-500 dark:text-white"
                 >
                   {navItem.label}
                 </a>
