@@ -6,6 +6,9 @@ import logo from "./assets/img/logo.png";
 import banner from "./assets/img/banner.png";
 import "./index.css";
 import Footer from "./components/Footer";
+import Service from './components/Services/Service';
+
+
 
 function App() {
   return (
@@ -14,7 +17,10 @@ function App() {
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
       <Banner banner={banner} />
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
+      <Service/>
+      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
       <Footer logo={logo} />
+   
     </div>
   );
 }
