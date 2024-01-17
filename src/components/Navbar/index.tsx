@@ -33,7 +33,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         </div>
 
         {/* Desktop Menu (Home, Contacts, Features, Chart) */}
-        <ul className="hidden relative lg:flex items-center lg:space-x-8 md:space-x-2">
+        <ul className="hidden relative lg:flex items-center lg:space-x-6 md:space-x-2">
           {navItems.map((navItem, index): React.ReactNode => {
             return (
               <li key={index}>
