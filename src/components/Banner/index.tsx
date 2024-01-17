@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import BannerTable from './BannerTable';
-
-
 const Banner = () => {
   const [fetchURL, setFetchUrl] = useState("https://dummyjson.com/products?limit=10");
 
