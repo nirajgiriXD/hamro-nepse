@@ -13,6 +13,10 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
+
+
 type ProductApiResponse = {
   products: Array<Product>;
 };
@@ -116,9 +120,28 @@ const Table = ({fetchURL} : URL) => {
     },
   });
 
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = createTheme({
+    palette: {
+      mode: prefersDarkMode ? 'dark' : 'light',
+      primary: {
+        main: prefersDarkMode ? '#111829' : '#1976d2',
+      },
+      text: {
+        primary: prefersDarkMode ? '#fff' : '#111829',
+      },
+      background: {
+        default: prefersDarkMode ? '#111829' : '#fff',
+        paper: prefersDarkMode ? '#111829' : '#fff',
+      },
+    },
+  });
+
   return( 
 
+     <ThemeProvider theme={theme}>
       <MaterialReactTable table={table} />
+    </ThemeProvider>
   )
 };
 
