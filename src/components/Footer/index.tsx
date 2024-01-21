@@ -22,7 +22,11 @@ const Footer = ({ logo }: FooterProp) => {
             {footerItems.map((footerItem, index) => {
               return (
                 <li key={index}>
-                  <FooterItem footerItemDetails={footerItem} />
+                  <FooterItem
+                    href={footerItem.href}
+                    label={footerItem.label}
+                    openInNewTab={footerItem.openInNewTab}
+                  />
                 </li>
               );
             })}

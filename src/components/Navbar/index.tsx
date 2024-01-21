@@ -38,7 +38,12 @@ const Navbar = ({ logo }: NavbarProp) => {
             {navItems.map((navItem, index): React.ReactNode => {
               return (
                 <li key={index}>
-                  <NavItem navItemDetails={navItem} />
+                  <NavItem
+                    label={navItem.label}
+                    href={navItem.href}
+                    hasSubMenu={navItem.hasSubMenu}
+                    openInNewTab={navItem.openInNewTab}
+                  />
                 </li>
               );
             })}
