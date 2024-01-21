@@ -4,16 +4,20 @@ export const App = {
 
 export const navItems = [
   { label: "Contacts", href: "#", openInNewTab: false, hasSubMenu: false },
-  { label: "Features", href: "#", openInNewTab: false, hasSubMenu: true },
+  {
+    label: "Services",
+    href: "/services",
+    openInNewTab: false,
+    hasSubMenu: true,
+  },
   { label: "Chart", href: "#", openInNewTab: false, hasSubMenu: false },
-  {label: "Services", href:"/our-services", openInNewTab:true, hasSubMenu:false},
 ];
 
 export const footerItems = [
-  { label: " About", href: "#", openInNewTab: false},
-  { label: " Privacy Policy", href: "#", openInNewTab: false},
-  { label: "Licensing", href: "#", openInNewTab: false},
-  { label: "Contact", href: "#", openInNewTab: false},
+  { label: "About", href: "#", openInNewTab: false },
+  { label: "Privacy Policy", href: "#", openInNewTab: false },
+  { label: "Licensing", href: "#", openInNewTab: false },
+  { label: "Contact", href: "#", openInNewTab: false },
 ];
 
 export const subMenuItems = [

@@ -6,8 +6,8 @@ interface FooterProp {
 }
 const Footer = ({ logo }: FooterProp) => {
   return (
-    <footer className="bg-white rounded-lg dark:bg-gray-900 mt-6">
-      <div className="w-full mx-auto p-4 md:py-8">
+    <footer className="rounded-lg shadow">
+      <div className="w-full max-w-screen-xxl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a
             href="#"
@@ -28,7 +28,7 @@ const Footer = ({ logo }: FooterProp) => {
             })}
           </ul>
         </div>
-        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-200 lg:my-8" />
+        <hr className="my-6 lg:my-8 border-gray-200 sm:mx-auto dark:border-gray-700" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2024 HamroNepse | All Rights Reserved.
         </span>
