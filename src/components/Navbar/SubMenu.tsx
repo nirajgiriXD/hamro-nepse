@@ -14,7 +14,9 @@ const SubMenu = ({
 }: SubMenuProps) => {
   return (
     <div
-      className={"absolute w-52 top-10 p-4 bg-white rounded drop-shadow-xl z-10 dark:bg-gray-900 dark:border dark:border-white"}
+      className={
+        "absolute w-52 top-10 p-4 drop-shadow-xl z-10 dark:border dark:border-white"
+      }
       onMouseOver={handleDropdownMouseOver}
       onMouseOut={handleDropdownMouseOut}
     >
