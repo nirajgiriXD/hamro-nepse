@@ -1,8 +1,8 @@
 const Services = () => {
   return (
-    <div className="flex flex-wrap xl:my-5 md:my-4 xs:my-3 dark:text-white">
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+    <div className="flex flex-wrap xl:my-10 md:my-8 xs:my-5 dark:text-white border border-gray-300 rounded-lg p-2">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -25,8 +25,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -51,8 +51,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -76,8 +76,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -100,8 +100,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -124,8 +124,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -148,8 +148,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
@@ -172,8 +172,8 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-gray-300 p-6 rounded-lg">
+      <div className="xl:w-1/3 md:w-1/2 p-2">
+        <div className="border border-gray-300 p-6 rounded-md">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg
               fill="none"
