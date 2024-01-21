@@ -9,15 +9,13 @@ import { useState } from "react";
 import SubMenu from "./SubMenu";
 
 interface NavItemProp {
-  navItemDetails: {
-    label: string;
-    href: string;
-    openInNewTab: boolean;
-    hasSubMenu: boolean;
-  };
+  label: string;
+  href: string;
+  openInNewTab: boolean;
+  hasSubMenu: boolean;
 }
 
-const NavItem = ({ navItemDetails }: NavItemProp) => {
+const NavItem = ({ label, href, openInNewTab, hasSubMenu }: NavItemProp) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleMouseOver = () => {
@@ -45,11 +43,12 @@ const NavItem = ({ navItemDetails }: NavItemProp) => {
       onMouseOver={handleMouseOver}
     >
       <a
-        href={navItemDetails.href}
+        href={href}
+        target={openInNewTab ? "_blank" : ""}
         className="text-black hover:text-sky-600 flex items-center dark:text-white"
       >
-        <span>{navItemDetails.label}</span>
-        {navItemDetails.hasSubMenu && (
+        <span>{label}</span>
+        {hasSubMenu && (
           <div className="cursor-pointer inline-block">
             <svg
               className="fill-current h-4 w-4 ml-1"
@@ -62,7 +61,7 @@ const NavItem = ({ navItemDetails }: NavItemProp) => {
         )}
       </a>
 
-      {navItemDetails.hasSubMenu && isDropdownOpen && (
+      {hasSubMenu && isDropdownOpen && (
         <SubMenu
           handleDropdownMouseOver={handleDropdownMouseOver}
           handleDropdownMouseOut={handleDropdownMouseOut}

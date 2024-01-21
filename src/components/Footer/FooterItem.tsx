@@ -1,15 +1,17 @@
 interface FooterItemProp {
-  footerItemDetails: {
-    label: string;
-    href: string;
-    openInNewTab: boolean;
-  };
+  label: string;
+  href: string;
+  openInNewTab: boolean;
 }
 
-const FooterItem = ({ footerItemDetails }: FooterItemProp) => {
+const FooterItem = ({ label, href, openInNewTab }: FooterItemProp) => {
   return (
-    <a href={footerItemDetails.href} className="hover:underline me-4 md:me-6">
-      {footerItemDetails.label}
+    <a
+      href={href}
+      className="hover:underline me-4 md:me-6"
+      target={openInNewTab ? "_blank" : ""}
+    >
+      {label}
     </a>
   );
 };

@@ -3,19 +3,18 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
   type MRT_SortingState,
-} from 'material-react-table';
-import { IconButton, Tooltip } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
+} from "material-react-table";
+import { IconButton, Tooltip } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import {
   QueryClient,
   QueryClientProvider,
   keepPreviousData,
   useQuery,
-} from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useMediaQuery } from '@mui/material';
-
+} from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 
 type ProductApiResponse = {
   products: Array<Product>;
@@ -29,14 +28,14 @@ type Product = {
   stock: number;
 };
 
-interface URL{
-  fetchURL:string
+interface URL {
+  fetchURL: string;
 }
 
-const Table = ({fetchURL} : URL) => {
-  const [globalFilter, setGlobalFilter] = useState<string>('');
+const Table = ({ fetchURL }: URL) => {
+  const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
-      
+
   const {
     data: { products = [] } = {},
     isError,
@@ -62,43 +61,43 @@ const Table = ({fetchURL} : URL) => {
   const columns = useMemo<MRT_ColumnDef<Product>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
+        accessorKey: "id",
+        header: "ID",
       },
       {
-        accessorKey: 'title',
-        header: 'Title',
+        accessorKey: "title",
+        header: "Title",
       },
       {
-        accessorKey: 'price',
-        header: 'Price',
+        accessorKey: "price",
+        header: "Price",
         Cell: ({ cell }) => `$${cell.getValue<number>().toFixed(2)}`,
       },
       {
-        accessorKey: 'discountPercentage',
-        header: 'Discount (%)',
+        accessorKey: "discountPercentage",
+        header: "Discount (%)",
       },
       {
-        accessorKey: 'stock',
-        header: 'Stock',
+        accessorKey: "stock",
+        header: "Stock",
       },
     ],
-    [],
+    []
   );
 
   const table = useMaterialReactTable({
     columns,
     data: products,
     enablePagination: false,
-    enableSorting:true,
-    enableGlobalFilter:true,
-    enableColumnFilters :false,
+    enableSorting: true,
+    enableGlobalFilter: true,
+    enableColumnFilters: false,
     enableBottomToolbar: false,
-    initialState: { },
+    initialState: {},
     muiToolbarAlertBannerProps: isError
       ? {
-          color: 'error',
-          children: 'Error loading data',
+          color: "error",
+          children: "Error loading data",
         }
       : undefined,
     onGlobalFilterChange: setGlobalFilter,
@@ -120,36 +119,35 @@ const Table = ({fetchURL} : URL) => {
     },
   });
 
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
     palette: {
-      mode: prefersDarkMode ? 'dark' : 'light',
+      mode: prefersDarkMode ? "dark" : "light",
       primary: {
-        main: prefersDarkMode ? '#111829' : '#1976d2',
+        main: prefersDarkMode ? "#111829" : "#1976d2",
       },
       text: {
-        primary: prefersDarkMode ? '#fff' : '#111829',
+        primary: prefersDarkMode ? "#fff" : "#111829",
       },
       background: {
-        default: prefersDarkMode ? '#111829' : '#fff',
-        paper: prefersDarkMode ? '#111829' : '#fff',
+        default: prefersDarkMode ? "#111829" : "#fff",
+        paper: prefersDarkMode ? "#111829" : "#fff",
       },
     },
   });
 
-  return( 
-
-     <ThemeProvider theme={theme}>
+  return (
+    <ThemeProvider theme={theme}>
       <MaterialReactTable table={table} />
     </ThemeProvider>
-  )
+  );
 };
 
 const queryClient = new QueryClient();
 
-const BannerTable = ({fetchURL} : URL) => (
+const BannerTable = ({ fetchURL }: URL) => (
   <QueryClientProvider client={queryClient}>
-    <Table fetchURL={fetchURL}/>
+    <Table fetchURL={fetchURL} />
   </QueryClientProvider>
 );
 
