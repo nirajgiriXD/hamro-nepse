@@ -7,11 +7,15 @@ import { Navbar, Services, Banner, Footer } from "./components";
 
 function App() {
   return (
-    <div className="container mx-auto p-10 dark:bg-gray-900">
-      <Navbar logo={logo} />
-      <Banner />
-      <Services />
-      <Footer logo={logo} />
+    <div className="dark:bg-gray-900">
+      <div className="container mx-auto">
+        <div className="w-100 max-w-screen-xl mx-auto px-5">
+          <Navbar logo={logo} />
+          <Banner />
+          <Services />
+          <Footer logo={logo} />
+        </div>
+      </div>
     </div>
   );
 }
