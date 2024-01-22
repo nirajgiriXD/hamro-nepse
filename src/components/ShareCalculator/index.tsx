@@ -66,9 +66,9 @@ const ShareCalculator = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 md:mb-12">
       {/* Testimonial 1 */}
-      <figure className="flex flex-col items-start justify-center p-8 text-left bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700">
+      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 text-gray-900 dark:text-white">
         <div className="mt-4" ref={dropdownRef}>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 font-bold text-lg">
+          <label className="block text-sm font-medium mb-1 font-bold text-lg">
             Transaction type:
           </label>
           <div className="relative inline-block w-44">
@@ -206,10 +206,8 @@ const ShareCalculator = () => {
       </figure>
 
       {/* Testimonial 2 */}
-      <figure className="flex flex-col items-start justify-center p-8 text-left bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Financial Summary
-        </h3>
+      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 text-gray-900 dark:text-white">
+        <h3 className="text-lg font-semibold mb-4">Financial Summary</h3>
         <table className="w-full border-collapse border border-gray-300 rounded-md">
           <tbody>
             <tr className="border-b">
