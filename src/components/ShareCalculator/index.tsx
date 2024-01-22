@@ -66,7 +66,7 @@ const ShareCalculator = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 md:mb-12">
       {/* Testimonial 1 */}
-      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 text-gray-900 dark:text-white">
+      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700">
         <div className="mt-4" ref={dropdownRef}>
           <label className="block text-sm font-medium mb-1 font-bold text-lg">
             Transaction type:
@@ -81,9 +81,9 @@ const ShareCalculator = () => {
               }
               onMouseEnter={toggleDropdown}
               onBlur={toggleDropdown}
-              className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center ${
+              className={`text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center ${
                 transactionType === "buy"
-                  ? "dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  ? "dark:bg-blue-600 dark:hover:bg-blue-500 dark:focus:ring-blue-800"
                   : ""
               }`}
               type="button"
@@ -110,29 +110,23 @@ const ShareCalculator = () => {
             {isDropdownOpen && (
               <div
                 id="dropdown1"
-                className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                className="z-10 divide-y divide-gray-100 rounded-lg shadow w-44 bg-white dark:bg-gray-700"
               >
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  className="py-2 text-sm"
                   aria-labelledby="dropdownDefaultButton1"
                 >
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      onClick={() => handleTransactionTypeChange("buy")}
-                    >
-                      Buy
-                    </a>
+                  <li
+                    onClick={() => handleTransactionTypeChange("buy")}
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Buy
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      onClick={() => handleTransactionTypeChange("sell")}
-                    >
-                      Sell
-                    </a>
+                  <li
+                    onClick={() => handleTransactionTypeChange("sell")}
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Sell
                   </li>
                 </ul>
               </div>
@@ -143,14 +137,14 @@ const ShareCalculator = () => {
         {/* Share Quantity Input */}
         {transactionType === "buy" && (
           <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 font-bold">
+            <label className="block text-sm font-medium mb-1 font-bold">
               Share Quantity:
             </label>
             <input
               type="text"
               value={shareQuantity}
               onChange={handleShareQuantityChange}
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600"
               placeholder="Enter share quantity"
             />
           </div>
@@ -159,14 +153,14 @@ const ShareCalculator = () => {
         {/* Purchase Price Input */}
         {transactionType === "buy" && (
           <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 font-bold">
+            <label className="block text-sm font-medium mb-1 font-bold">
               Purchase Price (Rs):
             </label>
             <input
               type="text"
               value={purchasePrice}
               onChange={handlePurchasePriceChange}
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600"
               placeholder="Enter purchase price"
             />
           </div>
@@ -175,14 +169,14 @@ const ShareCalculator = () => {
         {/* Additional Field Input for Sell */}
         {transactionType === "sell" && (
           <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 font-bold">
+            <label className="block text-sm font-medium mb-1 font-bold">
               Additional Field:
             </label>
             <input
               type="text"
               value={additionalField}
               onChange={handleAdditionalFieldChange}
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 dark:border-gray-600"
               placeholder="Enter additional field"
             />
           </div>
@@ -198,7 +192,7 @@ const ShareCalculator = () => {
           </button>
           <button
             onClick={handleClear}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300"
+            className="bg-gray-500 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300"
           >
             Clear
           </button>
@@ -206,7 +200,7 @@ const ShareCalculator = () => {
       </figure>
 
       {/* Testimonial 2 */}
-      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 text-gray-900 dark:text-white">
+      <figure className="flex flex-col items-start justify-center p-8 text-left border border-gray-200 rounded-lg shadow-sm dark:border-gray-700">
         <h3 className="text-lg font-semibold mb-4">Financial Summary</h3>
         <table className="w-full border-collapse border border-gray-300 rounded-md">
           <tbody>

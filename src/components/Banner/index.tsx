@@ -19,7 +19,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="grid  mx-auto md:mt-14 text-gray-900 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
+      <div className="grid  mx-auto md:mt-14 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
         <button
           type="button"
           onClick={handleTopGainers}
@@ -42,7 +42,7 @@ const Banner = () => {
           Top Turnover
         </button>
       </div>
-      <div className="grid mx-auto mt-6 overflow-hidden text-gray-900 border border-b-1 border-gray-300 border-gray-200 rounded-xl lg:grid-cols">
+      <div className="grid mx-auto mt-6 overflow-hidden border border-b-1 border-gray-300 border-gray-200 rounded-xl lg:grid-cols">
         <BannerTable fetchURL={fetchURL} />
       </div>
     </>

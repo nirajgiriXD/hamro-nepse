@@ -2,6 +2,7 @@
  * External dependencies.
  */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 /**
  * Internal dependencies.
@@ -23,12 +24,12 @@ const Navbar = ({ logo }: NavbarProp) => {
 
   return (
     <div className="pt-6 lg:pt-8">
-      <div className="flex items-center dark:bg-gray-900 justify-between flex-wrap dark:border-gray-600">
+      <div className="flex items-center justify-between flex-wrap dark:border-gray-600">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
           <div className="flex items-center">
             <img src={logo} alt="Logo" className="h-12 mr-2" />
-            <span className="text-black font-semibold text-2xl mr-5 md:mr-5 dark:text-white">
+            <span className="font-semibold text-2xl mr-5 md:mr-5">
               HamroNepse
             </span>
           </div>
@@ -63,7 +64,7 @@ const Navbar = ({ logo }: NavbarProp) => {
             className="focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:focus:ring-blue-300 dark:hover:bg-blue-100 h-12 w-12"
           >
             <svg
-              className="w-9 h-9 dark:text-white"
+              className="w-9 h-9"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="dark"
@@ -77,10 +78,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         {/* Toggle for Mobile Menu  */}
         <div className="lg:hidden flex items-center">
           {/* Mobile Menu Toggle Icon */}
-          <button
-            className="text-black focus:outline-none dark:text-white"
-            onClick={toggleMenu}
-          >
+          <button className="focus:outline-none" onClick={toggleMenu}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -109,12 +107,9 @@ const Navbar = ({ logo }: NavbarProp) => {
             {navItems.map(
               (navItem, index): React.ReactNode => (
                 <li key={index}>
-                  <a
-                    href={navItem.href}
-                    className="text-black hover:text-blue-500 dark:text-white"
-                  >
+                  <Link to={navItem.href} className="hover:text-blue-500">
                     {navItem.label}
-                  </a>
+                  </Link>
                 </li>
               )
             )}

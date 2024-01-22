@@ -10,13 +10,16 @@ import "./index.css";
 import logo from "./assets/img/logo.png";
 import { Navbar, Footer } from "./components";
 import {
-  ChartsPage,
+  AboutPage,
+  ChartPage,
   CompanyAnalyzerPage,
   CompareCompanyPage,
+  ContactPage,
   HomePage,
   IpoCheckerPage,
   IpoFpoUpdatesPage,
   PortfolioTrackerPage,
+  PrivacyPolicyPage,
   ServicesPage,
   ShareCalculatorPage,
   TradingSignalsPage,
@@ -25,20 +28,22 @@ import {
 function App() {
   return (
     <Router>
-      <div className="dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <div className="container mx-auto">
-          <div className="w-100 max-w-screen-xl mx-auto px-3">
+          <div className="w-100 h-100 max-w-screen-xl mx-auto px-3">
             {/* Navbar */}
             <Navbar logo={logo} />
 
             {/* Routes */}
             <Routes>
-              <Route path="/charts" element={<ChartsPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/chart" element={<ChartPage />} />
               <Route
                 path="/company-analyzer"
                 element={<CompanyAnalyzerPage />}
               />
               <Route path="/compare-company" element={<CompareCompanyPage />} />
+              <Route path="/contact" element={<ContactPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/ipo-checker" element={<IpoCheckerPage />} />
 
@@ -52,6 +57,7 @@ function App() {
                 path="/share-calculator"
                 element={<ShareCalculatorPage />}
               />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/trading-signals" element={<TradingSignalsPage />} />
             </Routes>
 

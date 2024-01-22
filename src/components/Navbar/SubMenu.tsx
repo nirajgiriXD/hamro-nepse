@@ -1,4 +1,9 @@
 /**
+ * External dependencies.
+ */
+import { Link } from "react-router-dom";
+
+/**
  * Internal dependencies.
  */
 import { subMenuItems } from "../../constant";
@@ -22,12 +27,9 @@ const SubMenu = ({
     >
       {subMenuItems.map((subMenuItem, index) => (
         <div className="p-1" key={index}>
-          <a
-            href={subMenuItem.href}
-            className="block text-gray-800 hover:text-blue-500 dark:text-white"
-          >
+          <Link to={subMenuItem.href} className="block hover:text-blue-500">
             {subMenuItem.label}
-          </a>
+          </Link>
         </div>
       ))}
     </div>
