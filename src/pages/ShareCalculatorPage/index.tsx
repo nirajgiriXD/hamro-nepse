@@ -1,5 +1,10 @@
+/**
+ * Internal dependencies.
+ */
+import ShareCalculator from "../../components/ShareCalculator";
+
 const ShareCalculatorPage = () => {
-  return <></>;
+  return <ShareCalculator />;
 };
 
 export default ShareCalculatorPage;
