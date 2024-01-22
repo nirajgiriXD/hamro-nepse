@@ -43,10 +43,7 @@ const NavItem = ({ label, href, hasSubMenu }: NavItemProp) => {
       onMouseOut={handleMouseOut}
       onMouseOver={handleMouseOver}
     >
-      <Link
-        to={href}
-        className="text-black hover:text-sky-600 flex items-center dark:text-white"
-      >
+      <Link to={href} className="hover:text-sky-600 flex items-center">
         <span>{label}</span>
         {hasSubMenu && (
           <div className="cursor-pointer inline-block">

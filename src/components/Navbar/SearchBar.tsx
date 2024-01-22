@@ -4,15 +4,12 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search"
-        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-sky-600"
+        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-sky-600 text-gray-900"
       />
       <div className="absolute inset-y-0 end-0 flex items-center">
-        <button
-          type="submit"
-          className="p-3 ms-2 text-sm font-medium text-white"
-        >
+        <button type="submit" className="p-3 ms-2 text-sm font-medium">
           <svg
-            className="w-4 h-4 transform scale-100 hover:scale-110 transition-transform duration-100 dark:text-white"
+            className="w-4 h-4 transform scale-100 hover:scale-110 transition-transform duration-100"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
