@@ -3,6 +3,7 @@ export const App = {
 };
 
 export const navItems = [
+  { label: "About", href: "/about", openInNewTab: false, hasSubMenu: false },
   {
     label: "Contact",
     href: "/contact",
@@ -15,7 +16,6 @@ export const navItems = [
     openInNewTab: false,
     hasSubMenu: true,
   },
-  { label: "Chart", href: "/chart", openInNewTab: false, hasSubMenu: false },
 ];
 
 export const footerItems = [
