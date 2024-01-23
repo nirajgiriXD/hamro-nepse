@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies.
+ */
 import { Banner } from "../../components";
 
 const HomePage = () => {
