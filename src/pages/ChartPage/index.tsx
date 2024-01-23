@@ -1,5 +1,10 @@
+/**
+ * Internal dependencies.
+ */
+import { Chart } from "../../components";
+
 const ChartPage = () => {
-  return <></>;
+  return <Chart />;
 };
 
 export default ChartPage;
