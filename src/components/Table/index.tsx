@@ -1,5 +1,13 @@
+/**
+ * External Dependencies.
+ */
 import { useState } from "react";
+
+/**
+ * Internal Dependencies.
+ */
 import BannerTable from "./BannerTable";
+
 const Banner = () => {
   const [fetchURL, setFetchUrl] = useState(
     "https://dummyjson.com/products?limit=10"
@@ -42,7 +50,7 @@ const Banner = () => {
           Top Turnover
         </button>
       </div>
-      <div className="grid mx-auto mt-6 overflow-hidden border border-b-1 border-gray-300 border-gray-200 rounded-xl lg:grid-cols">
+      <div className="grid mx-auto mt-6 lg:mt-8 overflow-hidden text-gray-900 border border-b-1 border-gray-300 border-gray-200 rounded-xl lg:grid-cols">
         <BannerTable fetchURL={fetchURL} />
       </div>
     </>

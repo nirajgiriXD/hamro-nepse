@@ -27,7 +27,7 @@ const SubMenu = ({
     >
       {subMenuItems.map((subMenuItem, index) => (
         <div className="p-1" key={index}>
-          <Link to={subMenuItem.href} className="block hover:text-blue-500">
+          <Link to={subMenuItem.href} className="block hover:text-sky-600">
             {subMenuItem.label}
           </Link>
         </div>

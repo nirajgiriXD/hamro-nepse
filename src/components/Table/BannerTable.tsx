@@ -4,7 +4,7 @@ import {
   type MRT_ColumnDef,
   type MRT_SortingState,
 } from "material-react-table";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip, useMediaQuery } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {
   QueryClient,
@@ -14,7 +14,6 @@ import {
 } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
 
 type ProductApiResponse = {
   products: Array<Product>;
@@ -35,6 +34,7 @@ interface URL {
 const Table = ({ fetchURL }: URL) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const {
     data: { products = [] } = {},
@@ -100,6 +100,9 @@ const Table = ({ fetchURL }: URL) => {
           children: "Error loading data",
         }
       : undefined,
+    muiLinearProgressProps: {
+      color: prefersDarkMode ? "info" : "primary",
+    },
     onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
     renderTopToolbarCustomActions: () => (
@@ -119,7 +122,6 @@ const Table = ({ fetchURL }: URL) => {
     },
   });
 
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
     palette: {
       mode: prefersDarkMode ? "dark" : "light",

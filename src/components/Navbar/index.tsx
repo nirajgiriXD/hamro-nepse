@@ -28,10 +28,12 @@ const Navbar = ({ logo }: NavbarProp) => {
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
           <div className="flex items-center">
-            <img src={logo} alt="Logo" className="h-12 mr-2" />
-            <span className="font-semibold text-2xl mr-5 md:mr-5">
+            <Link to="/">
+              <img src={logo} alt="Logo" className="h-12 mr-2" />
+            </Link>
+            <Link to="/" className="font-semibold text-2xl mr-5 md:mr-5">
               HamroNepse
-            </span>
+            </Link>
           </div>
 
           {/* Desktop Menu (Home, Contacts, Features, Chart) */}
@@ -121,7 +123,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           </div>
 
           {/* Login Button */}
-          <button className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 focus:outline-none focus:ring focus:border-sky-400">
+          <button className="w-full mt-2 px-4 py-2 mb-4 text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
             Login / Signup
           </button>
         </div>
