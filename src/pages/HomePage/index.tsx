@@ -1,10 +1,10 @@
 /**
- * Internal dependencies.
+ * External dependencies.
  */
-import { Banner } from "../../components";
+import { Table } from "../../components";
 
 const HomePage = () => {
-  return <Banner />;
+  return <Table />;
 };
 
 export default HomePage;
