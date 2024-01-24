@@ -1,9 +1,14 @@
-/**
- * Internal dependencies.
- */
-import ServiceItems from "./constants";
+import React from "react";
 
-const Services = () => {
+interface ServiceItemsProp {
+  ServiceItems: {
+    icon: React.ReactElement<SVGElement>;
+    title: string;
+    description: string;
+  }[];
+}
+
+const Services = ({ ServiceItems }: ServiceItemsProp) => {
   return (
     <div className="flex flex-wrap xl:my-10 md:my-8 xs:my-5 border border-gray-300 rounded-lg p-2">
       {ServiceItems.map((serviceItem, index) => {
