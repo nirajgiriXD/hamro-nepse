@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install ESLint
         run: |
           npm install eslint@8.10.0
