@@ -10,6 +10,7 @@ import {
 
 const Chart = () => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
+  const isInitialized = useRef<boolean>(false);
   const candlestickSeriesData = [
     {
       time: "2018-12-22",
@@ -94,6 +95,7 @@ const Chart = () => {
   ];
 
   useEffect(() => {
+    if(isInitialized.current) return;
     const chartContainer = chartContainerRef.current;
 
     if (!chartContainer) {
@@ -130,6 +132,7 @@ const Chart = () => {
 
     candlestickSeries.setData(candlestickSeriesData);
     chart.timeScale().fitContent();
+    isInitialized.current = true;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
