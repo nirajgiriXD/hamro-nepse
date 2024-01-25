@@ -20,7 +20,7 @@
     "chart.js": "^4.4.1",
     "lightweight-charts": "^4.1.2",
     "material-react-table": "^2.6.1",
-    "query": "github:tanstack/react-query",
+    "pnpm": "^8.14.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3"
