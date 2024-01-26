@@ -15,6 +15,7 @@ interface FooterProp {
 
 const Footer = ({ logo }: FooterProp) => {
   const date = new Date().getFullYear();
+
   return (
     <footer className="w-full max-w-screen-xxl mx-auto p-4 md:py-8">
       <div className="sm:flex sm:items-center sm:justify-between">
