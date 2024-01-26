@@ -14,7 +14,7 @@ interface FooterProp {
 }
 
 const Footer = ({ logo }: FooterProp) => {
-  const date = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full max-w-screen-xxl mx-auto p-4 md:py-8">
@@ -46,7 +46,7 @@ const Footer = ({ logo }: FooterProp) => {
       <hr className="my-6 lg:my-8 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
       <span className="block text-sm sm:text-center">
-        © {date} HamroNepse | All Rights Reserved.
+        © {currentYear} HamroNepse | All Rights Reserved.
       </span>
     </footer>
   );
