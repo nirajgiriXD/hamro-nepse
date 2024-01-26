@@ -24,7 +24,7 @@ const Navbar = ({ logo }: NavbarProp) => {
 
   return (
     <div className="pt-6 lg:pt-8">
-      <div className="flex items-center justify-between flex-wrap dark:border-gray-600">
+      <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
           <div className="flex items-center">
@@ -54,7 +54,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         </div>
 
         {/* Desktop Search Bar and Login Button*/}
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center align-middle space-x-4">
           {/* Search Bar */}
           <div className="relative h-12">
             <SearchBar />
@@ -63,11 +63,9 @@ const Navbar = ({ logo }: NavbarProp) => {
           {/* Login Button */}
           <button
             type="button"
-            className="focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:focus:ring-blue-300 dark:hover:bg-blue-100 h-12 w-12"
+            className="focus:ring-1 focus:outline-none focus:ring-blue-300 rounded-full dark:bg-white dark:focus:ring-blue-300 dark:hover:bg-blue-100 h-12 w-12 p-2"
           >
             <svg
-              className="w-9 h-9"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="dark"
               viewBox="0 0 32 32"
@@ -103,7 +101,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           className={`lg:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
         >
           {/* Mobile Menu (Home, Contacts, Features, Chart) */}
-          <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700" />
+          <hr className="my-3 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
           <ul className="flex flex-col items-start space-y-2 ">
             {navItems.map(
@@ -128,7 +126,8 @@ const Navbar = ({ logo }: NavbarProp) => {
           </button>
         </div>
       </div>
-      <hr className="my-6 lg:my-8 border-gray-200 sm:mx-auto dark:border-gray-700" />
+
+      <hr className="my-6 lg:my-8 sm:mx-auto border-gray-300 dark:border-gray-600" />
     </div>
   );
 };
