@@ -20,7 +20,7 @@ const SubMenu = ({
   return (
     <div
       className={
-        "absolute w-52 bg-white dark:bg-gray-900 rounded top-10 p-4 drop-shadow-xl z-10 dark:border dark:border-white"
+        "absolute w-52 bg-white dark:bg-gray-900 rounded top-10 p-4 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600"
       }
       onMouseOver={handleDropdownMouseOver}
       onMouseOut={handleDropdownMouseOut}

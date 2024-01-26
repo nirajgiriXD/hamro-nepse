@@ -13,6 +13,7 @@ const ServiceItems = [
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
       </svg>
     ),
+    href: "/ipo-checker",
     title: "IPO Checker",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -33,10 +34,12 @@ const ServiceItems = [
         <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
       </svg>
     ),
+    href: "/ipo-fpo-updates",
     title: "IPO/FPO Updates",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
   },
+
   {
     icon: (
       <svg
@@ -52,6 +55,7 @@ const ServiceItems = [
         <circle cx="12" cy="7" r="4"></circle>
       </svg>
     ),
+    href: "/trading-signals",
     title: "Trading Signals",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -70,6 +74,7 @@ const ServiceItems = [
         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"></path>
       </svg>
     ),
+    href: "/portfolio-tracker",
     title: "Portfolio Tracker",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -88,6 +93,7 @@ const ServiceItems = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
       </svg>
     ),
+    href: "/company-analyzer",
     title: "Company Analyzer",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -106,7 +112,8 @@ const ServiceItems = [
         <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
       </svg>
     ),
-    title: "Charts",
+    href: "/chart",
+    title: "Chart",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
   },
@@ -124,6 +131,7 @@ const ServiceItems = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
       </svg>
     ),
+    href: "/compare-company",
     title: "Compare Company",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -142,6 +150,7 @@ const ServiceItems = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
       </svg>
     ),
+    href: "/share-calculator",
     title: "Share Calculator",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
