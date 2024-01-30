@@ -6,6 +6,7 @@ export { default as ContactPage } from "./ContactPage";
 export { default as HomePage } from "./HomePage";
 export { default as IpoCheckerPage } from "./IpoCheckerPage";
 export { default as IpoFpoUpdatesPage } from "./IpoFpoUpdatesPage";
+export { default as MarketWatchPage } from "./MarketWatchPage";
 export { default as PortfolioTrackerPage } from "./PortfolioTrackerPage";
 export { default as ServicesPage } from "./ServicesPage";
 export { default as ShareCalculatorPage } from "./ShareCalculatorPage";
