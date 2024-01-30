@@ -27,20 +27,20 @@ const Navbar = ({ logo }: NavbarProp) => {
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
-          <div className="flex items-center">
-            <Link to="/">
-              <img src={logo} alt="Logo" className="h-12 mr-2" />
-            </Link>
-            <Link to="/" className="font-semibold text-2xl mr-5 md:mr-5">
-              HamroNepse
-            </Link>
-          </div>
+          <Link to="/">
+            <img src={logo} alt="Logo" className="h-12 mr-2" />
+          </Link>
+          <Link to="/" className="font-semibold text-2xl mr-5 md:mr-5">
+            HamroNepse
+          </Link>
+        </div>
 
+        <div className="flex items-center">
           {/* Desktop Menu (Home, Contacts, Features, Chart) */}
           <ul className="hidden relative lg:flex items-center lg:space-x-6 md:space-x-2">
             {navItems.map((navItem, index): React.ReactNode => {
               return (
-                <li key={index}>
+                <li key={index} className="text-sm font-medium">
                   <NavItem
                     label={navItem.label}
                     href={navItem.href}
@@ -56,7 +56,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         {/* Desktop Search Bar and Login Button*/}
         <div className="hidden lg:flex items-center align-middle space-x-4">
           {/* Search Bar */}
-          <div className="relative h-12">
+          <div className="relative h-10">
             <SearchBar />
           </div>
 
