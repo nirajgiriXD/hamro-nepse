@@ -19,6 +19,7 @@ import {
   HomePage,
   IpoCheckerPage,
   IpoFpoUpdatesPage,
+  MarketWatchPage,
   PortfolioTrackerPage,
   PrivacyPolicyPage,
   ServicesPage,
@@ -30,9 +31,9 @@ function App() {
   return (
     <StrictMode>
       <Router>
-        <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div className="h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
           <div className="container mx-auto">
-            <div className="w-100 h-100 max-w-screen-xl mx-auto px-3">
+            <div className="min-h-screen w-full max-w-screen-xl mx-auto px-3">
               {/* Navbar */}
               <Navbar logo={logo} />
 
@@ -56,6 +57,7 @@ function App() {
                   path="/ipo-fpo-updates"
                   element={<IpoFpoUpdatesPage />}
                 />
+                <Route path="/market-watch" element={<MarketWatchPage />} />
                 <Route
                   path="/portfolio-tracker"
                   element={<PortfolioTrackerPage />}

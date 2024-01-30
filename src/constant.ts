@@ -27,6 +27,12 @@ export const footerItems = [
 
 export const subMenuItems = [
   {
+    label: "Market Watch",
+    href: "/market-watch",
+    openInNewTab: false,
+    hasSubMenu: false,
+  },
+  {
     label: "IPO Checker",
     href: "/ipo-checker",
     openInNewTab: false,
