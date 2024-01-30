@@ -4,7 +4,7 @@ import {
   type MRT_ColumnDef,
   type MRT_SortingState,
 } from "material-react-table";
-import { IconButton, Tooltip, useMediaQuery } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {
   QueryClient,
@@ -13,7 +13,6 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 type ProductApiResponse = {
   products: Array<Product>;
@@ -34,7 +33,6 @@ interface URL {
 const Table = ({ fetchURL }: URL) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const {
     data: { products = [] } = {},
@@ -101,7 +99,7 @@ const Table = ({ fetchURL }: URL) => {
         }
       : undefined,
     muiLinearProgressProps: {
-      color: prefersDarkMode ? "info" : "primary",
+      color: "info",
     },
     onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
@@ -122,35 +120,15 @@ const Table = ({ fetchURL }: URL) => {
     },
   });
 
-  const theme = createTheme({
-    palette: {
-      mode: prefersDarkMode ? "dark" : "light",
-      primary: {
-        main: prefersDarkMode ? "#111829" : "#1976d2",
-      },
-      text: {
-        primary: prefersDarkMode ? "#fff" : "#111829",
-      },
-      background: {
-        default: prefersDarkMode ? "#111829" : "#fff",
-        paper: prefersDarkMode ? "#111829" : "#fff",
-      },
-    },
-  });
-
-  return (
-    <ThemeProvider theme={theme}>
-      <MaterialReactTable table={table} />
-    </ThemeProvider>
-  );
+  return <MaterialReactTable table={table} />;
 };
 
 const queryClient = new QueryClient();
 
-const BannerTable = ({ fetchURL }: URL) => (
+const SimpleTable = ({ fetchURL }: URL) => (
   <QueryClientProvider client={queryClient}>
     <Table fetchURL={fetchURL} />
   </QueryClientProvider>
 );
 
-export default BannerTable;
+export default SimpleTable;
