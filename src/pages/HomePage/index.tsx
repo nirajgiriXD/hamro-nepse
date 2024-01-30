@@ -1,10 +1,10 @@
 /**
  * External dependencies.
  */
-import { Table } from "../../components";
+import { SimpleTable } from "../../components";
 
 const HomePage = () => {
-  return <Table />;
+  return <SimpleTable />;
 };
 
 export default HomePage;

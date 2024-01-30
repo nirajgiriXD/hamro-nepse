@@ -6,7 +6,7 @@ import { useState } from "react";
 /**
  * Internal Dependencies.
  */
-import BannerTable from "./BannerTable";
+import AdvanceTable from "./AdvanceTable";
 
 const Banner = () => {
   const [fetchURL, setFetchUrl] = useState(
@@ -51,7 +51,7 @@ const Banner = () => {
         </button>
       </div>
       <div className="grid lg:grid-cols mx-auto mt-3 lg:mt-4 overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl">
-        <BannerTable fetchURL={fetchURL} />
+        <AdvanceTable fetchURL={fetchURL} />
       </div>
     </>
   );
