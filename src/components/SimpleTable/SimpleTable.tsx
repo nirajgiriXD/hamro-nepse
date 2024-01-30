@@ -38,6 +38,7 @@ const Simpletable = () => {
     enableFullScreenToggle: false,
     enableDensityToggle: false,
     enableHiding: false,
+    enableTopToolbar: false,
 
     // renderTopToolbarCustomActions: () => (
     //   <Box
