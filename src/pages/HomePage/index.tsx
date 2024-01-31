@@ -23,28 +23,30 @@ const HomePage = () => {
         <button
           type="button"
           onClick={onTopTurnoverClick}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:ring-sky-800 font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
         >
           Top Turnover
         </button>
         <button
           type="button"
           onClick={onTopGainerClick}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
         >
           Top Gainers
         </button>
         <button
           type="button"
           onClick={onTopLoserClick}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
         >
           Top Losers
         </button>
       </div>
 
       {/* Table */}
-      <SimpleTable data={data} columns={columns} />
+      <div className="mt-3">
+        <SimpleTable data={data} columns={columns} />
+      </div>
     </>
   );
 };
