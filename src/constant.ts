@@ -78,5 +78,5 @@ export const subMenuItems = [
 ];
 
 export const LoginandSignupItemLink = {
-  href : "/loginandsignup"
+  href : "/login-and-signup"
 }
