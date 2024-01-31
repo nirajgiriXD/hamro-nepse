@@ -1,62 +1,136 @@
-/**
- * External Dependencies.
- */
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+  type MRT_SortingState,
+} from "material-react-table";
+import { IconButton, Tooltip } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import {
+  QueryClient,
+  QueryClientProvider,
+  keepPreviousData,
+  useQuery,
+} from "@tanstack/react-query";
+import { useMemo, useState } from "react";
 
-/**
- * Internal Dependencies.
- */
-import AdvanceTable from "./AdvanceTable";
+type ProductApiResponse = {
+  products: Array<Product>;
+};
 
-interface URL{
-  fetchURL : string
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  discountPercentage: number;
+  stock: number;
+};
+
+interface URL {
+  fetchURL: string;
 }
-const MarketWatch = ({fetchURL} : URL) => {
-  // const [fetchURL, setFetchUrl] = useState(
-  //   "https://dummyjson.com/products?limit=10"
-  // );
 
-  // const handleTopGainers = () => {
-  //   setFetchUrl("https://dummyjson.com/products?limit=10");
-  // };
+const Table = ({ fetchURL }: URL) => {
+  const [globalFilter, setGlobalFilter] = useState<string>("");
+  const [sorting, setSorting] = useState<MRT_SortingState>([]);
 
-  // const handleTopLosers = () => {
-  //   setFetchUrl("https://dummyjson.com/products?limit=10&skip=10");
-  // };
+  const {
+    data: { products = [] } = {},
+    isError,
+    isRefetching,
+    isLoading,
+    refetch,
+  } = useQuery<ProductApiResponse>({
+    queryKey: [
+      // 'table-data', [if we want the data to load everytime we go to the  website]
+      globalFilter,
+      sorting,
+      fetchURL,
+    ],
+    queryFn: async () => {
+      const url = fetchURL;
+      const response = await fetch(url);
+      const json = (await response.json()) as ProductApiResponse;
+      return json;
+    },
+    placeholderData: keepPreviousData,
+  });
 
-  // const handleTopTurnOvers = () => {
-  //   setFetchUrl("https://dummyjson.com/products?limit=10&skip=20");
-  // };
+  const columns = useMemo<MRT_ColumnDef<Product>[]>(
+    () => [
+      {
+        accessorKey: "id",
+        header: "ID",
+      },
+      {
+        accessorKey: "title",
+        header: "Title",
+      },
+      {
+        accessorKey: "price",
+        header: "Price",
+        Cell: ({ cell }) => `$${cell.getValue<number>().toFixed(2)}`,
+      },
+      {
+        accessorKey: "discountPercentage",
+        header: "Discount (%)",
+      },
+      {
+        accessorKey: "stock",
+        header: "Stock",
+      },
+    ],
+    []
+  );
+
+  const table = useMaterialReactTable({
+    columns,
+    data: products,
+    enablePagination: false,
+    enableSorting: true,
+    enableGlobalFilter: true,
+    enableColumnFilters: false,
+    enableBottomToolbar: false,
+    initialState: {},
+    muiToolbarAlertBannerProps: isError
+      ? {
+          color: "error",
+          children: "Error loading data",
+        }
+      : undefined,
+    muiLinearProgressProps: {
+      color: "info",
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    onSortingChange: setSorting,
+    renderTopToolbarCustomActions: () => (
+      <Tooltip arrow title="Refresh Data">
+        <IconButton onClick={() => refetch()}>
+          <RefreshIcon />
+        </IconButton>
+      </Tooltip>
+    ),
+    rowCount: products.length,
+    state: {
+      globalFilter,
+      isLoading,
+      showAlertBanner: isError,
+      showProgressBars: isRefetching,
+      sorting,
+    },
+  });
+
+  return <MaterialReactTable table={table} />;
+};
+
+const AdvanceTable = ({ fetchURL }: URL) => {
+  const queryClient = new QueryClient();
 
   return (
-    <>
-      {/* <div className="grid  mx-auto md:mt-14 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
-        <button
-          type="button"
-          onClick={handleTopGainers}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        >
-          Top Gainers
-        </button>
-        <button
-          type="button"
-          onClick={handleTopLosers}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        >
-          Top Losers
-        </button>
-        <button
-          type="button"
-          onClick={handleTopTurnOvers}
-          className="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:ring-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        >
-          Top Turnover
-        </button>
-      </div> */}
-      <div className="grid lg:grid-cols mx-auto mt-3 lg:mt-4 overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl">
-        <AdvanceTable fetchURL={fetchURL} />
-      </div>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Table fetchURL={fetchURL} />
+    </QueryClientProvider>
   );
 };
 
-export default MarketWatch;
+export default AdvanceTable;

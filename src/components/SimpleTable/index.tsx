@@ -7,15 +7,6 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-// import { Box, IconButton, Tooltip } from "@mui/material";
-// import FileDownloadIcon from "@mui/icons-material/FileDownload";
-// import { mkConfig, generateCsv, download } from "export-to-csv";
-
-// const csvConfig = mkConfig({
-//   fieldSeparator: ",",
-//   decimalSeparator: ".",
-//   useKeysAsHeaders: true,
-// });
 
 interface SimpleTableProp {
   data: MRT_RowData[];
@@ -24,11 +15,6 @@ interface SimpleTableProp {
 }
 
 const SimpleTable = ({ data, columns }: SimpleTableProp) => {
-  // const handleExportData = () => {
-  //   const csv = generateCsv(csvConfig)(data);
-  //   download(csvConfig)(csv);
-  // };
-
   const table = useMaterialReactTable({
     columns,
     data,
@@ -42,23 +28,6 @@ const SimpleTable = ({ data, columns }: SimpleTableProp) => {
     enableDensityToggle: false,
     enableHiding: false,
     enableTopToolbar: false,
-
-    // renderTopToolbarCustomActions: () => (
-    //   <Box
-    //     sx={{
-    //       display: "flex",
-    //       gap: "16px",
-    //       padding: "8px",
-    //       flexWrap: "wrap",
-    //     }}
-    //   >
-    //     <Tooltip arrow title="Download Data">
-    //       <IconButton onClick={handleExportData}>
-    //         <FileDownloadIcon />
-    //       </IconButton>
-    //     </Tooltip>
-    //   </Box>
-    // ),
   });
 
   return (
