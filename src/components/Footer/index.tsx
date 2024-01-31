@@ -17,37 +17,39 @@ const Footer = ({ logo }: FooterProp) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-      <div className="sm:flex sm:items-center sm:justify-between">
-        <Link
-          to="/"
-          className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
-        >
-          <img src={logo} className="h-12" alt="HamroNepse Logo" />
-          <span className="self-center text-xl font-semibold whitespace-nowrap">
-            HamroNepse
-          </span>
-        </Link>
-        <ul className="flex flex-wrap items-center mb-6 sm:mb-0 text-md font-medium">
-          {footerItems.map((footerItem, index) => {
-            return (
-              <li key={index}>
-                <FooterItem
-                  href={footerItem.href}
-                  label={footerItem.label}
-                  openInNewTab={footerItem.openInNewTab}
-                />
-              </li>
-            );
-          })}
-        </ul>
+    <footer className="w-full max-w-screen-xl mx-auto">
+      <div className="py-3 md:py-4 mt-3 md:mt-4">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <Link
+            to="/"
+            className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src={logo} className="h-12" alt="HamroNepse Logo" />
+            <span className="self-center text-xl font-semibold whitespace-nowrap">
+              HamroNepse
+            </span>
+          </Link>
+          <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-md font-medium">
+            {footerItems.map((footerItem, index) => {
+              return (
+                <li key={index}>
+                  <FooterItem
+                    href={footerItem.href}
+                    label={footerItem.label}
+                    openInNewTab={footerItem.openInNewTab}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
+
+        <span className="block text-md sm:text-center">
+          © {currentYear} HamroNepse | All Rights Reserved.
+        </span>
       </div>
-
-      <hr className="my-6 lg:my-8 sm:mx-auto border-gray-300 dark:border-gray-600" />
-
-      <span className="block text-md sm:text-center">
-        © {currentYear} HamroNepse | All Rights Reserved.
-      </span>
     </footer>
   );
 };

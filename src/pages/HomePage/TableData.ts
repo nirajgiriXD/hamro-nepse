@@ -9,34 +9,82 @@ export const columns = [
   columnHelper.accessor("id", {
     header: "ID",
     size: 20,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("symbol", {
     header: "Symbol",
     size: 40,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("name", {
     header: "Name",
     size: 240,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("open", {
     header: "Open",
     size: 100,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("high", {
     header: "High",
     size: 100,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("low", {
     header: "Low",
     size: 100,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("close", {
     header: "Close",
     size: 100,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
   columnHelper.accessor("volume", {
     header: "Volume",
     size: 100,
+    muiTableHeadCellProps: {
+      align: "center",
+    },
+    muiTableBodyCellProps: {
+      align: "center",
+    },
   }),
 ];
 
