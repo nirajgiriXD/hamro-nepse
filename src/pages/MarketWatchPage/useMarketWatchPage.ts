@@ -1,4 +1,32 @@
+/**
+ * External dependencies.
+ */
+import { useEffect, useState } from "react";
+
 const useMarketWatchPage = () => {
+  const [date, setDate] = useState<string>("YYYY-MM-DD");
+
+  useEffect(() => {
+    const fetchDate = async () => {
+      try {
+        const response = await fetch(
+          "https://sam.superintegratedapp.com/wp-json/api/stock-data-date"
+        );
+
+        if (!response.ok) {
+          return;
+        }
+
+        const result = await response.json();
+        setDate(result);
+      } catch (error) {
+        // Fail Silently
+      }
+    };
+
+    fetchDate();
+  });
+
   const columns = [
     {
       accessorKey: "symbol",
@@ -91,6 +119,7 @@ const useMarketWatchPage = () => {
   ];
 
   return {
+    date,
     columns,
   };
 };
