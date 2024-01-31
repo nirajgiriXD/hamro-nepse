@@ -24,11 +24,11 @@ const Footer = ({ logo }: FooterProp) => {
           className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
         >
           <img src={logo} className="h-12" alt="HamroNepse Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap">
+          <span className="self-center text-xl font-semibold whitespace-nowrap">
             HamroNepse
           </span>
         </Link>
-        <ul className="flex flex-wrap items-center mb-6 sm:mb-0 text-sm font-medium">
+        <ul className="flex flex-wrap items-center mb-6 sm:mb-0 text-md font-medium">
           {footerItems.map((footerItem, index) => {
             return (
               <li key={index}>
@@ -45,7 +45,7 @@ const Footer = ({ logo }: FooterProp) => {
 
       <hr className="my-6 lg:my-8 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
-      <span className="block text-sm sm:text-center">
+      <span className="block text-md sm:text-center">
         © {currentYear} HamroNepse | All Rights Reserved.
       </span>
     </footer>
