@@ -1,33 +1,35 @@
 /**
  * External Dependencies.
  */
-import { useState } from "react";
 
 /**
  * Internal Dependencies.
  */
 import AdvanceTable from "./AdvanceTable";
 
-const Banner = () => {
-  const [fetchURL, setFetchUrl] = useState(
-    "https://dummyjson.com/products?limit=10"
-  );
+interface URL{
+  fetchURL : string
+}
+const MarketWatch = ({fetchURL} : URL) => {
+  // const [fetchURL, setFetchUrl] = useState(
+  //   "https://dummyjson.com/products?limit=10"
+  // );
 
-  const handleTopGainers = () => {
-    setFetchUrl("https://dummyjson.com/products?limit=10");
-  };
+  // const handleTopGainers = () => {
+  //   setFetchUrl("https://dummyjson.com/products?limit=10");
+  // };
 
-  const handleTopLosers = () => {
-    setFetchUrl("https://dummyjson.com/products?limit=10&skip=10");
-  };
+  // const handleTopLosers = () => {
+  //   setFetchUrl("https://dummyjson.com/products?limit=10&skip=10");
+  // };
 
-  const handleTopTurnOvers = () => {
-    setFetchUrl("https://dummyjson.com/products?limit=10&skip=20");
-  };
+  // const handleTopTurnOvers = () => {
+  //   setFetchUrl("https://dummyjson.com/products?limit=10&skip=20");
+  // };
 
   return (
     <>
-      <div className="grid  mx-auto md:mt-14 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
+      {/* <div className="grid  mx-auto md:mt-14 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
         <button
           type="button"
           onClick={handleTopGainers}
@@ -49,7 +51,7 @@ const Banner = () => {
         >
           Top Turnover
         </button>
-      </div>
+      </div> */}
       <div className="grid lg:grid-cols mx-auto mt-3 lg:mt-4 overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl">
         <AdvanceTable fetchURL={fetchURL} />
       </div>
@@ -57,4 +59,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default MarketWatch;

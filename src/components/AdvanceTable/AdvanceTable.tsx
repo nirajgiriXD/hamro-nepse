@@ -13,34 +13,50 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { download, generateCsv, mkConfig } from "export-to-csv";
 
-type ProductApiResponse = {
-  products: Array<Product>;
+type MarketWatchApiResponse = {
+  marketdata: Array<MarketData>;
 };
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  discountPercentage: number;
-  stock: number;
+type MarketData = {
+  symbol: string,
+  name: string,
+  sector: string,
+  open: number,
+  high: number,
+  low: number,
+  close: number,
+  percentage_change: number,
+  volume: number,
+  date: Date
 };
 
 interface URL {
   fetchURL: string;
 }
 
+const csvConfig = mkConfig({
+  fieldSeparator: ",",
+  decimalSeparator: ".",
+  useKeysAsHeaders: true,
+});
+
+
 const Table = ({ fetchURL }: URL) => {
+  
+  
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
 
   const {
-    data: { products = [] } = {},
+    data: { marketdata = [] } = {},
     isError,
     isRefetching,
     isLoading,
     refetch,
-  } = useQuery<ProductApiResponse>({
+  } = useQuery<MarketWatchApiResponse>({
     queryKey: [
       // 'table-data', [if we want the data to load everytime we go to the  website]
       globalFilter,
@@ -49,43 +65,75 @@ const Table = ({ fetchURL }: URL) => {
     ],
     queryFn: async () => {
       const url = fetchURL;
-      const response = await fetch(url);
-      const json = (await response.json()) as ProductApiResponse;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': '*/*',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Content-Type': 'application/json',
+          'Sec-Fetch-Dest': 'empty',
+          'Sec-Fetch-Mode': 'cors',
+          'Sec-Fetch-Site': 'same-origin',
+        },
+        referrerPolicy: 'strict-origin-when-cross-origin',
+        mode: 'cors',
+      });
+      const json = (await response.json()) as MarketWatchApiResponse;
       return json;
     },
     placeholderData: keepPreviousData,
   });
 
-  const columns = useMemo<MRT_ColumnDef<Product>[]>(
+  const columns = useMemo<MRT_ColumnDef<MarketData>[]>(
     () => [
       {
-        accessorKey: "id",
-        header: "ID",
+        accessorKey: "symbol",
+        header: "Symbol",
       },
       {
-        accessorKey: "title",
-        header: "Title",
+        accessorKey: "name",
+        header: "Name",
       },
       {
-        accessorKey: "price",
-        header: "Price",
-        Cell: ({ cell }) => `$${cell.getValue<number>().toFixed(2)}`,
+        accessorKey: "sector",
+        header: "Sector",
       },
       {
-        accessorKey: "discountPercentage",
-        header: "Discount (%)",
+        accessorKey: "open",
+        header: "Open",
       },
       {
-        accessorKey: "stock",
-        header: "Stock",
+        accessorKey: "high",
+        header: "High",
+      },
+      {
+        accessorKey: "low",
+        header: "Low",
+      },
+      {
+        accessorKey: "percentage_change",
+        header: "% Change",
+      },
+      {
+        accessorKey: "volume",
+        header: "Volume",
+      },
+      {
+        accessorKey: "date",
+        header: "Date",
       },
     ],
     []
   );
 
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(marketdata);
+    download(csvConfig)(csv);
+  };
+
   const table = useMaterialReactTable({
     columns,
-    data: products,
+    data: marketdata,
     enablePagination: false,
     enableSorting: true,
     enableGlobalFilter: true,
@@ -104,13 +152,20 @@ const Table = ({ fetchURL }: URL) => {
     onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
     renderTopToolbarCustomActions: () => (
+      <>
       <Tooltip arrow title="Refresh Data">
         <IconButton onClick={() => refetch()}>
           <RefreshIcon />
         </IconButton>
       </Tooltip>
+      <Tooltip arrow title="Download Data">
+        <IconButton onClick={handleExportData}>
+          <FileDownloadIcon />
+        </IconButton>
+      </Tooltip>
+    </>
     ),
-    rowCount: products.length,
+    rowCount: marketdata.length,
     state: {
       globalFilter,
       isLoading,
