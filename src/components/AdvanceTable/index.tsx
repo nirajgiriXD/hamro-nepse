@@ -124,7 +124,7 @@ const AdvanceTable = ({ columns }: AdvanceTableProp) => {
   const queryClient = new QueryClient();
 
   return (
-    <div className="grid lg:grid-cols mx-auto overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-md">
+    <div className="mx-auto overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-md">
       <QueryClientProvider client={queryClient}>
         <Table columns={columns} />
       </QueryClientProvider>

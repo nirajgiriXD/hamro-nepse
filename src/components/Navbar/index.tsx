@@ -34,7 +34,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           <Link to="/">
             <img src={logo} alt="Logo" className="h-12 mr-2" />
           </Link>
-          <Link to="/" className="font-semibold text-2xl mr-5 md:mr-5">
+          <Link to="/" className="font-semibold text-xl mr-5 md:mr-5">
             HamroNepse
           </Link>
         </div>
@@ -44,7 +44,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           <ul className="hidden relative lg:flex items-center lg:space-x-6 md:space-x-2">
             {navItems.map((navItem, index): React.ReactNode => {
               return (
-                <li key={index} className="text-sm font-medium">
+                <li key={index} className="text-md font-medium">
                   <NavItem
                     label={navItem.label}
                     href={navItem.href}
