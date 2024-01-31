@@ -10,7 +10,10 @@ import { Link } from "react-router-dom";
 import { LoginandSignupItemLink, navItems } from "../../constant";
 import SearchBar from "./SearchBar";
 import NavItem from "./NavItem";
-import {LoginAndSignupItem,  LoginAndSignupItemMobileView } from "./LoginSignupItem";
+import {
+  LoginAndSignupItem,
+  LoginAndSignupItemMobileView,
+} from "./LoginAndSignup";
 
 interface NavbarProp {
   logo: string;
@@ -62,7 +65,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           </div>
 
           {/* Login Button */}
-          <LoginAndSignupItem href={LoginandSignupItemLink.href}/>
+          <LoginAndSignupItem href={LoginandSignupItemLink.href} />
         </div>
 
         {/* Toggle for Mobile Menu  */}
@@ -111,7 +114,7 @@ const Navbar = ({ logo }: NavbarProp) => {
           </div>
 
           {/* Login Button */}
-          <LoginAndSignupItemMobileView href={LoginandSignupItemLink.href}/>
+          <LoginAndSignupItemMobileView href={LoginandSignupItemLink.href} />
         </div>
       </div>
 

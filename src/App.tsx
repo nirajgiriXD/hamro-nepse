@@ -97,8 +97,12 @@ function App() {
                     element={<TradingSignalsPage />}
                   />
                   <Route
-                    path="/login-and-signup"
-                    element={<LoginAndSignupPage />}
+                    path="/login"
+                    element={<LoginAndSignupPage type="login" />}
+                  />
+                  <Route
+                    path="/signup"
+                    element={<LoginAndSignupPage type="signup" />}
                   />
                 </Routes>
 
