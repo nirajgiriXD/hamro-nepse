@@ -21,6 +21,7 @@ import {
   HomePage,
   IpoCheckerPage,
   IpoFpoUpdatesPage,
+  LoginAndSignupPage,
   MarketWatchPage,
   PortfolioTrackerPage,
   PrivacyPolicyPage,
@@ -94,6 +95,10 @@ function App() {
                   <Route
                     path="/trading-signals"
                     element={<TradingSignalsPage />}
+                  />
+                  <Route
+                    path="/loginandsignup"
+                    element={<LoginAndSignupPage />}
                   />
                 </Routes>
 
