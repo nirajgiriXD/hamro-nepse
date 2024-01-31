@@ -1,5 +1,5 @@
 const MarketWatchPage = () => {
-  return <></>;
+  return <>Market Watch</>;
 };
 
 export default MarketWatchPage;
