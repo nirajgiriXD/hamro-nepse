@@ -1,3 +1,6 @@
+/**
+ * Internal Dependencies.
+ */
 import LoginItem from "./LoginItem"
 
 const LoginForm = () => {
