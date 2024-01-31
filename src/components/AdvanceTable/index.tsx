@@ -1,7 +1,11 @@
+/**
+ * External dependencies.
+ */
 import {
+  MRT_ColumnDef,
+  MRT_RowData,
   MaterialReactTable,
   useMaterialReactTable,
-  type MRT_ColumnDef,
   type MRT_SortingState,
 } from "material-react-table";
 import { IconButton, Tooltip } from "@mui/material";
@@ -12,105 +16,98 @@ import {
   keepPreviousData,
   useQuery,
 } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { download, generateCsv, mkConfig } from "export-to-csv";
 
-type ProductApiResponse = {
-  products: Array<Product>;
-};
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  discountPercentage: number;
-  stock: number;
-};
-
-interface URL {
-  fetchURL: string;
+interface TableData {
+  symbol: string;
+  name: string;
+  sector: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  percentage_change: number;
+  volume: number;
+  date: string;
 }
 
-const Table = ({ fetchURL }: URL) => {
+interface AdvanceTableProp {
+  // data: MRT_RowData[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: MRT_ColumnDef<MRT_RowData, any>[];
+}
+
+const Table = ({ columns }: AdvanceTableProp) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
 
-  const {
-    data: { products = [] } = {},
-    isError,
-    isRefetching,
-    isLoading,
-    refetch,
-  } = useQuery<ProductApiResponse>({
-    queryKey: [
-      // 'table-data', [if we want the data to load everytime we go to the  website]
-      globalFilter,
-      sorting,
-      fetchURL,
-    ],
+  const { data, isError, isRefetching, isLoading, refetch } = useQuery<
+    TableData[]
+  >({
+    queryKey: [globalFilter, sorting],
     queryFn: async () => {
-      const url = fetchURL;
+      const url =
+        "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=all";
       const response = await fetch(url);
-      const json = (await response.json()) as ProductApiResponse;
+      const json = (await response.json()) as TableData[];
       return json;
     },
     placeholderData: keepPreviousData,
   });
 
-  const columns = useMemo<MRT_ColumnDef<Product>[]>(
-    () => [
-      {
-        accessorKey: "id",
-        header: "ID",
-      },
-      {
-        accessorKey: "title",
-        header: "Title",
-      },
-      {
-        accessorKey: "price",
-        header: "Price",
-        Cell: ({ cell }) => `$${cell.getValue<number>().toFixed(2)}`,
-      },
-      {
-        accessorKey: "discountPercentage",
-        header: "Discount (%)",
-      },
-      {
-        accessorKey: "stock",
-        header: "Stock",
-      },
-    ],
-    []
-  );
+  const tableData = data ?? ([] as unknown as TableData[]);
+
+  const csvConfig = mkConfig({
+    fieldSeparator: ",",
+    decimalSeparator: ".",
+    useKeysAsHeaders: true,
+  });
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(tableData);
+    download(csvConfig)(csv);
+  };
 
   const table = useMaterialReactTable({
     columns,
-    data: products,
+    data: tableData,
     enablePagination: false,
     enableSorting: true,
     enableGlobalFilter: true,
     enableColumnFilters: false,
     enableBottomToolbar: false,
-    initialState: {},
+    initialState: {
+      density: "compact",
+    },
+    muiLinearProgressProps: {
+      color: "info",
+    },
     muiToolbarAlertBannerProps: isError
       ? {
           color: "error",
           children: "Error loading data",
         }
       : undefined,
-    muiLinearProgressProps: {
-      color: "info",
-    },
     onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
     renderTopToolbarCustomActions: () => (
-      <Tooltip arrow title="Refresh Data">
-        <IconButton onClick={() => refetch()}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
+      <div className="ml-8">
+        <Tooltip arrow title="Refresh data">
+          <IconButton onClick={() => refetch()}>
+            <RefreshIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip arrow title="Download data in csv">
+          <IconButton onClick={handleExportData}>
+            <FileDownloadIcon />
+          </IconButton>
+        </Tooltip>
+      </div>
     ),
-    rowCount: products.length,
+    rowCount: tableData.length,
     state: {
       globalFilter,
       isLoading,
@@ -123,13 +120,15 @@ const Table = ({ fetchURL }: URL) => {
   return <MaterialReactTable table={table} />;
 };
 
-const AdvanceTable = ({ fetchURL }: URL) => {
+const AdvanceTable = ({ columns }: AdvanceTableProp) => {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Table fetchURL={fetchURL} />
-    </QueryClientProvider>
+    <div className="grid lg:grid-cols mx-auto overflow-hidden text-gray-900 border border-gray-300 dark:border-gray-600 rounded-md">
+      <QueryClientProvider client={queryClient}>
+        <Table columns={columns} />
+      </QueryClientProvider>
+    </div>
   );
 };
 

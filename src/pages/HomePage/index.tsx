@@ -23,21 +23,21 @@ const HomePage = () => {
         <button
           type="button"
           onClick={onTopTurnoverClick}
-          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2"
         >
           Top Turnover
         </button>
         <button
           type="button"
           onClick={onTopGainerClick}
-          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2"
         >
           Top Gainers
         </button>
         <button
           type="button"
           onClick={onTopLoserClick}
-          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded text-sm px-5 py-2.5 text-center me-2"
+          className="text-white bg-sky-700 dark:bg-sky-700 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2"
         >
           Top Losers
         </button>
