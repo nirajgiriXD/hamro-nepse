@@ -13,16 +13,19 @@ const useSignupForm = () => {
   const isLoadingRef = useRef<boolean>(false);
   const responseRef = useRef<Record<string, string | string[] | boolean>>({});
 
-  const handleOnSubmit = () => {
+  const minLength = 8;
+  const maxNameLength = 50;
+  const maxEmailLength = 50;
+  const maxPasswordLength = 16;
+
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
     const name = nameRef.current?.value ?? "";
     const email = emailRef.current?.value ?? "";
     const password = passwordRef.current?.value ?? "";
     const confirmPassword = confirmPasswordRef.current?.value ?? "";
     const termsAndCondition = termsAndConditionRef.current?.checked ?? false;
-
-    const maxNameLength = 50;
-    const maxEmailLength = 50;
-    const maxPasswordLength = 16;
 
     const errorMessages: string[] = [];
 
@@ -50,34 +53,37 @@ const useSignupForm = () => {
 
     if (password.length > maxPasswordLength) {
       errorMessages.push("Password is too long.");
+    } else if (password.length < minLength) {
+      errorMessages.push("Password is too short.");
     }
 
     // If everything seems ok, send the request to backend.
     if (errorMessages.length === 0) {
       isLoadingRef.current = true;
-      const apiEndpoint = "";
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, confirmPassword }),
-      };
+      //   const apiEndpoint = "";
+      //   const requestOptions = {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ name, email, password, confirmPassword }),
+      //   };
 
-      fetch(apiEndpoint, requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          responseRef.current = {
-            isEverythingOk: data.isEverythingOk,
-            responseMessages: data.responseMessage,
-          };
-          isLoadingRef.current = false;
-        })
-        .catch((error) => {
-          responseRef.current = {
-            isEverythingOk: false,
-            responseMessages: error,
-          };
-          isLoadingRef.current = false;
-        });
+      //   fetch(apiEndpoint, requestOptions)
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       responseRef.current = {
+      //         isEverythingOk: data.isEverythingOk,
+      //         responseMessages: data.responseMessage,
+      //       };
+      //       isLoadingRef.current = false;
+      //     })
+      //     .catch((error) => {
+      //       responseRef.current = {
+      //         isEverythingOk: false,
+      //         responseMessages: error,
+      //       };
+      //       isLoadingRef.current = false;
+      //     });
+      console.log(JSON.stringify({ name, email, password, confirmPassword }));
     } else {
       responseRef.current = {
         isEverythingOk: false,
@@ -95,6 +101,10 @@ const useSignupForm = () => {
     termsAndConditionRef,
     isLoadingRef,
     responseRef,
+    minLength,
+    maxNameLength,
+    maxEmailLength,
+    maxPasswordLength,
     handleOnSubmit,
   };
 };

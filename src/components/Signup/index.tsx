@@ -15,6 +15,10 @@ const SignupForm = () => {
     passwordRef,
     confirmPasswordRef,
     termsAndConditionRef,
+    minLength,
+    maxNameLength,
+    maxEmailLength,
+    maxPasswordLength,
     handleOnSubmit,
   } = useSignupForm();
 
@@ -25,7 +29,11 @@ const SignupForm = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Create an account
           </h1>
-          <form className="space-y-4 md:space-y-6" onSubmit={handleOnSubmit}>
+          <form
+            method="POST"
+            className="space-y-4 md:space-y-6"
+            onSubmit={handleOnSubmit}
+          >
             <div>
               <label
                 htmlFor="name"
@@ -38,6 +46,7 @@ const SignupForm = () => {
                 name="name"
                 id="name"
                 ref={nameRef}
+                maxLength={maxNameLength}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="John Doe"
                 required
@@ -55,6 +64,7 @@ const SignupForm = () => {
                 name="email"
                 id="email"
                 ref={emailRef}
+                maxLength={maxEmailLength}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@company.com"
                 required
@@ -72,6 +82,8 @@ const SignupForm = () => {
                 name="password"
                 id="password"
                 ref={passwordRef}
+                minLength={minLength}
+                maxLength={maxPasswordLength}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="••••••••"
                 required
@@ -85,10 +97,12 @@ const SignupForm = () => {
                 Confirm password
               </label>
               <input
-                type="confirm-password"
+                type="password"
                 name="confirm-password"
                 id="confirm-password"
                 ref={confirmPasswordRef}
+                minLength={minLength}
+                maxLength={maxPasswordLength}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="••••••••"
                 required
