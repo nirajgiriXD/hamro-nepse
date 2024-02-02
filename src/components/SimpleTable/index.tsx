@@ -31,6 +31,9 @@ const SimpleTable = ({ data, columns }: SimpleTableProp) => {
     initialState: {
       density: "compact",
     },
+    muiCircularProgressProps: {
+      color: "info",
+    },
   });
 
   return (

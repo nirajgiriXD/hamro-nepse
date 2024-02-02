@@ -2,7 +2,7 @@
  * External dependencies.
  */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode } from "react";
 import { useMediaQuery } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -29,19 +29,8 @@ import {
   ShareCalculatorPage,
   TradingSignalsPage,
 } from "./pages";
-import LoadingAnimation from "./components/LoadingAnimation";
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setLoading(false); 
-    };
-    fetchData();
-  }, []); 
-  
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
     palette: {
@@ -63,12 +52,7 @@ function App() {
     <StrictMode>
       <Router>
         <ThemeProvider theme={theme}>
-
-        {isLoading ? (
-        <LoadingAnimation /> // Show loading animation while isLoading is true
-      ) : (
-        <>
-                  <div className="h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+          <div className="h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
             <div className="container mx-auto">
               <div className="min-h-screen w-full max-w-screen-xl mx-auto px-3">
                 {/* Navbar */}
@@ -127,9 +111,6 @@ function App() {
               </div>
             </div>
           </div>
-        </>
-      )}
-
         </ThemeProvider>
       </Router>
     </StrictMode>

@@ -94,12 +94,6 @@ const Table = ({ columns }: AdvanceTableProp) => {
     onSortingChange: setSorting,
     renderTopToolbarCustomActions: () => (
       <div className="ml-8">
-        <Tooltip arrow title="Refresh data">
-          <IconButton onClick={() => refetch()}>
-            <RefreshIcon />
-          </IconButton>
-        </Tooltip>
-
         <Tooltip arrow title="Download data in csv">
           <IconButton onClick={handleExportData}>
             <FileDownloadIcon />
@@ -107,6 +101,9 @@ const Table = ({ columns }: AdvanceTableProp) => {
         </Tooltip>
       </div>
     ),
+    muiCircularProgressProps: {
+      color: "info",
+    },
     rowCount: tableData.length,
     state: {
       globalFilter,

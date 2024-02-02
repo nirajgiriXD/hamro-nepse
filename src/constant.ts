@@ -80,3 +80,6 @@ export const subMenuItems = [
 export const LoginandSignupItemLink = {
   href: "/login",
 };
+
+export const ApiEndpoint =
+  "https://sam.superintegratedapp.com/wp-admin/admin-ajax.php";
