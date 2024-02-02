@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { ApiEndpoint } from "../../constant";
+import { LOG_IN_ENDPOINT } from "../../constant";
 
 const useLoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -38,9 +38,10 @@ const useLoginForm = () => {
     data.append("remember", keepLoggedIn);
 
     // Send the request
-    fetch(ApiEndpoint, {
+    fetch(LOG_IN_ENDPOINT, {
       method: "POST",
       body: data,
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {

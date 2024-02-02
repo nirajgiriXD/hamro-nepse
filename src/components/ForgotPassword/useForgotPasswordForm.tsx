@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { ApiEndpoint } from "../../constant";
+import { RESET_PASSWORD_ENDPOINT } from "../../constant";
 
 const useForgotPasswordForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -58,9 +58,10 @@ const useForgotPasswordForm = () => {
     data.append("email", email);
 
     // Send the request
-    fetch(ApiEndpoint, {
+    fetch(RESET_PASSWORD_ENDPOINT, {
       method: "POST",
       body: data,
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
