@@ -4,6 +4,11 @@
 import { ReactElement, useRef, useState } from "react";
 import Alert from "@mui/material/Alert";
 
+/**
+ * Internal dependencies.
+ */
+import { ApiEndpoint } from "../../constant";
+
 const useSignupForm = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -41,10 +46,6 @@ const useSignupForm = () => {
       return;
     }
 
-    // API Endpoint
-    const apiEndpoint =
-      "https://sam.superintegratedapp.com/wp-admin/admin-ajax.php";
-
     // Data to be sent
     const data = new FormData();
     data.append("action", "create_new_user");
@@ -54,7 +55,7 @@ const useSignupForm = () => {
     data.append("confirmPassword", confirmPassword);
 
     // Send the request
-    fetch(apiEndpoint, {
+    fetch(ApiEndpoint, {
       method: "POST",
       body: data,
     })

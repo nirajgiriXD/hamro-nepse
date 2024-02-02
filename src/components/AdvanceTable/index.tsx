@@ -9,7 +9,6 @@ import {
   type MRT_SortingState,
 } from "material-react-table";
 import { IconButton, Tooltip } from "@mui/material";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import {
   QueryClient,
   QueryClientProvider,
@@ -43,9 +42,7 @@ const Table = ({ columns }: AdvanceTableProp) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
 
-  const { data, isError, isRefetching, isLoading, refetch } = useQuery<
-    TableData[]
-  >({
+  const { data, isError, isRefetching, isLoading } = useQuery<TableData[]>({
     queryKey: [globalFilter, sorting],
     queryFn: async () => {
       const url =
