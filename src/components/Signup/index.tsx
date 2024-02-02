@@ -2,30 +2,41 @@
  * External dependencies.
  */
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Internal dependencies.
  */
 import useSignupForm from "./useSignupForm";
+import { useEffect } from "react";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const {
     nameRef,
     emailRef,
     passwordRef,
     confirmPasswordRef,
-    termsAndConditionRef,
     minLength,
     maxNameLength,
     maxEmailLength,
     maxPasswordLength,
+    toastNotification,
+    navigationPath,
     handleOnSubmit,
   } = useSignupForm();
+
+  useEffect(() => {
+    if (navigationPath !== "") {
+      navigate(navigationPath);
+    }
+  }, [navigate, navigationPath]);
 
   return (
     <div className="flex flex-col items-center justify-center mx-auto lg:h-full p-1">
       <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          {toastNotification}
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Create an account
           </h1>
@@ -114,7 +125,6 @@ const SignupForm = () => {
                   id="terms"
                   aria-describedby="terms"
                   type="checkbox"
-                  ref={termsAndConditionRef}
                   className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   required
                 />
