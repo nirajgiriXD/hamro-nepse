@@ -27,7 +27,7 @@ const Navbar = ({ logo }: NavbarProp) => {
   };
 
   return (
-    <div className="pt-6 lg:pt-8">
+    <div className="pt-3 lg:pt-4">
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
@@ -118,7 +118,7 @@ const Navbar = ({ logo }: NavbarProp) => {
         </div>
       </div>
 
-      <hr className="my-6 lg:my-8 sm:mx-auto border-gray-300 dark:border-gray-600" />
+      <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
     </div>
   );
 };

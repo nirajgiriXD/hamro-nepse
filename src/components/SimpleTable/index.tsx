@@ -28,6 +28,12 @@ const SimpleTable = ({ data, columns }: SimpleTableProp) => {
     enableDensityToggle: false,
     enableHiding: false,
     enableTopToolbar: false,
+    initialState: {
+      density: "compact",
+    },
+    muiCircularProgressProps: {
+      color: "info",
+    },
   });
 
   return (

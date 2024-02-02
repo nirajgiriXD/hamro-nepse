@@ -1,15 +1,24 @@
 /**
  * Internal dependencies.
  */
-import LoginForm from "../../components/Login";
-import SignupForm from "../../components/Signup";
+import { Login, Signup, ForgotPassword } from "../../components";
 
 interface LoginAndSignupPageProp {
-  type: "login" | "signup";
+  type: "login" | "signup" | "forgot-password";
 }
 
 const LoginAndSignupPage = ({ type }: LoginAndSignupPageProp) => {
-  return <>{type === "login" ? <LoginForm /> : <SignupForm />}</>;
+  return (
+    <>
+      {type === "forgot-password" ? (
+        <ForgotPassword />
+      ) : type === "login" ? (
+        <Login />
+      ) : (
+        <Signup />
+      )}
+    </>
+  );
 };
 
 export default LoginAndSignupPage;
