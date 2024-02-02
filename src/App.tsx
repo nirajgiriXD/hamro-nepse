@@ -104,6 +104,10 @@ function App() {
                     path="/signup"
                     element={<LoginAndSignupPage type="signup" />}
                   />
+                  <Route
+                    path="/forgot-password"
+                    element={<LoginAndSignupPage type="forgot-password" />}
+                  />
                 </Routes>
 
                 {/* Footer */}

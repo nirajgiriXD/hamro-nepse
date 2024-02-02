@@ -2,13 +2,13 @@
  * External dependencies.
  */
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 /**
  * Internal dependencies.
  */
 import useLoginForm from "./useLoginForm";
-import { useEffect } from "react";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ const LoginForm = () => {
     maxEmailLength,
     maxPasswordLength,
     handleOnSubmit,
-    handleForgetPassword,
   } = useLoginForm();
 
   useEffect(() => {
@@ -103,13 +102,12 @@ const LoginForm = () => {
                       </label>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={handleForgetPassword}
+                  <Link
+                    to="/forgot-password"
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-white dark:text-opacity-75"
                   >
                     Forgot password?
-                  </button>
+                  </Link>
                 </div>
                 <button
                   type="submit"

@@ -75,76 +75,6 @@ const useLoginForm = () => {
       });
   };
 
-  const handleForgetPassword = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const email = emailRef.current?.value ?? "";
-
-    if (email === "") {
-      setToastNotification(
-        <Alert
-          variant="outlined"
-          severity="info"
-          icon={false}
-          onClose={() => setToastNotification(<></>)}
-        >
-          Enter email for password recovery.
-        </Alert>
-      );
-      return;
-    }
-
-    if (email.length > maxEmailLength) {
-      setToastNotification(
-        <Alert
-          variant="outlined"
-          severity="error"
-          icon={false}
-          onClose={() => setToastNotification(<></>)}
-        >
-          Email is too long.
-        </Alert>
-      );
-      return;
-    }
-
-    // Data to be sent
-    const data = new FormData();
-    data.append("action", "send_password_reset_email");
-    data.append("email", email);
-
-    // Send the request
-    fetch(ApiEndpoint, {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setToastNotification(
-          <Alert
-            variant="outlined"
-            severity={data.isEverythingOk ? "success" : "error"}
-            icon={false}
-            onClose={() => setToastNotification(<></>)}
-          >
-            {data.responseMessage}
-          </Alert>
-        );
-      })
-      .catch((error) => {
-        setToastNotification(
-          <Alert
-            variant="outlined"
-            severity="error"
-            icon={false}
-            onClose={() => setToastNotification(<></>)}
-          >
-            {error.message}
-          </Alert>
-        );
-      });
-  };
-
   return {
     emailRef,
     passwordRef,
@@ -155,7 +85,6 @@ const useLoginForm = () => {
     maxEmailLength,
     maxPasswordLength,
     handleOnSubmit,
-    handleForgetPassword,
   };
 };
 
