@@ -7,21 +7,3 @@
     font-family: "Poppins", sans-serif;
   }
 }
-
-.loading-animation {
-  stroke: white;
-  stroke-width: 20;
-  fill: black;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: stroke 1s linear infinite;
-}
-
-@keyframes stroke {
-  from {
-    stroke-dashoffset: 1500;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
