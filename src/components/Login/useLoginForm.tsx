@@ -80,6 +80,20 @@ const useLoginForm = () => {
 
     const email = emailRef.current?.value ?? "";
 
+    if (email === "") {
+      setToastNotification(
+        <Alert
+          variant="outlined"
+          severity="info"
+          icon={false}
+          onClose={() => setToastNotification(<></>)}
+        >
+          Enter email for password recovery.
+        </Alert>
+      );
+      return;
+    }
+
     if (email.length > maxEmailLength) {
       setToastNotification(
         <Alert
