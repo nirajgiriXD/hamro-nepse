@@ -77,9 +77,14 @@ export const subMenuItems = [
   },
 ];
 
-export const LoginandSignupItemLink = {
-  href: "/login",
-};
+export const LOG_IN_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/user/login";
 
-export const ApiEndpoint =
-  "https://sam.superintegratedapp.com/wp-admin/admin-ajax.php";
+export const LOG_OUT_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/user/logout";
+
+export const CREATE_USER_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/user/create";
+
+export const RESET_PASSWORD_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/user/reset-password";

@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { ApiEndpoint } from "../../constant";
+import { CREATE_USER_ENDPOINT } from "../../constant";
 
 const useSignupForm = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -52,12 +52,13 @@ const useSignupForm = () => {
     data.append("name", name);
     data.append("email", email);
     data.append("password", password);
-    data.append("confirmPassword", confirmPassword);
+    data.append("confirm_password", confirmPassword);
 
     // Send the request
-    fetch(ApiEndpoint, {
+    fetch(CREATE_USER_ENDPOINT, {
       method: "POST",
       body: data,
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
