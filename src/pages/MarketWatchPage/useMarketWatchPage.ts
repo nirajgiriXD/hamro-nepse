@@ -18,7 +18,7 @@ const useMarketWatchPage = () => {
         }
 
         const result = await response.json();
-        setDate(result);
+        setDate(result["date"]);
       } catch (error) {
         // Fail Silently
       }

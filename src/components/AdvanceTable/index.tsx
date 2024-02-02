@@ -48,8 +48,8 @@ const Table = ({ columns }: AdvanceTableProp) => {
       const url =
         "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=all";
       const response = await fetch(url);
-      const json = (await response.json()) as TableData[];
-      return json;
+      const json = await response.json();
+      return json["stock_data"];
     },
     placeholderData: keepPreviousData,
   });
