@@ -28,18 +28,16 @@ const Navbar = () => {
     <div className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
-        <div className="flex items-center">
-          <Link to="/" onClick={() => setActiveNavItem("")}>
-            <img src={logo} alt="Logo" className="h-12 mr-2" />
-          </Link>
-          <Link
-            to="/"
-            className="font-semibold text-xl mr-5 md:mr-5"
-            onClick={() => setActiveNavItem("")}
-          >
+        <Link
+          to="/"
+          onClick={() => setActiveNavItem("")}
+          className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+        >
+          <img src={logo} className="h-12" alt="HamroNepse Logo" />
+          <span className="self-center text-xl font-semibold whitespace-nowrap">
             HamroNepse
-          </Link>
-        </div>
+          </span>
+        </Link>
 
         <div className="flex items-center">
           {/* Desktop Menu (Home, Contacts, Features, Chart) */}

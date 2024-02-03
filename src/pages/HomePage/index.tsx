@@ -30,7 +30,7 @@ const HomePage = () => {
               key={item.slug}
               type="button"
               onClick={item.action}
-              className={`text-white font-medium rounded text-sm px-5 py-2.5 text-center me-2 ${
+              className={`text-white font-medium rounded text-sm px-5 py-2.5 text-center mb-2 me-2 ${
                 activeButton === item.slug
                   ? "bg-sky-500 dark:bg-sky-700"
                   : "bg-slate-500 dark:bg-slate-700"

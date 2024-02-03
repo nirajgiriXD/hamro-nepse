@@ -27,7 +27,7 @@ export const LoginAndSignupItemMobileView = ({
 }: LoginandSignupItemProp) => {
   return (
     <Link to={href}>
-      <button className="w-full mt-2 px-4 py-2 mb-4 text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+      <button className="w-full mt-2 px-4 py-2 mb-4 text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:focus:ring-sky-800 font-medium rounded text-sm px-5 py-2.5 text-center">
         Login / Signup
       </button>
     </Link>
