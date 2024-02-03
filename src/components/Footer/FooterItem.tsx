@@ -1,20 +1,21 @@
 /**
  * External dependencies.
  */
+import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 
 interface FooterItemProp {
   label: string;
   href: string;
-  openInNewTab: boolean;
+  setActiveNavItem: Dispatch<SetStateAction<string>>;
 }
 
-const FooterItem = ({ label, href, openInNewTab }: FooterItemProp) => {
+const FooterItem = ({ label, href, setActiveNavItem }: FooterItemProp) => {
   return (
     <Link
       to={href}
       className="hover:underline me-4 md:me-6"
-      target={openInNewTab ? "_blank" : ""}
+      onClick={() => setActiveNavItem(label)}
     >
       {label}
     </Link>

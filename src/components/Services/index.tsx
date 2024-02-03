@@ -15,7 +15,7 @@ interface ServiceItemsProp {
 
 const Services = ({ ServiceItems }: ServiceItemsProp) => {
   return (
-    <div className="flex flex-wrap xl:my-10 md:my-8 xs:my-5 rounded-lg">
+    <div className="flex flex-wrap">
       {ServiceItems.map((serviceItem, index) => {
         return (
           <div key={"service-item-" + index} className="xl:w-1/3 md:w-1/2 p-2">
@@ -29,7 +29,7 @@ const Services = ({ ServiceItems }: ServiceItemsProp) => {
               <h2 className="text-lg font-medium title-font mb-2">
                 {serviceItem.title}
               </h2>
-              <p className="leading-relaxed text-base">
+              <p className="leading-relaxed text-base text-gray-600 dark:text-gray-400">
                 {serviceItem.description}
               </p>
             </Link>

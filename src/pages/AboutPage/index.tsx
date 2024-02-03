@@ -1,7 +1,7 @@
 /**
  * Internal dependencies.
  */
-import About from "../../components/About";
+import { About } from "../../components";
 import AboutUsItems from "./constant";
 
 const AboutPage = () => {

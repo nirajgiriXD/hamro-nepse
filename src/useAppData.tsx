@@ -9,7 +9,8 @@ import { useContext, useMemo } from "react";
 import { AppDataContext } from "./store/AppDataProvider";
 
 const useApp = () => {
-  const { logo, marketData } = useContext(AppDataContext);
+  const { logo, marketData, activeNavItem, setActiveNavItem } =
+    useContext(AppDataContext);
 
   const marketDataDate = useMemo(() => {
     if (marketData.length > 0) {
@@ -18,7 +19,7 @@ const useApp = () => {
     return "YYYY-MM-DD";
   }, [marketData]);
 
-  return { logo, marketData, marketDataDate };
+  return { logo, marketData, marketDataDate, activeNavItem, setActiveNavItem };
 };
 
 export default useApp;

@@ -1,7 +1,7 @@
 /**
  * Internal dependencies.
  */
-import Contact from "../../components/Contact";
+import { Contact } from "../../components";
 const ContactPage = () => {
   return <Contact />;
 };

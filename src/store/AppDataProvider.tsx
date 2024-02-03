@@ -1,7 +1,14 @@
 /**
  * External dependencies.
  */
-import { ReactNode, createContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import { StrictMode } from "react";
@@ -29,6 +36,8 @@ interface MarketDataProp {
 interface AppDataContextProp {
   logo: string;
   marketData: MarketDataProp[];
+  activeNavItem: string;
+  setActiveNavItem: Dispatch<SetStateAction<string>>;
 }
 
 interface AppDataProviderProp {
@@ -39,6 +48,7 @@ export const AppDataContext = createContext({} as AppDataContextProp);
 
 const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const [marketData, setMarketData] = useState([] as MarketDataProp[]);
+  const [activeNavItem, setActiveNavItem] = useState("");
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
@@ -85,6 +95,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const valueToProvide: AppDataContextProp = {
     logo,
     marketData,
+    activeNavItem,
+    setActiveNavItem,
   };
 
   return (
