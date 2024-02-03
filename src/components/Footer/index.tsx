@@ -11,7 +11,7 @@ import FooterItem from "./FooterItem";
 import useAppData from "../../useAppData";
 
 const Footer = () => {
-  const { logo } = useAppData();
+  const { logo, setActiveNavItem } = useAppData();
 
   return (
     <footer className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
@@ -33,7 +33,7 @@ const Footer = () => {
                 <FooterItem
                   href={footerItem.href}
                   label={footerItem.label}
-                  openInNewTab={footerItem.openInNewTab}
+                  setActiveNavItem={setActiveNavItem}
                 />
               </li>
             );

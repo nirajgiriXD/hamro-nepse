@@ -12,7 +12,6 @@ import SubMenu from "./SubMenu";
 interface NavItemProp {
   label: string;
   href: string;
-  openInNewTab: boolean;
   hasSubMenu: boolean;
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;

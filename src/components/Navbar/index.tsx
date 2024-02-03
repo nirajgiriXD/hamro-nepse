@@ -17,9 +17,8 @@ import {
 import useAppData from "../../useAppData";
 
 const Navbar = () => {
-  const { logo } = useAppData();
+  const { logo, activeNavItem, setActiveNavItem } = useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeNavItem, setActiveNavItem] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,7 +51,6 @@ const Navbar = () => {
                     label={navItem.label}
                     href={navItem.href}
                     hasSubMenu={navItem.hasSubMenu}
-                    openInNewTab={navItem.openInNewTab}
                     activeNavItem={activeNavItem}
                     setActiveNavItem={setActiveNavItem}
                   />
