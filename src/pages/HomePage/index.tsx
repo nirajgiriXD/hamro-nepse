@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       {/* Table Data Toggler */}
-      <div className="grid mx-auto text-gray-900 sm:grid-cols-3 md:grid-cols-5 sm:mt-10 lg:grid-cols-9">
+      <div className="grid mx-auto text-gray-900 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
         {tableOptions.map((item) => {
           return (
             <button

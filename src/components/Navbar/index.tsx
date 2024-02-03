@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="pt-3 lg:pt-4">
+    <div className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
