@@ -1,5 +1,14 @@
+/**
+ * Internal dependencies.
+ */
+import About from "../../components/About";
+
 const AboutPage = () => {
-  return <></>;
+  return (
+    <>
+      <About />
+    </>
+  );
 };
 
 export default AboutPage;
