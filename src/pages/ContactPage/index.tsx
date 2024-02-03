@@ -1,5 +1,13 @@
+/**
+ * Internal dependencies.
+ */
+import Contact from "../../components/Contact";
 const ContactPage = () => {
-  return <></>;
+  return (
+    <>
+      <Contact />
+    </>
+  );
 };
 
 export default ContactPage;
