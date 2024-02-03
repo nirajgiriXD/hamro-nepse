@@ -1,5 +1,14 @@
+/**
+ * Internal Dependencies.
+ */
+import PrivacyPolicy from "../../components/PrivacyPolicy";
+
 const PrivacyPolicyPage = () => {
-  return <></>;
+  return (
+    <>
+      <PrivacyPolicy />
+    </>
+  );
 };
 
 export default PrivacyPolicyPage;
