@@ -12,10 +12,10 @@ import useAppData from "../../useAppData";
 
 const Footer = () => {
   const { logo } = useAppData();
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
+      <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
       <div className="sm:flex sm:items-center sm:justify-between">
         <Link
           to="/"
@@ -26,7 +26,7 @@ const Footer = () => {
             HamroNepse
           </span>
         </Link>
-        <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-sm font-medium">
+        <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-md font-medium">
           {footerItems.map((footerItem, index) => {
             return (
               <li key={index}>
@@ -40,12 +40,6 @@ const Footer = () => {
           })}
         </ul>
       </div>
-
-      <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
-
-      <p className="text-sm text-center">
-        © {currentYear} HamroNepse | All Rights Reserved.
-      </p>
     </footer>
   );
 };
