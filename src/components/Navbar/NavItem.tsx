@@ -1,7 +1,7 @@
 /**
  * External dependencies.
  */
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Link } from "react-router-dom";
 
 /**
@@ -14,9 +14,17 @@ interface NavItemProp {
   href: string;
   openInNewTab: boolean;
   hasSubMenu: boolean;
+  activeNavItem: string;
+  setActiveNavItem: Dispatch<SetStateAction<string>>;
 }
 
-const NavItem = ({ label, href, hasSubMenu }: NavItemProp) => {
+const NavItem = ({
+  label,
+  href,
+  hasSubMenu,
+  activeNavItem,
+  setActiveNavItem,
+}: NavItemProp) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleMouseOver = () => {
@@ -43,10 +51,20 @@ const NavItem = ({ label, href, hasSubMenu }: NavItemProp) => {
       onMouseOut={handleMouseOut}
       onMouseOver={handleMouseOver}
     >
-      <Link to={href} className="hover:text-sky-600 flex items-center">
-        <span>{label}</span>
+      <Link
+        to={href}
+        className="hover:text-sky-600 flex items-center"
+        onClick={() => setActiveNavItem(label)}
+      >
+        <span className={activeNavItem === label ? "text-blue-600" : ""}>
+          {label}
+        </span>
         {hasSubMenu && (
-          <div className="cursor-pointer inline-block">
+          <div
+            className={`cursor-pointer inline-block ${
+              activeNavItem === label ? "text-blue-600" : ""
+            }`}
+          >
             <svg
               className="fill-current h-4 w-4 ml-1"
               xmlns="http://www.w3.org/2000/svg"

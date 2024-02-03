@@ -76,7 +76,7 @@ const ShareCalculator = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="p-10 border border-gray-300 dark:border-gray-600 rounded-lg">
         <h1 className="flex font-bold mb-1">Transaction Type:</h1>
         <div className="mb-4">

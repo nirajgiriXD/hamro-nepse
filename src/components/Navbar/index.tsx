@@ -19,6 +19,7 @@ import useAppData from "../../useAppData";
 const Navbar = () => {
   const { logo } = useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeNavItem, setActiveNavItem] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,10 +30,14 @@ const Navbar = () => {
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/" onClick={() => setActiveNavItem("")}>
             <img src={logo} alt="Logo" className="h-12 mr-2" />
           </Link>
-          <Link to="/" className="font-semibold text-xl mr-5 md:mr-5">
+          <Link
+            to="/"
+            className="font-semibold text-xl mr-5 md:mr-5"
+            onClick={() => setActiveNavItem("")}
+          >
             HamroNepse
           </Link>
         </div>
@@ -48,6 +53,8 @@ const Navbar = () => {
                     href={navItem.href}
                     hasSubMenu={navItem.hasSubMenu}
                     openInNewTab={navItem.openInNewTab}
+                    activeNavItem={activeNavItem}
+                    setActiveNavItem={setActiveNavItem}
                   />
                 </li>
               );

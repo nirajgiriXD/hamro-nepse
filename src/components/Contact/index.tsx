@@ -4,10 +4,10 @@ const Contact = () => {
       <h3 className="mb-4 px-1 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
         Contact Us
       </h3>
-      <p className="mb-5 lg:mb-10 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+      <h2 className="mb-4 lg:mb-8 font-light text-center text-gray-500 dark:text-gray-400 sm:text-lg">
         Got a technical issue? Want to send feedback about a feature? Need
         details about our future plan? Let us know.
-      </p>
+      </h2>
       <form action="#" className="space-y-4">
         <div>
           <label
