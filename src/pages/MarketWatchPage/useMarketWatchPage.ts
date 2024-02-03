@@ -1,37 +1,45 @@
 /**
  * External dependencies.
  */
-import { useEffect, useState } from "react";
+import { MRT_ColumnDef, MRT_RowData } from "material-react-table";
+import { download, generateCsv, mkConfig } from "export-to-csv";
+
+/**
+ * Internal dependencies.
+ */
+import useAppData from "../../useAppData";
+import { useMemo } from "react";
 
 const useMarketWatchPage = () => {
-  const [date, setDate] = useState<string>("YYYY-MM-DD");
+  const { marketData, marketDataDate } = useAppData();
 
-  useEffect(() => {
-    const fetchDate = async () => {
-      try {
-        const response = await fetch(
-          "https://sam.superintegratedapp.com/wp-json/api/stock-data-date"
-        );
+  const _marketData = useMemo(() => {
+    return marketData
+      .sort((a, b) => (a.symbol > b.symbol ? 1 : -1))
+      .map((item, index) => {
+        return {
+          ...item,
+          id: index + 1,
+        };
+      });
+  }, [marketData]);
 
-        if (!response.ok) {
-          return;
-        }
-
-        const result = await response.json();
-        setDate(result["date"]);
-      } catch (error) {
-        // Fail Silently
-      }
-    };
-
-    fetchDate();
+  const csvConfig = mkConfig({
+    fieldSeparator: ",",
+    decimalSeparator: ".",
+    useKeysAsHeaders: true,
   });
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(_marketData);
+    download(csvConfig)(csv);
+  };
 
   const columns = [
     {
-      accessorKey: "symbol",
-      header: "Symbol",
-      size: 80,
+      accessorKey: "id",
+      header: "ID",
+      size: 10,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -40,8 +48,8 @@ const useMarketWatchPage = () => {
       },
     },
     {
-      accessorKey: "sector",
-      header: "Sector",
+      accessorKey: "symbol",
+      header: "Symbol",
       size: 80,
       muiTableHeadCellProps: {
         align: "center",
@@ -116,10 +124,12 @@ const useMarketWatchPage = () => {
         align: "center",
       },
     },
-  ];
+  ] as MRT_ColumnDef<MRT_RowData, string>[];
 
   return {
-    date,
+    marketDataDate,
+    data: _marketData,
+    handleExportData,
     columns,
   };
 };
