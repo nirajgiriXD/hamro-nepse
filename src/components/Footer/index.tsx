@@ -8,12 +8,10 @@ import { Link } from "react-router-dom";
  */
 import { footerItems } from "../../constant";
 import FooterItem from "./FooterItem";
+import useAppData from "../../useAppData";
 
-interface FooterProp {
-  logo: string;
-}
-
-const Footer = ({ logo }: FooterProp) => {
+const Footer = () => {
+  const { logo } = useAppData();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -29,7 +27,7 @@ const Footer = ({ logo }: FooterProp) => {
               HamroNepse
             </span>
           </Link>
-          <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-md font-medium">
+          <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-sm font-medium">
             {footerItems.map((footerItem, index) => {
               return (
                 <li key={index}>
@@ -46,7 +44,7 @@ const Footer = ({ logo }: FooterProp) => {
 
         <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
-        <span className="block text-md sm:text-center">
+        <span className="block text-sm sm:text-center">
           © {currentYear} HamroNepse | All Rights Reserved.
         </span>
       </div>

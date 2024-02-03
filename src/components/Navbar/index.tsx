@@ -14,12 +14,10 @@ import {
   LoginAndSignupItem,
   LoginAndSignupItemMobileView,
 } from "./LoginAndSignup";
+import useAppData from "../../useAppData";
 
-interface NavbarProp {
-  logo: string;
-}
-
-const Navbar = ({ logo }: NavbarProp) => {
+const Navbar = () => {
+  const { logo } = useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
