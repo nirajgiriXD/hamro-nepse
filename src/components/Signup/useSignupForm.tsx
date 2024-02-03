@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
  * Internal dependencies.
  */
 import { CREATE_USER_ENDPOINT } from "../../constant";
+import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useSignupForm = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -69,7 +70,7 @@ const useSignupForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {data.responseMessage}
+            {extractTextFromHTML(data.responseMessage)}
           </Alert>
         );
 
@@ -87,7 +88,7 @@ const useSignupForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {error.message}
+            {extractTextFromHTML(error.message)}
           </Alert>
         );
       });

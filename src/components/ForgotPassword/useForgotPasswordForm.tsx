@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
  * Internal dependencies.
  */
 import { RESET_PASSWORD_ENDPOINT } from "../../constant";
+import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useForgotPasswordForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -72,7 +73,7 @@ const useForgotPasswordForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {data.responseMessage}
+            {extractTextFromHTML(data.responseMessage)}
           </Alert>
         );
 
@@ -90,7 +91,7 @@ const useForgotPasswordForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {error.message}
+            {extractTextFromHTML(error.message)}
           </Alert>
         );
       });

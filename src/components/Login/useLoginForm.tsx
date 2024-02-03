@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
  * Internal dependencies.
  */
 import { LOG_IN_ENDPOINT } from "../../constant";
+import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useLoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -52,7 +53,7 @@ const useLoginForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {data.responseMessage}
+            {extractTextFromHTML(data.responseMessage)}
           </Alert>
         );
 
@@ -70,7 +71,7 @@ const useLoginForm = () => {
             icon={false}
             onClose={() => setToastNotification(<></>)}
           >
-            {error.message}
+            {extractTextFromHTML(error.message)}
           </Alert>
         );
       });
