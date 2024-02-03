@@ -11,12 +11,12 @@ const MarketWatchPage = () => {
   return (
     <>
       <div className="flex justify-between mb-2">
-        <span className="text-sm text-gray-900 py-2 text-white dark:text-white">
+        <span className="text-sm py-2 text-gray-900 dark:text-white">
           Data as of: {marketDataDate}
         </span>
         <button
           onClick={handleExportData}
-          className="text-sm text-gray-900 bg-sky-500 dark:bg-sky-700 rounded px-4 py-2 text-white dark:text-white"
+          className="text-sm px-4 py-2 rounded bg-sky-500 dark:bg-sky-700 text-white dark:text-white"
         >
           Download
         </button>

@@ -30,7 +30,7 @@ import AppDataProvider from "./store/AppDataProvider";
 function App() {
   return (
     <AppDataProvider>
-      <div className="h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+      <div className="h-full min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <div className="container mx-auto">
           <div className="relative min-h-screen w-full max-w-screen-xl mx-auto px-3">
             {/* Navbar */}
