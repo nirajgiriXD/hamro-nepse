@@ -21,9 +21,12 @@ const useApp = () => {
 
   const _marketData = useMemo(() => {
     return marketData.map((item) => {
+      const turnover = String(
+        (Number(item.volume) * Number(item.close)).toFixed(2)
+      );
       return {
         ...item,
-        turnover: String(Number(item.volume) * Number(item.close)),
+        turnover: turnover,
       };
     });
   }, [marketData]);

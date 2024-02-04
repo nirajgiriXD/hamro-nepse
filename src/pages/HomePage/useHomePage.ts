@@ -46,7 +46,7 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("open", {
       header: "Open",
-      size: 100,
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -56,7 +56,7 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("high", {
       header: "High",
-      size: 100,
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -66,7 +66,7 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("low", {
       header: "Low",
-      size: 100,
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -76,7 +76,7 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("close", {
       header: "Close",
-      size: 100,
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -86,7 +86,7 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("percentage_change", {
       header: "% Change",
-      size: 100,
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
@@ -96,7 +96,17 @@ const useHomePage = () => {
     }),
     columnHelper.accessor("volume", {
       header: "Volume",
-      size: 100,
+      size: 80,
+      muiTableHeadCellProps: {
+        align: "center",
+      },
+      muiTableBodyCellProps: {
+        align: "center",
+      },
+    }),
+    columnHelper.accessor("turnover", {
+      header: "Turnover",
+      size: 80,
       muiTableHeadCellProps: {
         align: "center",
       },
