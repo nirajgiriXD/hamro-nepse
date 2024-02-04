@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 /**
  * Internal dependencies.
  */
-import { subMenuItems } from "../../constant";
 import useAppData from "../../useAppData";
 
 interface SubMenuProps {
   handleDropdownMouseOver: () => void;
   handleDropdownMouseOut: () => void;
+  subMenuItems: Record<string, string>[];
 }
 
 const SubMenu = ({
   handleDropdownMouseOver,
   handleDropdownMouseOut,
+  subMenuItems,
 }: SubMenuProps) => {
   const { setActiveNavItem } = useAppData();
 

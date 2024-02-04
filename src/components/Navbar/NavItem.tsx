@@ -12,7 +12,7 @@ import SubMenu from "./SubMenu";
 interface NavItemProp {
   label: string;
   href: string;
-  hasSubMenu: boolean;
+  subMenuItems: Record<string, string>[];
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;
 }
@@ -20,7 +20,7 @@ interface NavItemProp {
 const NavItem = ({
   label,
   href,
-  hasSubMenu,
+  subMenuItems,
   activeNavItem,
   setActiveNavItem,
 }: NavItemProp) => {
@@ -48,7 +48,7 @@ const NavItem = ({
         <span className={activeNavItem === label ? "text-blue-600" : ""}>
           {label}
         </span>
-        {hasSubMenu && (
+        {subMenuItems.length > 0 && (
           <div
             className={`cursor-pointer inline-block ${
               activeNavItem === label ? "text-blue-600" : ""
@@ -65,10 +65,11 @@ const NavItem = ({
         )}
       </Link>
 
-      {hasSubMenu && isDropdownOpen && (
+      {subMenuItems.length > 0 && isDropdownOpen && (
         <SubMenu
           handleDropdownMouseOver={handleMouseOver}
           handleDropdownMouseOut={handleMouseOut}
+          subMenuItems={subMenuItems}
         />
       )}
     </div>

@@ -17,7 +17,7 @@ import {
 import useAppData from "../../useAppData";
 
 const Navbar = () => {
-  const { logo, activeNavItem, setActiveNavItem } = useAppData();
+  const { name, logo, activeNavItem, setActiveNavItem } = useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -35,7 +35,7 @@ const Navbar = () => {
         >
           <img src={logo} className="h-12" alt="HamroNepse Logo" />
           <span className="self-center text-xl font-semibold whitespace-nowrap">
-            HamroNepse
+            {name}
           </span>
         </Link>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
                   <NavItem
                     label={navItem.label}
                     href={navItem.href}
-                    hasSubMenu={navItem.hasSubMenu}
+                    subMenuItems={navItem.subMenuItems}
                     activeNavItem={activeNavItem}
                     setActiveNavItem={setActiveNavItem}
                   />
