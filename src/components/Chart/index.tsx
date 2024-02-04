@@ -1,7 +1,7 @@
 /**
  * External dependencies.
  */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   TimeChartOptions,
   createChart,
@@ -9,90 +9,22 @@ import {
 } from "lightweight-charts";
 
 const Chart = () => {
+  const [stockData, setStockData] = useState([]);
+  const [isAreaSeriesChecked, setAreaSeriesChecked] = useState(false);
+  
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef<boolean>(false);
-  const candlestickSeriesData = [
-    {
-      time: "2018-12-22",
-      open: 75.16,
-      high: 82.84,
-      low: 36.16,
-      close: 45.72,
+
+  const chartOptions = {
+    layout: {
+      textColor: "black",
+      background: { type: "solid", color: "white" },
     },
-    {
-      time: "2018-12-23",
-      open: 45.12,
-      high: 53.9,
-      low: 45.12,
-      close: 48.09,
-    },
-    {
-      time: "2018-12-24",
-      open: 60.71,
-      high: 60.71,
-      low: 53.39,
-      close: 59.29,
-    },
-    {
-      time: "2018-12-25",
-      open: 68.26,
-      high: 68.26,
-      low: 59.04,
-      close: 60.5,
-    },
-    {
-      time: "2018-12-26",
-      open: 67.71,
-      high: 105.85,
-      low: 66.67,
-      close: 91.04,
-    },
-    {
-      time: "2018-12-27",
-      open: 91.04,
-      high: 121.4,
-      low: 82.7,
-      close: 111.4,
-    },
-    {
-      time: "2018-12-28",
-      open: 111.51,
-      high: 142.83,
-      low: 103.34,
-      close: 131.25,
-    },
-    {
-      time: "2018-12-29",
-      open: 131.33,
-      high: 151.17,
-      low: 77.68,
-      close: 96.43,
-    },
-    {
-      time: "2018-12-30",
-      open: 106.33,
-      high: 110.2,
-      low: 90.39,
-      close: 98.1,
-    },
-    {
-      time: "2018-12-31",
-      open: 109.87,
-      high: 114.69,
-      low: 85.66,
-      close: 111.26,
-    },
-  ];
-  const areaSeriesData = [
-    { time: "2018-12-22", value: 32.51 },
-    { value: 0, time: "2018-12-23" },
-    { value: 85, time: "2018-12-24" },
-    { value: 10, time: "2018-12-25" },
-    { value: 20, time: "2018-12-26" },
-    { value: 3, time: "2018-12-27" },
-    { value: 43, time: "2018-12-28" },
-    { value: 41, time: "2018-12-29" },
-  ];
+  };
+
+  // Use useRef to store the chart instance
+  const chartRef = useRef(null);
+  const areaSeriesRef = useRef(null);
 
   useEffect(() => {
     if(isInitialized.current) return;
@@ -101,47 +33,93 @@ const Chart = () => {
     if (!chartContainer) {
       return;
     }
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=upper&date_from=2024-01-01"
+        );
 
-    const chartOptions = {
-      layout: {
-        textColor: "black",
-        background: { type: "solid", color: "white" },
-      },
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data1 = await response.json();
+        setStockData(data1["stock_data"]);
+        const data = data1["stock_data"];
+
+        // Create chart inside the useEffect block and store its reference
+        chartRef.current = createChart(
+          chartContainer,
+          chartOptions as DeepPartial<TimeChartOptions>
+        );
+
+        const candlestickSeriesData = data.map((item) => ({
+          time: item.date,
+          open: +item.open,
+          high: +item.high,
+          low: +item.low,
+          close: +item.close,
+        }));
+
+        const candlestickSeries = chartRef.current.addCandlestickSeries({
+          upColor: "#26a69a",
+          downColor: "#ef5350",
+          borderVisible: false,
+          wickUpColor: "#26a69a",
+          wickDownColor: "#ef5350",
+        });
+
+        candlestickSeries.setData(candlestickSeriesData);
+        chartRef.current.timeScale().fitContent();
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
     };
-
-    const chart = createChart(
-      chartContainer,
-      chartOptions as DeepPartial<TimeChartOptions>
-    );
-
-    const areaSeries = chart.addAreaSeries({
-      lineColor: "#2962FF",
-      topColor: "#2962FF",
-      bottomColor: "rgba(41, 98, 255, 0.28)",
-    });
-
-    areaSeries.setData(areaSeriesData);
-
-    const candlestickSeries = chart.addCandlestickSeries({
-      upColor: "#26a69a",
-      downColor: "#ef5350",
-      borderVisible: false,
-      wickUpColor: "#26a69a",
-      wickDownColor: "#ef5350",
-    });
-
-    candlestickSeries.setData(candlestickSeriesData);
-    chart.timeScale().fitContent();
+    fetchData();
     isInitialized.current = true;
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleAreaSeriesChange = async (event) => {
+    setAreaSeriesChecked(event.target.checked);
+
+    const chart = chartRef.current;
+
+    if (event.target.checked) {
+
+    const data=stockData;
+
+      const areaSeriesData = data.map((item) => ({
+        time: item.date,
+        value: +item.close,
+      }));
+      areaSeriesRef.current = chart.addAreaSeries({
+        lineColor: "#2962FF",
+        topColor: "#2962FF",
+        bottomColor: "rgba(41, 98, 255, 0.28)",
+      });
+
+      areaSeriesRef.current.setData(areaSeriesData);
+
+    } else {
+      const chart = chartRef.current;
+      const areaSeries = areaSeriesRef.current;
+      if (areaSeries) {
+        chart.removeSeries(areaSeries);
+      }
+  }
+  };
+
   return (
-    <div
-      ref={chartContainerRef}
-      style={{ width: "100%", height: "100vh" }}
-    ></div>
+    <div  ref={chartContainerRef} style={{ width: "100%", height: "100vh" }}>
+      <input
+        type="checkbox"
+        id="areaSeries"
+        name="areaSeries"
+        checked={isAreaSeriesChecked}
+        onChange={handleAreaSeriesChange}
+      />
+      <label htmlFor="areaSeries">Area Series</label>
+    </div>
   );
 };
 
