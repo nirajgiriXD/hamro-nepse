@@ -9,7 +9,7 @@ import { useContext, useMemo } from "react";
 import { AppDataContext } from "./store/AppDataProvider";
 
 const useApp = () => {
-  const { logo, marketData, activeNavItem, setActiveNavItem } =
+  const { name, logo, marketData, activeNavItem, setActiveNavItem } =
     useContext(AppDataContext);
 
   const marketDataDate = useMemo(() => {
@@ -21,14 +21,18 @@ const useApp = () => {
 
   const _marketData = useMemo(() => {
     return marketData.map((item) => {
+      const turnover = String(
+        (Number(item.volume) * Number(item.close)).toFixed(2)
+      );
       return {
         ...item,
-        turnover: String(Number(item.volume) * Number(item.close)),
+        turnover: turnover,
       };
     });
   }, [marketData]);
 
   return {
+    name,
     logo,
     marketData: _marketData,
     marketDataDate,

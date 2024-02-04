@@ -34,6 +34,7 @@ interface MarketDataProp {
 }
 
 interface AppDataContextProp {
+  name: string;
   logo: string;
   marketData: MarketDataProp[];
   activeNavItem: string;
@@ -49,6 +50,8 @@ export const AppDataContext = createContext({} as AppDataContextProp);
 const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const [marketData, setMarketData] = useState([] as MarketDataProp[]);
   const [activeNavItem, setActiveNavItem] = useState("");
+
+  const name = "HamroNepse";
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
@@ -93,6 +96,7 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   }, []);
 
   const valueToProvide: AppDataContextProp = {
+    name,
     logo,
     marketData,
     activeNavItem,

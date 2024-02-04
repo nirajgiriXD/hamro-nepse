@@ -137,7 +137,7 @@ const SignupForm = () => {
                   I accept the{" "}
                   <Link
                     className="font-medium underline dark:text-primary-500"
-                    to="#"
+                    to="/privacy-policy"
                   >
                     Terms and Conditions
                   </Link>

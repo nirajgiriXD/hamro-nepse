@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 /**
  * Internal dependencies.
  */
-import { footerItems } from "../../constant";
+import { navItems } from "../../constant";
 import FooterItem from "./FooterItem";
 import useAppData from "../../useAppData";
 
 const Footer = () => {
-  const { logo, setActiveNavItem } = useAppData();
+  const { name, logo, setActiveNavItem } = useAppData();
 
   return (
     <footer className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
@@ -25,18 +25,18 @@ const Footer = () => {
           >
             <img src={logo} className="h-12" alt="HamroNepse Logo" />
             <span className="self-center text-xl font-semibold whitespace-nowrap">
-              HamroNepse
+              {name}
             </span>
           </Link>
         </div>
         <div className="w-full md:w-auto flex justify-center">
           <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-md font-medium">
-            {footerItems.map((footerItem, index) => {
+            {navItems.map((item, index) => {
               return (
                 <li key={index}>
                   <FooterItem
-                    href={footerItem.href}
-                    label={footerItem.label}
+                    href={item.href}
+                    label={item.label}
                     setActiveNavItem={setActiveNavItem}
                   />
                 </li>
