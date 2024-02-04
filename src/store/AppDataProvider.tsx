@@ -101,7 +101,7 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
 
   return (
     <StrictMode>
-      <Router>
+      <Router basename="/hamro-nepse">
         <ThemeProvider theme={theme}>
           <AppDataContext.Provider value={valueToProvide}>
             {children}
