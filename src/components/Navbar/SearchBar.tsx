@@ -6,7 +6,7 @@ const SearchBar = () => {
         placeholder="Search"
         className="w-full px-4 py-2 h-10 border rounded lg:rounded-full focus:outline-none focus:border-sky-600 text-gray-900 text-sm placeholder:text-sm"
       />
-      <div className="absolute inset-y-0 end-0 flex items-center">
+      <div className="absolute inset-y-0 end-1 flex items-center">
         <button type="submit" className="p-3 ms-2 text-sm font-medium">
           <svg
             className="w-4 h-4 transform scale-100 hover:scale-110 transition-transform duration-100"
