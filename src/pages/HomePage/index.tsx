@@ -10,12 +10,14 @@ const HomePage = () => {
     columns,
     activeButton,
     onTopTurnoverClick,
+    onTopVolumeClick,
     onTopGainerClick,
     onTopLoserClick,
   } = useHomePage();
 
   const tableOptions = [
     { title: "Top Turnover", slug: "topTurnover", action: onTopTurnoverClick },
+    { title: "Top Volume", slug: "topVolume", action: onTopVolumeClick },
     { title: "Top Gainers", slug: "topGainer", action: onTopGainerClick },
     { title: "Top Losers", slug: "topLoser", action: onTopLoserClick },
   ];
