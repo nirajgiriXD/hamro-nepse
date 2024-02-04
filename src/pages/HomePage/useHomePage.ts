@@ -108,6 +108,17 @@ const useHomePage = () => {
 
   const topTurnover = useMemo(() => {
     return marketData
+      .sort((a, b) => Number(b.turnover) - Number(a.turnover))
+      .slice(0, 10)
+      .map((item, index) => ({
+        ...item,
+        id: index + 1,
+        turnover: String(Number(item.volume) * Number(item.close)),
+      }));
+  }, [marketData]);
+
+  const topVolume = useMemo(() => {
+    return marketData
       .sort((a, b) => Number(b.volume) - Number(a.volume))
       .slice(0, 10)
       .map((item, index) => ({
@@ -144,6 +155,11 @@ const useHomePage = () => {
     setActiveButton("topTurnover");
   };
 
+  const onTopVolumeClick = () => {
+    setData(topVolume);
+    setActiveButton("topVolume");
+  };
+
   const onTopGainerClick = () => {
     setData(topGainer);
     setActiveButton("topGainer");
@@ -163,6 +179,7 @@ const useHomePage = () => {
     columns,
     activeButton,
     onTopTurnoverClick,
+    onTopVolumeClick,
     onTopGainerClick,
     onTopLoserClick,
   };

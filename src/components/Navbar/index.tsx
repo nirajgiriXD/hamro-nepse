@@ -119,7 +119,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
+      <hr className="mt-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
     </div>
   );
 };

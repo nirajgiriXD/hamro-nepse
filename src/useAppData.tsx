@@ -19,7 +19,22 @@ const useApp = () => {
     return "YYYY-MM-DD";
   }, [marketData]);
 
-  return { logo, marketData, marketDataDate, activeNavItem, setActiveNavItem };
+  const _marketData = useMemo(() => {
+    return marketData.map((item) => {
+      return {
+        ...item,
+        turnover: String(Number(item.volume) * Number(item.close)),
+      };
+    });
+  }, [marketData]);
+
+  return {
+    logo,
+    marketData: _marketData,
+    marketDataDate,
+    activeNavItem,
+    setActiveNavItem,
+  };
 };
 
 export default useApp;

@@ -34,16 +34,6 @@ const NavItem = ({
     setIsDropdownOpen(false);
   };
 
-  const handleDropdownMouseOver = () => {
-    // Keep the dropdown open when the mouse is inside the dropdown
-    setIsDropdownOpen(true);
-  };
-
-  const handleDropdownMouseOut = () => {
-    // Close the dropdown when the mouse leaves the dropdown
-    setIsDropdownOpen(false);
-  };
-
   return (
     <div
       className="flex items-center p-3"
@@ -77,8 +67,8 @@ const NavItem = ({
 
       {hasSubMenu && isDropdownOpen && (
         <SubMenu
-          handleDropdownMouseOver={handleDropdownMouseOver}
-          handleDropdownMouseOut={handleDropdownMouseOut}
+          handleDropdownMouseOver={handleMouseOver}
+          handleDropdownMouseOut={handleMouseOut}
         />
       )}
     </div>

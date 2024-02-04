@@ -1,5 +1,6 @@
 export { default as About } from "./About";
 export { default as AdvanceTable } from "./AdvanceTable";
+export { default as Breadcrumb } from "./Breadcrumb";
 export { default as Chart } from "./Chart";
 export { default as Contact } from "./Contact";
 export { default as Footer } from "./Footer";
