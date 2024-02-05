@@ -1,35 +1,73 @@
 /**
  * External dependencies.
  */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  AreaData,
+  AreaSeriesOptions,
+  AreaStyleOptions,
+  HistogramData,
+  HistogramSeriesOptions,
+  HistogramStyleOptions,
+  IChartApi,
+  ISeriesApi,
+  SeriesOptionsCommon,
+  Time,
   TimeChartOptions,
+  WhitespaceData,
   createChart,
   type DeepPartial,
 } from "lightweight-charts";
+
+interface TradingData {
+  date: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+}
 
 const Chart = () => {
   const [stockData, setStockData] = useState([]);
   const [isAreaSeriesChecked, setAreaSeriesChecked] = useState(false);
   const [isHistogramSeriesChecked, setHistogramSeriesChecked] = useState(false);
-  
+
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef<boolean>(false);
 
-  const chartOptions = {
-    layout: {
-      textColor: "black",
-      background: { type: "solid", color: "white" },
-    },
-  };
+  const chartOptions = useMemo(() => {
+    return {
+      layout: {
+        textColor: "black",
+        background: { type: "solid", color: "white" },
+      },
+    };
+  }, []);
 
   // Use useRef to store the chart instance
-  const chartRef = useRef(null);
-  const areaSeriesRef = useRef(null);
-  const histogramSeriesRef = useRef(null);
+  const chartRef = useRef(null as unknown as IChartApi);
+  const areaSeriesRef = useRef(
+    null as unknown as ISeriesApi<
+      "Area",
+      Time,
+      WhitespaceData<Time> | AreaData<Time>,
+      AreaSeriesOptions,
+      DeepPartial<AreaStyleOptions & SeriesOptionsCommon>
+    >
+  );
+  const histogramSeriesRef = useRef(
+    null as unknown as ISeriesApi<
+      "Histogram",
+      Time,
+      WhitespaceData<Time> | HistogramData<Time>,
+      HistogramSeriesOptions,
+      DeepPartial<HistogramStyleOptions & SeriesOptionsCommon>
+    >
+  );
 
   useEffect(() => {
-    if(isInitialized.current) return;
+    if (isInitialized.current) return;
     const chartContainer = chartContainerRef.current;
 
     if (!chartContainer) {
@@ -38,7 +76,7 @@ const Chart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=upper&date_from=2024-01-01"
+          "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=upper&date_from=2023-01-01"
         );
 
         if (!response.ok) {
@@ -55,7 +93,7 @@ const Chart = () => {
           chartOptions as DeepPartial<TimeChartOptions>
         );
 
-        const candlestickSeriesData = data.map((item) => ({
+        const candlestickSeriesData = data.map((item: TradingData) => ({
           time: item.date,
           open: +item.open,
           high: +item.high,
@@ -72,25 +110,28 @@ const Chart = () => {
         });
 
         candlestickSeries.setData(candlestickSeriesData);
-        chartRef.current.timeScale().fitContent();
+        chartRef.current?.timeScale().fitContent();
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
       }
     };
-    fetchData();
-    isInitialized.current = true;
-  }, []);
 
-  const handleAreaSeriesChange = async (event) => {
+    fetchData();
+
+    isInitialized.current = true;
+  }, [chartOptions]);
+
+  const handleAreaSeriesChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setAreaSeriesChecked(event.target.checked);
 
     const chart = chartRef.current;
 
     if (event.target.checked) {
+      const data = stockData;
 
-    const data=stockData;
-
-      const areaSeriesData = data.map((item) => ({
+      const areaSeriesData = data.map((item: TradingData) => ({
         time: item.date,
         value: +item.close,
       }));
@@ -101,33 +142,34 @@ const Chart = () => {
       });
 
       areaSeriesRef.current.setData(areaSeriesData);
-
     } else {
       const chart = chartRef.current;
       const areaSeries = areaSeriesRef.current;
       if (areaSeries) {
         chart.removeSeries(areaSeries);
       }
-  }
+    }
   };
 
-  const handleHistogramSeriesChange = async (event) => {
+  const handleHistogramSeriesChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setHistogramSeriesChecked(event.target.checked);
 
     const chart = chartRef.current;
 
     if (event.target.checked) {
+      const data = stockData;
 
-    const data=stockData;
-
-      const histogramSeriesData = data.map((item) => ({
+      const histogramSeriesData = data.map((item: TradingData) => ({
         time: item.date,
         value: +item.volume,
       }));
-      histogramSeriesRef.current = chart.addHistogramSeries({ color: '#26a69a' });
+      histogramSeriesRef.current = chart.addHistogramSeries({
+        color: "#26a69a",
+      });
 
       histogramSeriesRef.current.setData(histogramSeriesData);
-
     } else {
       console.log("uncheck");
       const chart = chartRef.current;
@@ -135,11 +177,11 @@ const Chart = () => {
       if (histogramSeries) {
         chart.removeSeries(histogramSeries);
       }
-  }
+    }
   };
 
   return (
-    <div  ref={chartContainerRef} style={{ width: "100%", height: "100vh" }}>
+    <div ref={chartContainerRef} style={{ width: "100%", height: "100vh" }}>
       <input
         type="checkbox"
         id="areaSeries"
