@@ -11,6 +11,7 @@ import {
 const Chart = () => {
   const [stockData, setStockData] = useState([]);
   const [isAreaSeriesChecked, setAreaSeriesChecked] = useState(false);
+  const [isHistogramSeriesChecked, setHistogramSeriesChecked] = useState(false);
   
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef<boolean>(false);
@@ -25,6 +26,7 @@ const Chart = () => {
   // Use useRef to store the chart instance
   const chartRef = useRef(null);
   const areaSeriesRef = useRef(null);
+  const histogramSeriesRef = useRef(null);
 
   useEffect(() => {
     if(isInitialized.current) return;
@@ -109,6 +111,33 @@ const Chart = () => {
   }
   };
 
+  const handleHistogramSeriesChange = async (event) => {
+    setHistogramSeriesChecked(event.target.checked);
+
+    const chart = chartRef.current;
+
+    if (event.target.checked) {
+
+    const data=stockData;
+
+      const histogramSeriesData = data.map((item) => ({
+        time: item.date,
+        value: +item.volume,
+      }));
+      histogramSeriesRef.current = chart.addHistogramSeries({ color: '#26a69a' });
+
+      histogramSeriesRef.current.setData(histogramSeriesData);
+
+    } else {
+      console.log("uncheck");
+      const chart = chartRef.current;
+      const histogramSeries = histogramSeriesRef.current;
+      if (histogramSeries) {
+        chart.removeSeries(histogramSeries);
+      }
+  }
+  };
+
   return (
     <div  ref={chartContainerRef} style={{ width: "100%", height: "100vh" }}>
       <input
@@ -119,6 +148,15 @@ const Chart = () => {
         onChange={handleAreaSeriesChange}
       />
       <label htmlFor="areaSeries">Area Series</label>
+
+      <input
+        type="checkbox"
+        id="histogramSeries"
+        name="histogramSeries"
+        checked={isHistogramSeriesChecked}
+        onChange={handleHistogramSeriesChange}
+      />
+      <label htmlFor="histogramSeries">Histogram Series</label>
     </div>
   );
 };
