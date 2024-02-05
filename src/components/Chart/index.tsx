@@ -76,7 +76,10 @@ const Chart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=upper&date_from=2023-01-01"
+          "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=upper&date_from=2023-01-01",
+          {
+            credentials: "include",
+          }
         );
 
         if (!response.ok) {
