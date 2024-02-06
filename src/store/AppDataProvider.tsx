@@ -47,6 +47,7 @@ interface AppDataContextProp {
   marketData: MarketDataProp[];
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;
+  prefersDarkMode: boolean;
 }
 
 interface AppDataProviderProp {
@@ -142,6 +143,7 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
     marketData,
     activeNavItem,
     setActiveNavItem,
+    prefersDarkMode,
   };
 
   return (

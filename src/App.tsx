@@ -13,6 +13,7 @@ import {
   ChartPage,
   CompanyAnalyzerPage,
   CompareCompanyPage,
+  CompanyDetailPage,
   ContactPage,
   HomePage,
   IpoCheckerPage,
@@ -44,6 +45,7 @@ function App() {
                 path="/company-analyzer"
                 element={<CompanyAnalyzerPage />}
               />
+              <Route path="/stock/:symbol" element={<CompanyDetailPage />} />
               <Route path="/compare-company" element={<CompareCompanyPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/" element={<HomePage />} />
