@@ -11,6 +11,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -49,37 +50,13 @@ const SimpleChart = () => {
     data: data,
     options: {
       responsive: true,
-      scales: {
-        yAxes: {
-          grid: {
-            drawBorder: true,
-            color: "#FFFFFF",
-          },
-          ticks: {
-            beginAtZero: true,
-            color: "white",
-            fontSize: 12,
-          },
-        },
-        xAxes: {
-          grid: {
-            drawBorder: true,
-            color: "#FFFFFF",
-          },
-          ticks: {
-            beginAtZero: true,
-            color: "white",
-            fontSize: 12,
-          },
-        },
-      },
       plugins: {
         legend: {
           display: false,
         },
       },
     },
-  };
+  } as ChartOptions<"line">;
 
   ChartJS.register(
     CategoryScale,
