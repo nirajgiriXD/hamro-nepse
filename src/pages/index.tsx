@@ -1,6 +1,7 @@
 export { default as AboutPage } from "./AboutPage";
 export { default as ChartPage } from "./ChartPage";
 export { default as CompanyAnalyzerPage } from "./CompanyAnalyzerPage";
+export { default as CompanyDetailPage } from "./CompanyDetailPage";
 export { default as CompareCompanyPage } from "./CompareCompanyPage";
 export { default as ContactPage } from "./ContactPage";
 export { default as HomePage } from "./HomePage";

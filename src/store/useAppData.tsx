@@ -16,6 +16,7 @@ const useApp = () => {
     stockProfileData,
     activeNavItem,
     setActiveNavItem,
+    prefersDarkMode,
   } = useContext(AppDataContext);
 
   const marketDataDate = useMemo(() => {
@@ -54,6 +55,7 @@ const useApp = () => {
     marketDataDate,
     activeNavItem,
     setActiveNavItem,
+    prefersDarkMode,
   };
 };
 
