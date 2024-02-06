@@ -26,7 +26,7 @@ const Search = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selected: any) => {
     if (selected) {
-      navigate(selected.value);
+      navigate(`stock?symbol=${selected.value}`);
     }
   };
 
