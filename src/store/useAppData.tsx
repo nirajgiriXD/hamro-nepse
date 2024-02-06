@@ -6,11 +6,17 @@ import { useContext, useMemo } from "react";
 /**
  * Internal dependencies.
  */
-import { AppDataContext } from "./store/AppDataProvider";
+import { AppDataContext } from "./AppDataProvider";
 
 const useApp = () => {
-  const { name, logo, marketData, activeNavItem, setActiveNavItem } =
-    useContext(AppDataContext);
+  const {
+    name,
+    logo,
+    marketData,
+    stockProfileData,
+    activeNavItem,
+    setActiveNavItem,
+  } = useContext(AppDataContext);
 
   const marketDataDate = useMemo(() => {
     if (marketData.length > 0) {
@@ -18,6 +24,15 @@ const useApp = () => {
     }
     return "YYYY-MM-DD";
   }, [marketData]);
+
+  const _stockProfileData = useMemo(() => {
+    return stockProfileData.map((item) => {
+      return {
+        label: `(${item.symbol}) ${item.name}`,
+        value: item.symbol,
+      };
+    });
+  }, [stockProfileData]);
 
   const _marketData = useMemo(() => {
     return marketData.map((item) => {
@@ -35,6 +50,7 @@ const useApp = () => {
     name,
     logo,
     marketData: _marketData,
+    stockProfileData: _stockProfileData,
     marketDataDate,
     activeNavItem,
     setActiveNavItem,

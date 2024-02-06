@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { CREATE_USER_ENDPOINT } from "../../constant";
+import { CREATE_USER_ENDPOINT } from "../../store/constant";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useSignupForm = () => {

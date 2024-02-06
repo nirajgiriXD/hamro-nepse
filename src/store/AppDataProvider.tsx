@@ -33,9 +33,17 @@ interface MarketDataProp {
   date: string;
 }
 
+interface StockProfileDataProp {
+  id: string;
+  symbol: string;
+  name: string;
+  sector: string;
+}
+
 interface AppDataContextProp {
   name: string;
   logo: string;
+  stockProfileData: StockProfileDataProp[];
   marketData: MarketDataProp[];
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;
@@ -49,6 +57,9 @@ export const AppDataContext = createContext({} as AppDataContextProp);
 
 const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const [marketData, setMarketData] = useState([] as MarketDataProp[]);
+  const [stockProfileData, setStockProfileData] = useState(
+    [] as StockProfileDataProp[]
+  );
   const [activeNavItem, setActiveNavItem] = useState("");
 
   const name = "HamroNepse";
@@ -97,9 +108,37 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const url =
+        "https://sam.superintegratedapp.com/wp-json/api/stock-data/profile";
+
+      try {
+        const response = await fetch(url, {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const json = await response.json();
+        const data = json.stock_profile_data;
+        setStockProfileData(data);
+      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const valueToProvide: AppDataContextProp = {
     name,
     logo,
+    stockProfileData,
     marketData,
     activeNavItem,
     setActiveNavItem,

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 /**
  * Internal dependencies.
  */
-import { navItems } from "../../constant";
+import { navItems } from "../../store/constant";
 import FooterItem from "./FooterItem";
-import useAppData from "../../useAppData";
+import useAppData from "../../store/useAppData";
 
 const Footer = () => {
   const { name, logo, setActiveNavItem } = useAppData();

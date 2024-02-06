@@ -7,7 +7,7 @@ import { MRT_RowData, createMRTColumnHelper } from "material-react-table";
 /**
  * Internal Dependencies.
  */
-import useAppData from "../../useAppData";
+import useAppData from "../../store/useAppData";
 
 const useHomePage = () => {
   const { marketData } = useAppData();

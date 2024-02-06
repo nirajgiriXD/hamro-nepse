@@ -7,7 +7,7 @@ import { download, generateCsv, mkConfig } from "export-to-csv";
 /**
  * Internal dependencies.
  */
-import useAppData from "../../useAppData";
+import useAppData from "../../store/useAppData";
 import { useMemo } from "react";
 
 const useMarketWatchPage = () => {
