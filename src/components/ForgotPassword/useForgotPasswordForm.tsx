@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { RESET_PASSWORD_ENDPOINT } from "../../constant";
+import { RESET_PASSWORD_ENDPOINT } from "../../store/constant";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useForgotPasswordForm = () => {

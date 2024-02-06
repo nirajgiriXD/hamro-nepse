@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { LOG_IN_ENDPOINT } from "../../constant";
+import { LOG_IN_ENDPOINT } from "../../store/constant";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useLoginForm = () => {

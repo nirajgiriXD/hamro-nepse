@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 /**
  * Internal dependencies.
  */
-import { navItems } from "../../constant";
-import SearchBar from "./SearchBar";
+import { navItems } from "../../store/constant";
+import Search from "./Search";
 import NavItem from "./NavItem";
 import {
   LoginAndSignupItem,
   LoginAndSignupItemMobileView,
 } from "./LoginAndSignup";
-import useAppData from "../../useAppData";
+import useAppData from "../../store/useAppData";
 
 const Navbar = () => {
   const { name, logo, activeNavItem, setActiveNavItem } = useAppData();
@@ -62,7 +62,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center align-middle space-x-4">
           {/* Search Bar */}
           <div className="relative h-10">
-            <SearchBar />
+            <Search />
           </div>
 
           {/* Login Button */}
@@ -111,7 +111,7 @@ const Navbar = () => {
 
           {/* Search Bar */}
           <div className="relative w-full mt-3 h-12">
-            <SearchBar />
+            <Search />
           </div>
 
           {/* Login Button */}
