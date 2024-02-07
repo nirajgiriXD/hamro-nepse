@@ -40,6 +40,7 @@ const CompanyDetailPage = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.log("Error fetching data:", error.message);
+        setStockData([]);
       } finally {
         setIsLoading(false);
       }
