@@ -50,19 +50,17 @@ const CompanyDetailPage = () => {
 
   const numOfData = useMemo(() => stockData.length, [stockData]);
 
-  console.log(symbol);
-
   return (
     !isLoading && (
       <>
         {numOfData !== 0 ? (
-          <div>
+          <div className="h-full">
             <div className="flex mb-4 w-full space-x-8">
               <div className="w-1/2 h-12">
                 <StockDetail stockData={stockData[numOfData - 1]} />
               </div>
               <div className="w-1/2 min-w-1/2">
-                <SimpleChart />
+                <SimpleChart stockData={stockData} />
               </div>
             </div>
           </div>
