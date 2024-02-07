@@ -1,8 +1,8 @@
-interface StockDetailProp {
+interface StockDataProp {
   stockData: Record<string, string>;
 }
 
-const StockDetail = ({ stockData }: StockDetailProp) => {
+const StockDetail = ({ stockData }: StockDataProp) => {
   return (
     <div className="p-2 rounded-md lg:p-6 dark:bg-gray-800 bg-gray-50">
       <div className="flex flex-wrap justify-center gap-x-10 gap-y-2">
