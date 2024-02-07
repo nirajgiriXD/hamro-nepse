@@ -3,6 +3,11 @@
  */
 import { Link } from "react-router-dom";
 
+/**
+ * Internal dependencies.
+ */
+import useAppData from "../../store/useAppData";
+
 interface UserProfileItem {
   label: string;
   href: string;
@@ -19,6 +24,7 @@ const UserProfileMenu = ({
   handleDropdownMouseOut,
   userprofileitems,
 }: UserProfileDropdownProps) => {
+  const { userData } = useAppData();
   return (
     <>
       <div
@@ -27,8 +33,8 @@ const UserProfileMenu = ({
         className=" absolute w-52 bg-white dark:bg-gray-900 rounded top-14 p-1 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600"
       >
         <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          <div>Bonnie Green</div>
-          <div className="font-medium truncate">name@flowbite.com</div>
+          <div>{userData.name}</div>
+          <div className="font-medium truncate">{userData.email}</div>
         </div>
 
         <ul

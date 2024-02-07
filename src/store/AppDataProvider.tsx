@@ -6,7 +6,9 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
+  useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -40,13 +42,22 @@ interface StockProfileDataProp {
   sector: string;
 }
 
+interface UserDataProp {
+  isLoggedIn: boolean;
+  name: string;
+  email: string;
+  img_url: string;
+}
+
 interface AppDataContextProp {
   name: string;
   logo: string;
+  userData: UserDataProp;
   stockProfileData: StockProfileDataProp[];
   marketData: MarketDataProp[];
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;
+  fetchUserData: () => void;
   prefersDarkMode: boolean;
 }
 
@@ -61,9 +72,14 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const [stockProfileData, setStockProfileData] = useState(
     [] as StockProfileDataProp[]
   );
-  const [activeNavItem, setActiveNavItem] = useState("");
+  const [activeNavItem, setActiveNavItem] = useState<string>("");
+  const [userData, setUserData] = useState({} as UserDataProp);
 
   const name = "HamroNepse";
+
+  const initialUserData = useMemo(() => {
+    return { isLoggedIn: false, name: "", email: "", img_url: "" };
+  }, []);
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
@@ -82,8 +98,44 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
     },
   });
 
+  const fetchUserData = useCallback(() => {
+    async () => {
+      const url = "https://sam.superintegratedapp.com/wp-json/api/user/data";
+
+      try {
+        const response = await fetch(url, {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const json = await response.json();
+        if (json.data.length !== 0) {
+          const data = json.data;
+          setUserData({
+            ...data,
+            isLoggedIn: true,
+          });
+        } else {
+          setUserData(initialUserData);
+        }
+      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        console.error("Error fetching data:", error.message);
+        setUserData(initialUserData);
+      }
+    };
+  }, [initialUserData]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    fetchUserData();
+  }, [fetchUserData]);
+
+  useEffect(() => {
+    const fetchMarketData = async () => {
       const url =
         "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=all";
 
@@ -103,10 +155,11 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         console.error("Error fetching data:", error.message);
+        setMarketData([]);
       }
     };
 
-    fetchData();
+    fetchMarketData();
   }, []);
 
   useEffect(() => {
@@ -139,10 +192,12 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const valueToProvide: AppDataContextProp = {
     name,
     logo,
+    userData,
     stockProfileData,
     marketData,
     activeNavItem,
     setActiveNavItem,
+    fetchUserData,
     prefersDarkMode,
   };
 

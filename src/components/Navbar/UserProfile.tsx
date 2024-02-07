@@ -9,7 +9,7 @@ import { userProfileDropdownItems } from "../../store/constant";
  */
 import { useState } from "react";
 
-const UserProfileDropdown = () => {
+const UserProfile = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const handleMouseOver = () => {
@@ -49,4 +49,4 @@ const UserProfileDropdown = () => {
   );
 };
 
-export default UserProfileDropdown;
+export default UserProfile;

@@ -12,10 +12,12 @@ const useApp = () => {
   const {
     name,
     logo,
+    userData,
     marketData,
     stockProfileData,
     activeNavItem,
     setActiveNavItem,
+    fetchUserData,
     prefersDarkMode,
   } = useContext(AppDataContext);
 
@@ -50,11 +52,13 @@ const useApp = () => {
   return {
     name,
     logo,
+    userData,
     marketData: _marketData,
     stockProfileData: _stockProfileData,
     marketDataDate,
     activeNavItem,
     setActiveNavItem,
+    fetchUserData,
     prefersDarkMode,
   };
 };
