@@ -26,7 +26,9 @@ const Search = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selected: any) => {
     if (selected) {
-      navigate(`stock/${selected.value.toLocaleLowerCase()}`);
+      navigate(
+        `stock/${encodeURIComponent(selected.value.toLocaleLowerCase())}`
+      );
     }
   };
 
