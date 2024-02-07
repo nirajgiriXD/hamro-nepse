@@ -1,15 +1,17 @@
 /**
- * Internal dependencies.
- */
-import UserProfileMenu from "./UserProfileMenu";
-import { userProfileDropdownItems } from "../../store/constant";
-
-/**
  * External dependencies.
  */
 import { useState } from "react";
 
-const UserProfileDropdown = () => {
+/**
+ * Internal dependencies.
+ */
+import UserProfileMenu from "./UserProfileMenu";
+import { userProfileDropdownItems } from "../../store/constant";
+import useAppData from "../../store/useAppData";
+
+const UserProfile = () => {
+  const { userData } = useAppData();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const handleMouseOver = () => {
@@ -32,7 +34,7 @@ const UserProfileDropdown = () => {
           <span className="sr-only">Open user menu</span>
           <img
             className="w-10 h-10 rounded-full"
-            src="sample.png"
+            src={userData.img_url}
             alt="user photo"
           />
         </button>
@@ -49,4 +51,4 @@ const UserProfileDropdown = () => {
   );
 };
 
-export default UserProfileDropdown;
+export default UserProfile;

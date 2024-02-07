@@ -15,12 +15,13 @@ import {
   LoginAndSignupItemMobileView,
 } from "./LoginAndSignup";
 import useAppData from "../../store/useAppData";
-import UserProfileDropdown from "./UserProfile";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
-  const { name, logo, activeNavItem, setActiveNavItem } = useAppData();
+  const { name, logo, userData, activeNavItem, setActiveNavItem } =
+    useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLoggedIn = false;
+  const isLoggedIn = userData.isLoggedIn;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -68,11 +69,7 @@ const Navbar = () => {
           </div>
 
           {/* Login Button */}
-          {isLoggedIn ? (
-            <UserProfileDropdown />
-          ) : (
-            <LoginAndSignupItem href="/login" />
-          )}
+          {isLoggedIn ? <UserProfile /> : <LoginAndSignupItem href="/login" />}
         </div>
 
         {/* Toggle for Mobile Menu  */}
@@ -122,7 +119,7 @@ const Navbar = () => {
 
           {/* Login Button */}
           {isLoggedIn ? (
-            <UserProfileDropdown />
+            <UserProfile />
           ) : (
             <LoginAndSignupItemMobileView href="/login" />
           )}

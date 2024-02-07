@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
  */
 import { LOG_IN_ENDPOINT } from "../../store/constant";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
+import useAppData from "../../store/useAppData";
 
 const useLoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -19,6 +20,8 @@ const useLoginForm = () => {
   const [toastNotification, setToastNotification] = useState<ReactElement>(
     <></>
   );
+
+  const { fetchUserData } = useAppData();
 
   const minLength = 8;
   const maxEmailLength = 50;
@@ -58,6 +61,7 @@ const useLoginForm = () => {
         );
 
         if (data.isEverythingOk) {
+          fetchUserData();
           setTimeout(() => {
             setNavigationPath("/");
           }, 1000);
