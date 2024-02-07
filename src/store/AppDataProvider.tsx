@@ -99,11 +99,12 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   });
 
   const fetchUserData = useCallback(() => {
-    async () => {
+    const fetchData = async () => {
       const url = "https://sam.superintegratedapp.com/wp-json/api/user/data";
 
       try {
         const response = await fetch(url, {
+          method: "POST",
           credentials: "include",
         });
 
@@ -128,6 +129,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
         setUserData(initialUserData);
       }
     };
+
+    fetchData();
   }, [initialUserData]);
 
   useEffect(() => {
