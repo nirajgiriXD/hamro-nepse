@@ -11,12 +11,14 @@ import { StockDetail, SimpleChart, NotFound } from "../../components";
 
 const CompanyDetailPage = () => {
   const params = useParams();
-  const symbol = params.symbol?.toUpperCase();
+  // const symbol = params.symbol?.toUpperCase() ?? "";
+  const symbol = decodeURIComponent(params.symbol?.toUpperCase() ?? "");
 
   const [stockData, setStockData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const oneYearAgoDate = useMemo(() => {
-    return new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+    const date = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+    return date.toISOString().slice(0, 10);
   }, []);
 
   useEffect(() => {
@@ -47,6 +49,8 @@ const CompanyDetailPage = () => {
   }, [oneYearAgoDate, symbol]);
 
   const numOfData = useMemo(() => stockData.length, [stockData]);
+
+  console.log(symbol);
 
   return (
     !isLoading && (
