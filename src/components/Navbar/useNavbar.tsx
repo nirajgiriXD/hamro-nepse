@@ -15,34 +15,30 @@ const useNavbar = () => {
   const { fetchUserData } = useAppData();
 
   const signOutUser = useCallback(() => {
-    const sendSignOutRequest = async () => {
-      fetch(LOG_OUT_ENDPOINT, {
-        method: "POST",
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.isEverythingOk) {
-            fetchUserData();
-            setTimeout(() => {
-              // Refresh
-              navigate(0);
-            }, 1000);
-          }
-        })
-        .catch((error) => {
-          console.error("Logout failed:", error.message);
+    fetch(LOG_OUT_ENDPOINT, {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.isEverythingOk) {
+          fetchUserData();
           setTimeout(() => {
             // Refresh
-            navigate("/");
+            navigate(0);
           }, 1000);
-        })
-        .finally(() => {
-          document.cookie = "";
-        });
-    };
-
-    sendSignOutRequest();
+        }
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error.message);
+        setTimeout(() => {
+          // Refresh
+          navigate("/");
+        }, 1000);
+      })
+      .finally(() => {
+        document.cookie = "";
+      });
   }, [fetchUserData, navigate]);
 
   return { signOutUser };
