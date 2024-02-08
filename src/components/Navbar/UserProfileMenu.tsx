@@ -1,12 +1,15 @@
 /**
  * External dependencies.
  */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import * as ReactIs from "react-is";
 
 /**
  * Internal dependencies.
  */
 import useAppData from "../../store/useAppData";
+import useNavbar from "./useNavbar";
+import { useEffect } from "react";
 
 interface UserProfileItem {
   label: string;
@@ -24,38 +27,50 @@ const UserProfileMenu = ({
   handleDropdownMouseOut,
   userprofileitems,
 }: UserProfileDropdownProps) => {
+  const navigate = useNavigate();
   const { userData } = useAppData();
+  const { signOutUser, toastNotification, navigationPath } = useNavbar();
+
+  useEffect(() => {
+    if (navigationPath !== "") {
+      navigate(navigationPath);
+    }
+  }, [navigate, navigationPath]);
+
   return (
     <>
       <div
         onMouseOut={handleDropdownMouseOut}
         onMouseOver={handleDropdownMouseOver}
-        className=" absolute w-52 bg-white dark:bg-gray-900 rounded top-14 p-1 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600"
+        className="absolute p-2 min-w-40 bg-white dark:bg-gray-900 rounded top-14 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white text-sm"
       >
-        <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          <div>{userData.name}</div>
-          <div className="font-medium truncate">{userData.email}</div>
-        </div>
+        <div className="text-gray-900 dark:text-white">{userData.name}</div>
 
-        <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownUserAvatarButton"
-        >
+        <hr className="mt-2 pt-2 sm:mx-auto border-gray-300 dark:border-gray-600" />
+
+        <ul aria-labelledby="dropdownUserAvatarButton">
+          {!ReactIs.isFragment(toastNotification) && (
+            <li>
+              <div className="">{toastNotification}</div>
+              <hr className="mb-2 pb-2 sm:mx-auto border-gray-300 dark:border-gray-600" />
+            </li>
+          )}
           {userprofileitems.map((userprofileitem, index) => (
             <li key={index} className="text-md font-medium">
-              {userprofileitem.href === "/signout" ? (
-                <div className="py-4">
-                  <Link
-                    to={userprofileitem.href}
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              {userprofileitem.label === "Sign out" ? (
+                <div>
+                  <hr className="mt-2 pt-2 sm:mx-auto border-gray-300 dark:border-gray-600" />
+                  <button
+                    className="w-full text-left hover:text-sky-500"
+                    onClick={signOutUser}
                   >
                     {userprofileitem.label}
-                  </Link>
+                  </button>
                 </div>
               ) : (
                 <Link
                   to={userprofileitem.href}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block hover:text-sky-500"
                 >
                   {userprofileitem.label}
                 </Link>

@@ -78,7 +78,13 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const name = "HamroNepse";
 
   const initialUserData = useMemo(() => {
-    return { isLoggedIn: false, name: "", email: "", img_url: "" };
+    // return { isLoggedIn: false, name: "", email: "", img_url: "" };
+    return {
+      isLoggedIn: false,
+      name: "",
+      email: "",
+      img_url: "",
+    };
   }, []);
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
