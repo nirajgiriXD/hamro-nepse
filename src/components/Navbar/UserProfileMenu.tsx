@@ -2,7 +2,6 @@
  * External dependencies.
  */
 import { Link } from "react-router-dom";
-import * as ReactIs from "react-is";
 
 /**
  * Internal dependencies.
@@ -27,7 +26,7 @@ const UserProfileMenu = ({
   userprofileitems,
 }: UserProfileDropdownProps) => {
   const { userData } = useAppData();
-  const { signOutUser, toastNotification } = useNavbar();
+  const { signOutUser } = useNavbar();
 
   return (
     <>
@@ -41,12 +40,6 @@ const UserProfileMenu = ({
         <hr className="mt-2 pt-2 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
         <ul aria-labelledby="dropdownUserAvatarButton">
-          {!ReactIs.isFragment(toastNotification) && (
-            <li>
-              <div className="">{toastNotification}</div>
-              <hr className="mb-2 pb-2 sm:mx-auto border-gray-300 dark:border-gray-600" />
-            </li>
-          )}
           {userprofileitems.map((userprofileitem, index) => (
             <li key={index} className="text-md font-medium">
               {userprofileitem.label === "Sign out" ? (

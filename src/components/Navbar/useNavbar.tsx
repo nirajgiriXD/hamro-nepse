@@ -1,23 +1,17 @@
 /**
  * External dependencies.
  */
-import { ReactElement, useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import Alert from "@mui/material/Alert";
 
 /**
  * Internal dependencies.
  */
 import useAppData from "../../store/useAppData";
 import { LOG_OUT_ENDPOINT } from "../../store/constant";
-import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useNavbar = () => {
   const navigate = useNavigate();
-  const [toastNotification, setToastNotification] = useState<ReactElement>(
-    <></>
-  );
-
   const { fetchUserData } = useAppData();
 
   const signOutUser = useCallback(() => {
@@ -28,17 +22,6 @@ const useNavbar = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setToastNotification(
-            <Alert
-              variant="outlined"
-              severity={data.isEverythingOk ? "success" : "error"}
-              icon={false}
-              onClose={() => setToastNotification(<></>)}
-            >
-              {extractTextFromHTML(data.responseMessage)}
-            </Alert>
-          );
-
           if (data.isEverythingOk) {
             fetchUserData();
             setTimeout(() => {
@@ -48,23 +31,21 @@ const useNavbar = () => {
           }
         })
         .catch((error) => {
-          setToastNotification(
-            <Alert
-              variant="outlined"
-              severity="error"
-              icon={false}
-              onClose={() => setToastNotification(<></>)}
-            >
-              {extractTextFromHTML(error.message)}
-            </Alert>
-          );
+          console.error("Logout failed:", error.message);
+          setTimeout(() => {
+            // Refresh
+            navigate("/");
+          }, 1000);
+        })
+        .finally(() => {
+          document.cookie = "";
         });
     };
 
     sendSignOutRequest();
   }, [fetchUserData, navigate]);
 
-  return { signOutUser, toastNotification };
+  return { signOutUser };
 };
 
 export default useNavbar;
