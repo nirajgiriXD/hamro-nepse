@@ -35,9 +35,6 @@ const useNavbar = () => {
           // Refresh
           navigate("/");
         }, 1000);
-      })
-      .finally(() => {
-        document.cookie = "";
       });
   }, [fetchUserData, navigate]);
 
