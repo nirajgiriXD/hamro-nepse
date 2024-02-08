@@ -43,6 +43,7 @@ const useLoginForm = () => {
     // Send the request
     fetch(LOG_IN_ENDPOINT, {
       method: "POST",
+      body: data,
       credentials: "include",
     })
       .then((response) => response.json())
