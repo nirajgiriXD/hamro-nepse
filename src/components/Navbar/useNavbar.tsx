@@ -7,9 +7,7 @@ import Alert from "@mui/material/Alert";
 /**
  * Internal dependencies.
  */
-import { LOG_OUT_ENDPOINT } from "../../store/constant";
 import useAppData from "../../store/useAppData";
-import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useNavbar = () => {
   const [navigationPath, setNavigationPath] = useState<string>("");
@@ -20,42 +18,40 @@ const useNavbar = () => {
   const { fetchUserData } = useAppData();
 
   const signOutUser = () => {
-    fetch(LOG_OUT_ENDPOINT, {
-      method: "POST",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setToastNotification(
-          <Alert
-            variant="outlined"
-            severity={data.isEverythingOk ? "success" : "error"}
-            icon={false}
-            onClose={() => setToastNotification(<></>)}
-          >
-            {extractTextFromHTML(data.responseMessage)}
-          </Alert>
-        );
+    // Get all cookies
+    const allCookies = document.cookie.split(";");
 
-        if (data.isEverythingOk) {
-          fetchUserData();
-          setTimeout(() => {
-            setNavigationPath("/");
-          }, 1000);
-        }
-      })
-      .catch((error) => {
-        setToastNotification(
-          <Alert
-            variant="outlined"
-            severity="error"
-            icon={false}
-            onClose={() => setToastNotification(<></>)}
-          >
-            {extractTextFromHTML(error.message)}
-          </Alert>
-        );
-      });
+    for (let i = 0; i < allCookies.length; i++) {
+      const cookie = allCookies[i].trim();
+
+      // Check if the cookie name starts with 'wordpress_logged_in_' or 'wordpress_sec_'
+      if (
+        cookie.startsWith("wordpress_logged_in_") ||
+        cookie.startsWith("wordpress_sec_")
+      ) {
+        // Get the cookie name
+        const cookieName = cookie.split("=")[0];
+
+        // Set the cookie's expiry date to the past
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      }
+    }
+
+    setToastNotification(
+      <Alert
+        variant="outlined"
+        severity="success"
+        icon={false}
+        onClose={() => setToastNotification(<></>)}
+      >
+        Logged Out
+      </Alert>
+    );
+
+    fetchUserData();
+    setTimeout(() => {
+      setNavigationPath("/");
+    }, 1000);
   };
 
   return { signOutUser, toastNotification, navigationPath };
