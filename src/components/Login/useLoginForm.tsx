@@ -36,7 +36,6 @@ const useLoginForm = () => {
 
     // Data to be sent
     const data = new FormData();
-    data.append("action", "user_login");
     data.append("email", email);
     data.append("password", password);
     data.append("remember", keepLoggedIn);
