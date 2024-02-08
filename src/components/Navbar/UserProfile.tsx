@@ -35,7 +35,7 @@ const UserProfile = () => {
           <img
             className="w-10 h-10 rounded-full"
             src={userData.img_url}
-            alt="user photo"
+            alt="user profile photo"
           />
         </button>
 
