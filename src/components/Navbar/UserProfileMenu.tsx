@@ -1,7 +1,7 @@
 /**
  * External dependencies.
  */
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as ReactIs from "react-is";
 
 /**
@@ -9,7 +9,6 @@ import * as ReactIs from "react-is";
  */
 import useAppData from "../../store/useAppData";
 import useNavbar from "./useNavbar";
-import { useEffect } from "react";
 
 interface UserProfileItem {
   label: string;
@@ -27,15 +26,8 @@ const UserProfileMenu = ({
   handleDropdownMouseOut,
   userprofileitems,
 }: UserProfileDropdownProps) => {
-  const navigate = useNavigate();
   const { userData } = useAppData();
-  const { signOutUser, toastNotification, navigationPath } = useNavbar();
-
-  useEffect(() => {
-    if (navigationPath !== "") {
-      navigate(navigationPath);
-    }
-  }, [navigate, navigationPath]);
+  const { signOutUser, toastNotification } = useNavbar();
 
   return (
     <>

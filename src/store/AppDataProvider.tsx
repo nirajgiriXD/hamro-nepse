@@ -109,15 +109,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
       const url = "https://sam.superintegratedapp.com/wp-json/api/user/data";
 
       try {
-        const cookies = document.cookie;
-
-        // Data to be sent
-        const formData = new FormData();
-        formData.append("cookies", cookies);
-
         const response = await fetch(url, {
           method: "POST",
-          body: formData,
           credentials: "include",
         });
 
