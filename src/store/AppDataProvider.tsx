@@ -103,8 +103,15 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
       const url = "https://sam.superintegratedapp.com/wp-json/api/user/data";
 
       try {
+        const cookies = document.cookie;
+
+        // Data to be sent
+        const formData = new FormData();
+        formData.append("cookies", cookies);
+
         const response = await fetch(url, {
           method: "POST",
+          body: formData,
           credentials: "include",
         });
 
@@ -113,15 +120,11 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
         }
 
         const json = await response.json();
-        if (json.data.length !== 0) {
-          const data = json.data;
-          setUserData({
-            ...data,
-            isLoggedIn: true,
-          });
-        } else {
-          setUserData(initialUserData);
-        }
+        const data =
+          json.data.length !== 0
+            ? { ...json.data, isLoggedIn: true }
+            : initialUserData;
+        setUserData(data);
       } catch (error) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
