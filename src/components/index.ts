@@ -8,6 +8,7 @@ export { default as ForgotPassword } from "./ForgotPassword";
 export { default as Login } from "./Login";
 export { default as Navbar } from "./Navbar";
 export { default as NotFound } from "./NotFound";
+export { default as PortfolioTracker } from "./PortfolioTracker";
 export { default as PrivacyPolicy } from "./PrivacyPolicy";
 export { default as Services } from "./Services";
 export { default as ShareCalculator } from "./ShareCalculator";
