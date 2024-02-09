@@ -1,12 +1,26 @@
+/**
+ * External dependencies.
+ */
+import { useNavigate } from "react-router-dom";
+
+/**
+ * Internal Dependencies.
+ */
+import { useEffect } from "react";
+import { PortfolioTracker } from "../../components";
+import useAppData from "../../store/useAppData";
+
 const PortfolioTrackerPage = () => {
-  return (
-    <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-md shadow-md text-center">
-      <h1 className="text-2xl font-semibold mb-4">Under Construction</h1>
-      <p className="text-gray-600 dark:text-gray-400">
-        This component is currently under construction. Check back soon!
-      </p>
-    </div>
-  );
+  const { userData } = useAppData();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userData.isLoggedIn) {
+      navigate("/login");
+    }
+  }, [navigate, userData]);
+
+  return userData.isLoggedIn ? <PortfolioTracker /> : <></>;
 };
 
 export default PortfolioTrackerPage;
