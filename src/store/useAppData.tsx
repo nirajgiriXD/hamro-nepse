@@ -12,6 +12,7 @@ const useApp = () => {
   const {
     name,
     logo,
+    userAvatar,
     userData,
     marketData,
     stockProfileData,
@@ -52,6 +53,7 @@ const useApp = () => {
   return {
     name,
     logo,
+    userAvatar,
     userData,
     marketData: _marketData,
     stockProfileData: _stockProfileData,
