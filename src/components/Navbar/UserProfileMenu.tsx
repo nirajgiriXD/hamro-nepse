@@ -21,7 +21,6 @@ const UserProfileMenu = ({ handleOnClick }: UserProfileDropdownProps) => {
   const handleSignOutClick = () => {
     signOutUser();
     handleOnClick();
-    console.log("dsds");
   };
 
   return (
