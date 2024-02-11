@@ -22,7 +22,7 @@ const UserProfile = () => {
       <div className="flex justify-end items-end max-w-full lg:max-w-40">
         <div
           onClick={handleOnClick}
-          className="flex items-center text-sm bg-gray-800 rounded-full md:me-0 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 border border-gray-300 dark:border-gray-600 cursor-pointer pr-3 w-full lg:max-w-max"
+          className="flex items-center text-sm bg-gray-50 dark:bg-gray-800 rounded-full md:me-0 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 border border-gray-300 dark:border-gray-600 cursor-pointer pr-3 w-full lg:max-w-max"
         >
           {/* Screen Reader Only */}
           <span className="sr-only">Open user menu</span>

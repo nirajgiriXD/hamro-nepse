@@ -1,26 +1,21 @@
 /**
- * External dependencies.
- */
-import { useNavigate } from "react-router-dom";
-
-/**
  * Internal Dependencies.
  */
-import { useEffect } from "react";
-import { PortfolioTracker } from "../../components";
+import { PortfolioTracker, MessageBox } from "../../components";
 import useAppData from "../../store/useAppData";
 
 const PortfolioTrackerPage = () => {
   const { userData } = useAppData();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!userData.isLoggedIn) {
-      navigate("/login");
-    }
-  }, [navigate, userData]);
-
-  return userData.isLoggedIn ? <PortfolioTracker /> : <></>;
+  return userData.isLoggedIn ? (
+    <PortfolioTracker />
+  ) : (
+    <MessageBox
+      message="Please login to use this service."
+      displayHomeBtn={true}
+      displayLoginBtn={true}
+    />
+  );
 };
 
 export default PortfolioTrackerPage;

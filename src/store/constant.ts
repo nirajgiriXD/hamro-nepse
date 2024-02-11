@@ -1,3 +1,18 @@
+/**
+ * API Endpoints.
+ */
+
+export {
+  LOG_IN_ENDPOINT,
+  LOG_OUT_ENDPOINT,
+  CREATE_USER_ENDPOINT,
+  RESET_PASSWORD_ENDPOINT,
+  ADD_STOCK_PORTFOLIO_ENDPOINT,
+  UPDATE_STOCK_PORTFOLIO_ENDPOINT,
+  GET_STOCK_PORTFOLIO_ENDPOINT,
+  REMOVE_STOCK_PORTFOLIO_ENDPOINT,
+} from "./apiEndpoints";
+
 export const navSubMenuItems = [
   {
     label: "Market Watch",
@@ -58,19 +73,3 @@ export const userProfileDropdownItems = [
     href: "/signout",
   },
 ];
-
-/**
- * API Endpoints.
- */
-
-export const LOG_IN_ENDPOINT =
-  "https://sam.superintegratedapp.com/wp-json/api/user/login";
-
-export const LOG_OUT_ENDPOINT =
-  "https://sam.superintegratedapp.com/wp-json/api/user/logout";
-
-export const CREATE_USER_ENDPOINT =
-  "https://sam.superintegratedapp.com/wp-json/api/user/create";
-
-export const RESET_PASSWORD_ENDPOINT =
-  "https://sam.superintegratedapp.com/wp-json/api/user/reset-password";
