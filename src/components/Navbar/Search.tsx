@@ -78,24 +78,22 @@ const Search = () => {
   };
 
   return (
-    <div className="">
-      <Select
-        value={""}
-        onChange={handleSelectChange}
-        onInputChange={handleInputChange}
-        className={"min-w-48 z-50"}
-        isClearable={true}
-        escapeClearsValue={true}
-        options={
-          suggestions as unknown as OptionsOrGroups<string, GroupBase<string>>
-        }
-        placeholder="Search stock..."
-        noOptionsMessage={({ inputValue }) => {
-          return inputValue === "" ? "Stock name / symbol" : "Stock not found";
-        }}
-        styles={customStyles}
-      />
-    </div>
+    <Select
+      value=""
+      onChange={handleSelectChange}
+      onInputChange={handleInputChange}
+      className={"min-w-48 z-50"}
+      isClearable={true}
+      escapeClearsValue={true}
+      options={
+        suggestions as unknown as OptionsOrGroups<string, GroupBase<string>>
+      }
+      placeholder="Search stock..."
+      noOptionsMessage={({ inputValue }) => {
+        return inputValue === "" ? "Stock name / symbol" : "Stock not found";
+      }}
+      styles={customStyles}
+    />
   );
 };
 

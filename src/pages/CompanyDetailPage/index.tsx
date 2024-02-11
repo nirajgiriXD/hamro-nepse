@@ -11,7 +11,6 @@ import { StockDetail, SimpleChart, NotFound } from "../../components";
 
 const CompanyDetailPage = () => {
   const params = useParams();
-  // const symbol = params.symbol?.toUpperCase() ?? "";
   const symbol = decodeURIComponent(params.symbol?.toUpperCase() ?? "");
 
   const [stockData, setStockData] = useState([]);
@@ -55,13 +54,17 @@ const CompanyDetailPage = () => {
     !isLoading && (
       <>
         {numOfData !== 0 ? (
-          <div className="h-full">
-            <div className="flex mb-4 w-full space-x-8">
-              <div className="w-1/2 h-12">
-                <StockDetail stockData={stockData[numOfData - 1]} />
+          <div className="h-full mb-4">
+            <div className="flex flex-wrap gap-5 lg:gap-0">
+              <div className="w-full lg:w-1/2">
+                <div className="me-0 lg:me-5">
+                  <StockDetail stockData={stockData[numOfData - 1]} />
+                </div>
               </div>
-              <div className="w-1/2 min-w-1/2">
-                <SimpleChart stockData={stockData} />
+              <div className="w-full lg:w-1/2">
+                <div className="min-h-80 h-full w-full">
+                  <SimpleChart stockData={stockData} />
+                </div>
               </div>
             </div>
           </div>
