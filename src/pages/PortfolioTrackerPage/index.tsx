@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
  * Internal Dependencies.
  */
 import { useEffect } from "react";
-import { PortfolioTracker } from "../../components";
 import useAppData from "../../store/useAppData";
+import PortfolioTrackerTable from "../../components/PortfolioTracker/Porfolio";
 
 const PortfolioTrackerPage = () => {
   const { userData } = useAppData();
@@ -20,7 +20,7 @@ const PortfolioTrackerPage = () => {
     }
   }, [navigate, userData]);
 
-  return userData.isLoggedIn ? <PortfolioTracker /> : <></>;
+  return userData.isLoggedIn ? <PortfolioTrackerTable /> : <></>;
 };
 
 export default PortfolioTrackerPage;
