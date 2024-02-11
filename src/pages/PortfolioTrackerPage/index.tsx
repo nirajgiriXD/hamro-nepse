@@ -3,6 +3,7 @@
  */
 import { PortfolioTracker, MessageBox } from "../../components";
 import useAppData from "../../store/useAppData";
+import PortfolioTrackerTable from "../../components/PortfolioTracker/Porfolio";
 
 const PortfolioTrackerPage = () => {
   const { userData } = useAppData();
