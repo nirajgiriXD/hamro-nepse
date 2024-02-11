@@ -20,6 +20,7 @@ import { useMediaQuery } from "@mui/material";
  * Internal dependencies.
  */
 import logo from "../assets/img/logo.png";
+import userAvatar from "../assets/img/user_avatar.png";
 
 interface MarketDataProp {
   id: string;
@@ -52,6 +53,7 @@ interface UserDataProp {
 interface AppDataContextProp {
   name: string;
   logo: string;
+  userAvatar: string;
   userData: UserDataProp;
   stockProfileData: StockProfileDataProp[];
   marketData: MarketDataProp[];
@@ -197,6 +199,7 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const valueToProvide: AppDataContextProp = {
     name,
     logo,
+    userAvatar,
     userData,
     stockProfileData,
     marketData,

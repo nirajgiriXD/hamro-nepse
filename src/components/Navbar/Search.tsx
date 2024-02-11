@@ -83,7 +83,7 @@ const Search = () => {
         value={""}
         onChange={handleSelectChange}
         onInputChange={handleInputChange}
-        className={"min-w-56"}
+        className={"min-w-48"}
         isClearable={true}
         escapeClearsValue={true}
         options={
