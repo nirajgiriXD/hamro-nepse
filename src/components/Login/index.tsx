@@ -31,8 +31,8 @@ const LoginForm = () => {
 
   return (
     <div className="grid mx-auto overflow-hidden rounded-md lg:grid-cols">
-      <section className="shadow p-12">
-        <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto lg:h-full lg:py-0">
+      <section className="shadow py-12">
+        <div className="flex flex-col items-center justify-center py-6 mx-auto lg:h-full lg:py-0">
           <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               {toastNotification}
@@ -103,7 +103,7 @@ const LoginForm = () => {
                   </div>
                   <Link
                     to="/forgot-password"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-white dark:text-opacity-75"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-white"
                   >
                     Forgot password?
                   </Link>
