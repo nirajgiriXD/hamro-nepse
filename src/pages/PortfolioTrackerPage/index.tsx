@@ -1,9 +1,4 @@
 /**
- * External Dependencies.
- */
-import { useEffect } from "react";
-
-/**
  * Internal Dependencies.
  */
 import { PortfolioTracker, MessageBox } from "../../components";
