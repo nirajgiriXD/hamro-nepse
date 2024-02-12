@@ -21,7 +21,7 @@ const useLoginForm = () => {
     <></>
   );
 
-  const { fetchUserData } = useAppData();
+  const { fetchUserData, userData } = useAppData();
 
   const minLength = 8;
   const maxEmailLength = 50;
@@ -81,6 +81,7 @@ const useLoginForm = () => {
   };
 
   return {
+    userData,
     emailRef,
     passwordRef,
     keepLoggedInRef,

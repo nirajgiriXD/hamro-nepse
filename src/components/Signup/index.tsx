@@ -1,6 +1,7 @@
 /**
  * External dependencies.
  */
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -8,11 +9,12 @@ import { useNavigate } from "react-router-dom";
  * Internal dependencies.
  */
 import useSignupForm from "./useSignupForm";
-import { useEffect } from "react";
+import MessageBox from "../MessageBox";
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const {
+    userData,
     nameRef,
     emailRef,
     passwordRef,
@@ -32,7 +34,13 @@ const SignupForm = () => {
     }
   }, [navigate, navigationPath]);
 
-  return (
+  return userData.isLoggedIn ? (
+    <MessageBox
+      message={`User already logged in: ${userData.name}`}
+      displayHomeBtn={true}
+      displayLoginBtn={false}
+    />
+  ) : (
     <div className="flex flex-col items-center justify-center mx-auto lg:h-full p-1">
       <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

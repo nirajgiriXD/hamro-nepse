@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
  * Internal dependencies.
  */
 import { CREATE_USER_ENDPOINT } from "../../store/constant";
+import useAppData from "../../store/useAppData";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
 const useSignupForm = () => {
@@ -19,6 +20,8 @@ const useSignupForm = () => {
   const [toastNotification, setToastNotification] = useState<ReactElement>(
     <></>
   );
+
+  const { userData } = useAppData();
 
   const minLength = 8;
   const maxNameLength = 50;
@@ -49,7 +52,6 @@ const useSignupForm = () => {
 
     // Data to be sent
     const data = new FormData();
-    data.append("action", "create_new_user");
     data.append("name", name);
     data.append("email", email);
     data.append("password", password);
@@ -95,6 +97,7 @@ const useSignupForm = () => {
   };
 
   return {
+    userData,
     nameRef,
     emailRef,
     passwordRef,

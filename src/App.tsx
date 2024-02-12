@@ -76,6 +76,10 @@ function App() {
                 path="/forgot-password"
                 element={<LoginAndSignupPage type="forgot-password" />}
               />
+              <Route
+                path="/setting"
+                element={<LoginAndSignupPage type="update" />}
+              />
             </Routes>
 
             {/* Footer */}

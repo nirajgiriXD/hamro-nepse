@@ -1,15 +1,14 @@
 /**
  * Internal Dependencies.
  */
-import { PortfolioTracker, MessageBox } from "../../components";
+import { EditableTable, MessageBox } from "../../components";
 import useAppData from "../../store/useAppData";
-import PortfolioTrackerTable from "../../components/PortfolioTracker/Porfolio";
 
 const PortfolioTrackerPage = () => {
   const { userData } = useAppData();
 
   return userData.isLoggedIn ? (
-    <PortfolioTracker />
+    <EditableTable />
   ) : (
     <MessageBox
       message="Please login to use this service."
