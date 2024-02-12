@@ -1,8 +1,10 @@
+/**
+ * External dependencies.
+ */
 import { useMemo, useState } from "react";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
-  // createRow,
   type MRT_ColumnDef,
   type MRT_Row,
   type MRT_TableOptions,
@@ -165,6 +167,20 @@ const Portfolio = () => {
     createDisplayMode: "modal", //default ('row', and 'custom' are also available)
     editDisplayMode: "modal", //default ('row', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
+    enablePagination: false,
+    enableSorting: true,
+    enableGlobalFilter: false,
+    enableColumnFilters: false,
+    enableBottomToolbar: false,
+    initialState: {
+      density: "compact",
+    },
+    muiLinearProgressProps: {
+      color: "info",
+    },
+    muiCircularProgressProps: {
+      color: "info",
+    },
     getRowId: (row) => row.symbol,
     muiToolbarAlertBannerProps: isLoadingStocksError
       ? {
