@@ -323,20 +323,20 @@ function useDeleteStock() {
   });
 }
 
-const queryClient = new QueryClient();
-
-const PortfolioTrackerTable = () => (
-  //Put this with your other react-query providers near root of your app
-  <QueryClientProvider client={queryClient}>
-    <Portfolio />
-  </QueryClientProvider>
-);
-
-export default PortfolioTrackerTable;
-
 const validateRequired = (value: string) => !!value.length;
 function validateStock(stock: Stocks) {
   return {
     Symbol: !validateRequired(stock.symbol) ? "Symbol is Required" : "",
   };
 }
+
+const queryClient = new QueryClient();
+
+const EditableTable = () => (
+  //Put this with your other react-query providers near root of your app
+  <QueryClientProvider client={queryClient}>
+    <Portfolio />
+  </QueryClientProvider>
+);
+
+export default EditableTable;
