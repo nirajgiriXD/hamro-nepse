@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 /**
  * Internal dependencies.
  */
-import { StockDetail, SimpleChart, NotFound } from "../../components";
+import { StockDetail, SimpleChart, MessageBox } from "../../components";
 
 const CompanyDetailPage = () => {
   const params = useParams();
@@ -69,7 +69,11 @@ const CompanyDetailPage = () => {
             </div>
           </div>
         ) : (
-          <NotFound />
+          <MessageBox
+            message="Stock data not found."
+            displayHomeBtn={true}
+            displayLoginBtn={false}
+          />
         )}
       </>
     )
