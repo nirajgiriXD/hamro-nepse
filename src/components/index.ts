@@ -14,4 +14,4 @@ export { default as ShareCalculator } from "./ShareCalculator";
 export { default as Signup } from "./Signup";
 export { default as SimpleChart } from "./SimpleChart";
 export { default as StockDetail } from "./StockDetail";
-export { default as UserDataUpdate } from "./UserDataUpdate";
+export { default as UserDetail } from "./UserDetail";

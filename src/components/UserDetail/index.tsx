@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
  * Internal dependencies.
  */
 import MessageBox from "../MessageBox";
-import userUserDataProfile from "./useUserDataUpdate";
+import useUserDetail from "./useUserDetail";
 
-const UserDataUpdate = () => {
+const UserDetail = () => {
   const navigate = useNavigate();
   const {
     userData,
@@ -26,7 +26,7 @@ const UserDataUpdate = () => {
     maxPasswordLength,
     navigationPath,
     handleOnSubmit,
-  } = userUserDataProfile();
+  } = useUserDetail();
 
   useEffect(() => {
     if (navigationPath !== "") {
@@ -155,4 +155,4 @@ const UserDataUpdate = () => {
   );
 };
 
-export default UserDataUpdate;
+export default UserDetail;

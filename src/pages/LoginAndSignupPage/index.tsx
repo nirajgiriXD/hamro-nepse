@@ -1,12 +1,7 @@
 /**
  * Internal dependencies.
  */
-import {
-  Login,
-  Signup,
-  ForgotPassword,
-  UserDataUpdate,
-} from "../../components";
+import { Login, Signup, ForgotPassword, UserDetail } from "../../components";
 
 interface LoginAndSignupPageProp {
   type: "login" | "signup" | "forgot-password" | "update";
@@ -20,7 +15,7 @@ const LoginAndSignupPage = ({ type }: LoginAndSignupPageProp) => {
       ) : type === "login" ? (
         <Login />
       ) : type === "update" ? (
-        <UserDataUpdate />
+        <UserDetail />
       ) : (
         <Signup />
       )}

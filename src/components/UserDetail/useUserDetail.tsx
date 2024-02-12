@@ -11,7 +11,7 @@ import { UPDATE_USER_ENDPOINT } from "../../store/constant";
 import useAppData from "../../store/useAppData";
 import extractTextFromHTML from "../../utilities/extractTextFromHTML";
 
-const useUserDataUpdate = () => {
+const useUserDetail = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -117,4 +117,4 @@ const useUserDataUpdate = () => {
   };
 };
 
-export default useUserDataUpdate;
+export default useUserDetail;
