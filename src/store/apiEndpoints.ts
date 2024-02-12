@@ -11,6 +11,9 @@ export const LOG_OUT_ENDPOINT =
 export const CREATE_USER_ENDPOINT =
   "https://sam.superintegratedapp.com/wp-json/api/user/create";
 
+export const UPDATE_USER_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/user/update";
+
 export const RESET_PASSWORD_ENDPOINT =
   "https://sam.superintegratedapp.com/wp-json/api/user/reset-password";
 

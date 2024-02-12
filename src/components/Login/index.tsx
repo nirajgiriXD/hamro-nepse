@@ -8,6 +8,7 @@ import { useEffect } from "react";
  * Internal dependencies.
  */
 import useLoginForm from "./useLoginForm";
+import MessageBox from "../MessageBox";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const LoginForm = () => {
     minLength,
     maxEmailLength,
     maxPasswordLength,
+    userData,
     handleOnSubmit,
   } = useLoginForm();
 
@@ -29,7 +31,13 @@ const LoginForm = () => {
     }
   }, [navigate, navigationPath]);
 
-  return (
+  return userData.isLoggedIn ? (
+    <MessageBox
+      message={`User already logged in: ${userData.name}`}
+      displayHomeBtn={true}
+      displayLoginBtn={false}
+    />
+  ) : (
     <div className="grid mx-auto overflow-hidden rounded-md lg:grid-cols">
       <section className="shadow py-12">
         <div className="flex flex-col items-center justify-center py-6 mx-auto lg:h-full lg:py-0">

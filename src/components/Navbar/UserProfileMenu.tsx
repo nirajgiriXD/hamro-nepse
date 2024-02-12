@@ -27,7 +27,7 @@ const UserProfileMenu = ({ handleOnClick }: UserProfileDropdownProps) => {
     <>
       <div
         onClick={handleOnClick}
-        className="absolute p-3 min-w-40 bg-white dark:bg-gray-900 rounded-lg top-16 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white text-sm text-left"
+        className="absolute p-3 min-w-40 bg-white dark:bg-gray-900 rounded-lg top-11 drop-shadow-xl z-10 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white text-sm text-left"
       >
         <div className="text-gray-900 dark:text-white">{userData.email}</div>
 
