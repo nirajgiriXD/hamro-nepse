@@ -1,27 +1,93 @@
 /**
+ * External dependencies.
+ */
+import { Routes, Route } from "react-router-dom";
+
+/**
  * Internal dependencies.
  */
 import "./index.css";
-import Footer from "./components/Footer";
-import Service from "./components/Services/Service";
-import '../src/index.css';
-import ShareCalculator from "./components/Calculator/ShareCalculator";
-import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
-
+import { Navbar, Footer } from "./components";
+import {
+  AboutPage,
+  ChartPage,
+  CompanyAnalyzerPage,
+  CompareCompanyPage,
+  CompanyDetailPage,
+  ContactPage,
+  HomePage,
+  IpoCheckerPage,
+  IpoFpoUpdatesPage,
+  LoginAndSignupPage,
+  MarketWatchPage,
+  PortfolioTrackerPage,
+  PrivacyPolicyPage,
+  ServicesPage,
+  ShareCalculatorPage,
+  TradingSignalsPage,
+} from "./pages";
+import AppDataProvider from "./store/AppDataProvider";
 
 function App() {
   return (
-    <div className="container mx-auto p-10 dark:bg-gray-900">
-      <Navbar logo={logo} />
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
-      <Banner banner={banner} />
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
-      <Service/>
-      <ShareCalculator/>
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-400 dark:border-white lg:my-8" />
-      <Footer logo={logo} />
-    </div>
+    <AppDataProvider>
+      <div className="h-full min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div className="container mx-auto">
+          <div className="relative min-h-screen w-full max-w-screen-xl mx-auto px-3">
+            {/* Navbar */}
+            <Navbar />
+
+            {/* Routes */}
+            <Routes>
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/chart" element={<ChartPage />} />
+              <Route
+                path="/company-analyzer"
+                element={<CompanyAnalyzerPage />}
+              />
+              <Route path="/stock/:symbol" element={<CompanyDetailPage />} />
+              <Route path="/compare-company" element={<CompareCompanyPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/ipo-checker" element={<IpoCheckerPage />} />
+
+              <Route path="/ipo-fpo-updates" element={<IpoFpoUpdatesPage />} />
+              <Route path="/market-watch" element={<MarketWatchPage />} />
+              <Route
+                path="/portfolio-tracker"
+                element={<PortfolioTrackerPage />}
+              />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route
+                path="/share-calculator"
+                element={<ShareCalculatorPage />}
+              />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/trading-signals" element={<TradingSignalsPage />} />
+              <Route
+                path="/login"
+                element={<LoginAndSignupPage type="login" />}
+              />
+              <Route
+                path="/signup"
+                element={<LoginAndSignupPage type="signup" />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<LoginAndSignupPage type="forgot-password" />}
+              />
+              <Route
+                path="/setting"
+                element={<LoginAndSignupPage type="update" />}
+              />
+            </Routes>
+
+            {/* Footer */}
+            <Footer />
+          </div>
+        </div>
+      </div>
+    </AppDataProvider>
   );
 }
 

@@ -2,43 +2,59 @@
  * External dependencies.
  */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 /**
  * Internal dependencies.
  */
-import { navItems } from "../../constant";
-import SearchBar from "./SearchBar";
+import { navItems } from "../../store/constant";
+import Search from "./Search";
 import NavItem from "./NavItem";
+import {
+  LoginAndSignupItem,
+  LoginAndSignupItemMobileView,
+} from "./LoginAndSignup";
+import useAppData from "../../store/useAppData";
+import UserProfile from "./UserProfile";
 
-interface NavbarProp {
-  logo: string;
-}
-
-const Navbar = ({ logo }: NavbarProp) => {
+const Navbar = () => {
+  const { name, logo, userData, activeNavItem, setActiveNavItem } =
+    useAppData();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isLoggedIn = userData.isLoggedIn;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <div className="pt-6 lg:pt-8">
-      <div className="flex items-center dark:bg-gray-900 justify-between flex-wrap dark:border-gray-600">
+    <div className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
+      <div className="flex flex-wrap items-center justify-between">
         {/* Logo, Title, and Menu */}
-        <div className="flex items-center">
-          <div className="flex items-center">
-            <img src={logo} alt="Logo" className="h-12 mr-2" />
-            <span className="text-black font-semibold text-2xl mr-5 md:mr-5 dark:text-white">
-              HamroNepse
-            </span>
-          </div>
+        <Link
+          to="/"
+          onClick={() => setActiveNavItem("")}
+          className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+        >
+          <img src={logo} className="h-12" alt="HamroNepse Logo" />
+          <span className="self-center text-xl font-semibold whitespace-nowrap">
+            {name}
+          </span>
+        </Link>
 
+        <div className="flex items-center">
           {/* Desktop Menu (Home, Contacts, Features, Chart) */}
           <ul className="hidden relative lg:flex items-center lg:space-x-6 md:space-x-2">
             {navItems.map((navItem, index): React.ReactNode => {
               return (
-                <li key={index}>
-                  <NavItem navItemDetails={navItem} />
+                <li key={index} className="text-md font-medium">
+                  <NavItem
+                    label={navItem.label}
+                    href={navItem.href}
+                    subMenuItems={navItem.subMenuItems}
+                    activeNavItem={activeNavItem}
+                    setActiveNavItem={setActiveNavItem}
+                  />
                 </li>
               );
             })}
@@ -46,36 +62,20 @@ const Navbar = ({ logo }: NavbarProp) => {
         </div>
 
         {/* Desktop Search Bar and Login Button*/}
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center align-middle space-x-4">
           {/* Search Bar */}
-          <div className="relative h-12">
-            <SearchBar />
+          <div className="relative h-10">
+            <Search />
           </div>
 
           {/* Login Button */}
-          <button
-            type="button"
-            className="focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:focus:ring-blue-300 dark:hover:bg-blue-100 h-12 w-12"
-          >
-            <svg
-              className="w-9 h-9 dark:text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="dark"
-              viewBox="0 0 32 32"
-            >
-              <path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z" />
-            </svg>
-          </button>
+          {isLoggedIn ? <UserProfile /> : <LoginAndSignupItem href="/login" />}
         </div>
 
         {/* Toggle for Mobile Menu  */}
         <div className="lg:hidden flex items-center">
           {/* Mobile Menu Toggle Icon */}
-          <button
-            className="text-black focus:outline-none dark:text-white"
-            onClick={toggleMenu}
-          >
+          <button className="focus:outline-none" onClick={toggleMenu}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -98,18 +98,15 @@ const Navbar = ({ logo }: NavbarProp) => {
           className={`lg:hidden w-full mt-2 ${isMenuOpen ? "block" : "hidden"}`}
         >
           {/* Mobile Menu (Home, Contacts, Features, Chart) */}
-          <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700" />
+          <hr className="my-3 sm:mx-auto border-gray-300 dark:border-gray-600" />
 
           <ul className="flex flex-col items-start space-y-2 ">
             {navItems.map(
               (navItem, index): React.ReactNode => (
                 <li key={index}>
-                  <a
-                    href={navItem.href}
-                    className="text-black hover:text-blue-500 dark:text-white"
-                  >
+                  <Link to={navItem.href} className="hover:text-blue-500">
                     {navItem.label}
-                  </a>
+                  </Link>
                 </li>
               )
             )}
@@ -117,16 +114,19 @@ const Navbar = ({ logo }: NavbarProp) => {
 
           {/* Search Bar */}
           <div className="relative w-full mt-3 h-12">
-            <SearchBar />
+            <Search />
           </div>
 
           {/* Login Button */}
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
-            Login / Signup
-          </button>
+          {isLoggedIn ? (
+            <UserProfile />
+          ) : (
+            <LoginAndSignupItemMobileView href="/login" />
+          )}
         </div>
       </div>
-      <hr className="my-6 lg:my-8 border-gray-200 sm:mx-auto dark:border-gray-700" />
+
+      <hr className="mt-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
     </div>
   );
 };

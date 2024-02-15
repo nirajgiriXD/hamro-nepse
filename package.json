@@ -6,22 +6,29 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --config .eslintrc.cjs --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
+    "start": "npm install && npm run dev",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "branch-naming-check": "branch-naming-check \"^(feat|fix|ref)/.*\"",
     "preview": "vite preview",
     "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/poppins": "^5.0.8",
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@mui/x-date-pickers": "^6.19.0",
-    "@tanstack/react-query": "^5.17.15",
+    "@tanstack/react-query": "^5.20.2",
+    "chart.js": "^4.4.1",
+    "export-to-csv": "^1.2.2",
+    "lightweight-charts": "^4.1.2",
     "material-react-table": "^2.6.1",
-    "query": "github:tanstack/react-query",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3"
+    "react-router-dom": "^6.21.3",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -30,6 +37,8 @@
     "@typescript-eslint/parser": "^6.16.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
+    "branch-naming-check": "^1.0.2",
+    "depcheck": "^1.4.7",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",

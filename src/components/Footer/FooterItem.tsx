@@ -1,16 +1,24 @@
+/**
+ * External dependencies.
+ */
+import { Dispatch, SetStateAction } from "react";
+import { Link } from "react-router-dom";
+
 interface FooterItemProp {
-  footerItemDetails: {
-    label: string;
-    href: string;
-    openInNewTab: boolean;
-  };
+  label: string;
+  href: string;
+  setActiveNavItem: Dispatch<SetStateAction<string>>;
 }
 
-const FooterItem = ({ footerItemDetails }: FooterItemProp) => {
+const FooterItem = ({ label, href, setActiveNavItem }: FooterItemProp) => {
   return (
-    <a href={footerItemDetails.href} className="hover:underline me-4 md:me-6">
-      {footerItemDetails.label}
-    </a>
+    <Link
+      to={href}
+      className="hover:underline me-4 md:me-6"
+      onClick={() => setActiveNavItem(label)}
+    >
+      {label}
+    </Link>
   );
 };
 

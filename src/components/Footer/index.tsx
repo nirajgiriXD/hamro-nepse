@@ -1,37 +1,49 @@
-import { footerItems } from "../../constant";
-import FooterItem from "./FooterItem";
+/**
+ * External dependencies.
+ */
+import { Link } from "react-router-dom";
 
-interface FooterProp {
-  logo: string;
-}
-const Footer = ({ logo }: FooterProp) => {
+/**
+ * Internal dependencies.
+ */
+import { navItems } from "../../store/constant";
+import FooterItem from "./FooterItem";
+import useAppData from "../../store/useAppData";
+
+const Footer = () => {
+  const { name, logo, setActiveNavItem } = useAppData();
+
   return (
-    <footer className="rounded-lg shadow">
-      <div className="w-full max-w-screen-xxl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <a
-            href="#"
+    <footer className="w-full max-w-screen-xl mx-auto py-3 md:py-4">
+      <hr className="my-3 lg:my-4 sm:mx-auto border-gray-300 dark:border-gray-600" />
+      <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="hidden md:block">
+          <Link
+            to="/"
+            onClick={() => setActiveNavItem("")}
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
             <img src={logo} className="h-12" alt="HamroNepse Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              HamroNepse
+            <span className="self-center text-xl font-semibold whitespace-nowrap">
+              {name}
             </span>
-          </a>
-          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-            {footerItems.map((footerItem, index) => {
+          </Link>
+        </div>
+        <div className="w-full md:w-auto flex justify-center">
+          <ul className="flex flex-wrap items-center mb-3 sm:mb-0 text-md font-medium">
+            {navItems.map((item, index) => {
               return (
                 <li key={index}>
-                  <FooterItem footerItemDetails={footerItem} />
+                  <FooterItem
+                    href={item.href}
+                    label={item.label}
+                    setActiveNavItem={setActiveNavItem}
+                  />
                 </li>
               );
             })}
           </ul>
         </div>
-        <hr className="my-6 lg:my-8 border-gray-200 sm:mx-auto dark:border-gray-700" />
-        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2024 HamroNepse | All Rights Reserved.
-        </span>
       </div>
     </footer>
   );
