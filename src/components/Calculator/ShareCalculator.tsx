@@ -115,12 +115,11 @@ const ShareCalculator = () => {
     }
 
     return bkcomm;
-}
+  }
 
-const sebonFeeFunction = (total: number): number => {
-    return (0.015 / 100) * total;
-}
-
+  const sebonFeeFunction = (total: number): number => {
+      return (0.015 / 100) * total;
+  }
 
   // Reset to default value.
   const handleTransactionTypeChange = (
@@ -211,6 +210,7 @@ const sebonFeeFunction = (total: number): number => {
     setTotalAmountReceiveable(0);
     setCapitalGainTax(0);
     setProfitOrLoss(0);
+    setCapitalGainTaxPercentage(5);
   }
   };
 
