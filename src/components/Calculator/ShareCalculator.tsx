@@ -7,13 +7,14 @@ import BuySummary from "./Buy";
 /**
  * External dependencies.
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 const ShareCalculator = () => {
   const [transactionType, setTransactionType] = useState<string>("buy");
   const [shareQuantity, setShareQuantity] = useState<number>(0);
   const [purchasePrice, setPurchasePrice] = useState<number>(0);
+  const [sellingPrice, setSellingPrice] = useState<number>(0);
   const [isWACC, setIsWACC] = useState<boolean>(false);
   const [investorType, setInvestorType] = useState<string>("individual");
   const [taxRate, setTaxRate] = useState<number>(5);
@@ -27,32 +28,75 @@ const ShareCalculator = () => {
   const [costPerShare, setCostPerShare] = useState<number>(0);
   const [totalAmountReceiveable, setTotalAmountReceiveable] = useState<number>(0);
   const [capitalGainTax, setCapitalGainTax] = useState<number>(0);
+  const [capitalGainTaxPercentage, setCapitalGainTaxPercentage] = useState<number>(5);
   const [profitOrLoss, setProfitOrLoss] = useState<number>(0);
   const [sebonRegularityFee, setSebonRegularityFee] = useState<number>(0);
   const [nepseCommission, setNepseCommission] = useState<number>(0);
 
+  useEffect(() => {
+    if (transactionType === "buy" && shareQuantity > 0 && purchasePrice > 0) {
+      const total = parseFloat((shareQuantity * purchasePrice).toFixed(2));
+      const commission = parseFloat(brokerCommissionFunction(total).toFixed(2));
+      const sebonFee = parseFloat(sebonFeeFunction(total).toFixed(2));
+      const dpCharge = 25;
+      const totalAmountPayable = parseFloat((total + commission + sebonFee + dpCharge).toFixed(2));
+      const costPerShare = parseFloat((totalAmountPayable / shareQuantity).toFixed(2));
+      const nepseCommission = parseFloat((commission * 0.2).toFixed(2));
+      const sebonRegularityFee = parseFloat((commission * 0.006).toFixed(2));
 
-  const handleCalculate = () => {
-    if(transactionType === "buy")
-    {
-      if (shareQuantity > 0 && purchasePrice > 0) {
-        setTotalAmount(shareQuantity * purchasePrice);
-        setCommission(brokerCommissionFunction(totalAmount));
-        setSebonFee(sebonFeeFunction(totalAmount));
-        setDpCharge(25);
-        console.log(dpCharge)
-        console.log(totalAmountPayable)
-        setTotalAmountPayable(totalAmount + commission + sebonFee + dpCharge);
-        console.log(totalAmountPayable)
-        setCostPerShare(totalAmountPayable / shareQuantity);
-        setNepseCommission(commission * 0.2);
-        setSebonRegularityFee(commission * 0.006);
-     }
+      setTotalAmount(total);
+      setCommission(commission);
+      setSebonFee(sebonFee);
+      setDpCharge(dpCharge);
+      setTotalAmountPayable(totalAmountPayable);
+      setCostPerShare(costPerShare);
+      setNepseCommission(nepseCommission);
+      setSebonRegularityFee(sebonRegularityFee);  
     }
-  };
+    else if(transactionType == "sell" && shareQuantity > 0 && capitalGainTaxPercentage > 0 && investorType )
+    {
+      const dpCharge = 25;
+
+      // cost calculation for user when they bought it : needed for tax calculation
+      const buytotal = shareQuantity * purchasePrice;
+      const buycommission = !isWACC ? parseFloat(brokerCommissionFunction(buytotal).toFixed(2)) : 0;
+      const buysebonFee = !isWACC ? parseFloat(sebonFeeFunction(buytotal).toFixed(2)) : 0;
+      const buyDpCharge = !isWACC ? dpCharge : 0;
+      const buyNetTaxableAmount = parseFloat((buytotal + buycommission + buysebonFee + buyDpCharge).toFixed(2));
+
+      //for selling
+      const sellTotal = shareQuantity * sellingPrice;
+      const sellBrokerCommission = parseFloat(brokerCommissionFunction(sellTotal).toFixed(2));
+      const sellSebonFee = parseFloat(sebonFeeFunction(sellTotal).toFixed(2));
+      const sellNetTaxableAmount  = sellTotal - sellBrokerCommission - sellSebonFee - dpCharge;
+      const sellTaxAmount =   parseFloat((sellNetTaxableAmount - buyNetTaxableAmount).toFixed(2));
+      let sellCapitalGainAmount: number = 0;
+      if (sellTaxAmount > 0) {
+          const capGainDecimal = capitalGainTaxPercentage / 100;
+          sellCapitalGainAmount = parseFloat((capGainDecimal * sellTaxAmount).toFixed(2));
+      }
+      const sellProfitLoss = parseFloat((sellTaxAmount - sellCapitalGainAmount).toFixed(2));
+      const sellTotalReceiveableAmount = parseFloat((sellNetTaxableAmount - sellCapitalGainAmount).toFixed(2));
+      const sellNepseCommission = parseFloat((sellBrokerCommission * 0.2).toFixed(2));
+      const sellSebonRegularityFee = parseFloat((sellBrokerCommission * 0.006).toFixed(2));
+
+      setTotalAmount(parseFloat(sellTotal.toFixed(2)));
+      setCommission(sellBrokerCommission);
+      setSebonFee(sellSebonFee);
+      setDpCharge(dpCharge);
+      setTotalAmountReceiveable(sellTotalReceiveableAmount);
+      setCapitalGainTax(sellCapitalGainAmount);
+      setProfitOrLoss(sellProfitLoss);
+      setNepseCommission(sellNepseCommission);
+      setSebonRegularityFee(sellSebonRegularityFee);
+
+      
+    }
+  }, [transactionType, purchasePrice, sellingPrice, isWACC, investorType, capitalGainTax, taxRate]);
+
 
   const brokerCommissionFunction = (total: number):number => {
-    let bkcomm = 0;
+    let bkcomm = 0.00;
 
     if (total <= 50000) {
         bkcomm = (0.40 / 100) * total;
@@ -84,9 +128,7 @@ const sebonFeeFunction = (total: number): number => {
   ) => {
     const _transactionType = e.target.value ?? "";
     setTransactionType(_transactionType);
-    setShareQuantity(0);
-    setPurchasePrice(0);
-    setIsWACC(false);
+    handleClear();
   };
 
   const handleShareQuantityChange = (
@@ -107,6 +149,15 @@ const sebonFeeFunction = (total: number): number => {
     setPurchasePrice(_purchasePrice);
   };
 
+  const handleSellingPriceChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const _sellingPrice = Number(
+      (e.target.value ?? "").replace(/[^0-9.]/g, "")
+    );
+    setSellingPrice(_sellingPrice);
+  };
+
   const handleIsWaccChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const _isWacc = e.target.checked ?? false;
     setIsWACC(_isWacc);
@@ -122,28 +173,45 @@ const sebonFeeFunction = (total: number): number => {
         : "individual";
 
     setInvestorType(_filteredInvestorType);
+    if(_filteredInvestorType == "individual")
+    {
+      setCapitalGainTaxPercentage(5);
+    }
+    else if(_filteredInvestorType == "institutional"){
+      setCapitalGainTaxPercentage(10)
+    }
   };
 
   const handleTaxRateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const _taxRate = Number((e.target.value ?? 7.5).replace(/[^0-9.]/g, ""));
     setTaxRate(_taxRate);
+    setCapitalGainTaxPercentage(_taxRate);
   };
 
   const handleClear = () => {
-    setTransactionType("buy");
-    setShareQuantity(0);
-    setPurchasePrice(0);
-    setIsWACC(false);
-    setInvestorType("individual");
-    setTaxRate(5);
-    setTotalAmount(0);
-    setCommission(0);
-    setSebonFee(0);
-    setDpCharge(0);
-    setTotalAmountPayable(0);
+  setShareQuantity(0);
+  setTotalAmount(0);
+  setPurchasePrice(0);
+  setCommission(0);
+  setSebonFee(0);
+  setDpCharge(0);
+  setNepseCommission(0);
+  setSebonRegularityFee(0);
+
+  // Clear state values specific to transaction type
+  if (transactionType === "buy") {
+
     setCostPerShare(0);
-    setNepseCommission(0);
-    setSebonRegularityFee(0);
+    setTotalAmountPayable(0);
+  } else if (transactionType === "sell") {
+    setIsWACC(false);
+    setTaxRate(5);
+    setSellingPrice(0);
+    setInvestorType("individual");
+    setTotalAmountReceiveable(0);
+    setCapitalGainTax(0);
+    setProfitOrLoss(0);
+  }
   };
 
   return (
@@ -180,6 +248,16 @@ const sebonFeeFunction = (total: number): number => {
                 type="text"
                 value={purchasePrice}
                 onChange={handlePurchasePriceChange}
+                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                placeholder="Enter purchase price"
+              />
+               <label className="block font-bold mb-1">
+                Selling Price (Rs):
+              </label>
+              <input
+                type="text"
+                value={sellingPrice}
+                onChange={handleSellingPriceChange}
                 className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                 placeholder="Enter purchase price"
               />
@@ -253,12 +331,6 @@ const sebonFeeFunction = (total: number): number => {
 
         <div className="flex justify-end space-x-4 mt-5">
           <button
-            onClick={handleCalculate}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-          >
-            Calculate
-          </button>
-          <button
             onClick={handleClear}
             className="px-4 py-2 rounded-md bg-gray-500 hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300 text-white"
           >
@@ -271,7 +343,7 @@ const sebonFeeFunction = (total: number): number => {
         <BuySummary totalAmount={totalAmount} commission={commission} sebonFee={sebonFee} dpCharge={dpCharge} totalAmountPayable={totalAmountPayable} costPerShare={costPerShare} nepseCommission={nepseCommission} sebonRegularityFee={sebonRegularityFee}/>
       )}
       {transactionType === "sell" &&(
-        <SellSummary totalAmount={totalAmount} commission={commission} sebonFee={sebonFee} dpCharge={dpCharge} totalAmountReceiveable={totalAmountReceiveable} capitalGainTax={capitalGainTax} profitOrLoss={profitOrLoss} nepseCommission={nepseCommission} sebonRegularityFee={sebonRegularityFee}/>
+        <SellSummary totalAmount={totalAmount} commission={commission} sebonFee={sebonFee} dpCharge={dpCharge} totalAmountReceiveable={totalAmountReceiveable} capitalGainTax={capitalGainTax} capitalGainTaxPercentage={capitalGainTaxPercentage} profitOrLoss={profitOrLoss} nepseCommission={nepseCommission} sebonRegularityFee={sebonRegularityFee}/>
       )}
     </div>
   );

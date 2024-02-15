@@ -5,13 +5,14 @@ interface SellSummaryProps{
   dpCharge : number,
   totalAmountReceiveable: number,
   capitalGainTax : number,
+  capitalGainTaxPercentage :number,
   profitOrLoss : number,
   nepseCommission : number,
   sebonRegularityFee : number,
 }
 
 
-const SellSummary = ({totalAmount, commission, sebonFee, dpCharge, totalAmountReceiveable, capitalGainTax, profitOrLoss, nepseCommission, sebonRegularityFee} : SellSummaryProps) => {
+const SellSummary = ({totalAmount, commission, sebonFee, dpCharge, totalAmountReceiveable, capitalGainTax, capitalGainTaxPercentage, profitOrLoss, nepseCommission, sebonRegularityFee} : SellSummaryProps) => {
     return (
         <>
         <div className="p-8 border border-gray-300 dark:border-gray-600 rounded-lg">
@@ -42,7 +43,7 @@ const SellSummary = ({totalAmount, commission, sebonFee, dpCharge, totalAmountRe
             </tr>
             <tr className="border-b">
               <td className="py-2 px-4 font-semibold">
-                Capital Gain Tax (5%) (Rs)
+                Capital Gain Tax ({capitalGainTaxPercentage}%) (Rs)
               </td>
               <td className="py-2 px-4">{capitalGainTax}</td>
             </tr>
