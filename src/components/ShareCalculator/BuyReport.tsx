@@ -1,18 +1,27 @@
-interface BuySummaryProps{
-  totalAmount : number,
-  commission : number,
-  sebonFee : number,
-  dpCharge : number,
-  totalAmountPayable : number,
-  costPerShare : number,
-  nepseCommission : number,
-  sebonRegularityFee : number,
+interface BuyReportProps {
+  totalAmount: number;
+  commission: number;
+  sebonFee: number;
+  dpCharge: number;
+  totalAmountPayable: number;
+  costPerShare: number;
+  nepseCommission: number;
+  sebonRegularityFee: number;
 }
 
-const BuySummary = ({totalAmount, commission, sebonFee, dpCharge, totalAmountPayable, costPerShare, nepseCommission, sebonRegularityFee} : BuySummaryProps) => {
-    return (
-        <>
-        <div className="p-8 border border-gray-300 dark:border-gray-600 rounded-lg">
+const BuyReport = ({
+  totalAmount,
+  commission,
+  sebonFee,
+  dpCharge,
+  totalAmountPayable,
+  costPerShare,
+  nepseCommission,
+  sebonRegularityFee,
+}: BuyReportProps) => {
+  return (
+    <>
+      <div className="p-8 border border-gray-300 dark:border-gray-600 rounded-lg">
         <h3 className="text-lg font-semibold mb-4">Financial Summary</h3>
         <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 rounded-md">
           <tbody>
@@ -46,15 +55,15 @@ const BuySummary = ({totalAmount, commission, sebonFee, dpCharge, totalAmountPay
             </tr>
             <tr>
               <td className="py-2 px-4 font-semibold">
-                Commission Amount includes NEPSE Commission Rs {nepseCommission} & SEBON
-                Regularity Fee Rs {sebonRegularityFee}
+                Commission Amount includes NEPSE Commission Rs {nepseCommission}{" "}
+                & SEBON Regularity Fee Rs {sebonRegularityFee}
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-        </>
-    );
-}
+    </>
+  );
+};
 
-export default BuySummary;
+export default BuyReport;
