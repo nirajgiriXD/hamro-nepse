@@ -4,8 +4,10 @@
 import "./index.css";
 import Footer from "./components/Footer";
 import Service from "./components/Services/Service";
-import ShareCalculator  from  "./components/Calculator/ShareCalculator";
 import '../src/index.css';
+import ShareCalculator from "./components/Calculator/ShareCalculator";
+import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
 
 
 function App() {
