@@ -1,7 +1,9 @@
 /**
  * Internal dependencies.
  */
-import { ShareCalculator } from "../../components";
+
+import ShareCalculator from "../../components/Calculator/ShareCalculator";
+
 
 const ShareCalculatorPage = () => {
   return <ShareCalculator />;
