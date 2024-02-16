@@ -1,18 +1,16 @@
 /**
  * External dependencies.
  */
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
-  type MRT_ColumnDef,
-  type MRT_Row,
   type MRT_TableOptions,
   useMaterialReactTable,
+  MRT_Row,
 } from "material-react-table";
 import {
   Box,
-  Button,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -41,78 +39,68 @@ const usePortfolio = () => {
       Record<string, string | undefined>
     >({});
 
-    const columns = useMemo<MRT_ColumnDef<Stocks>[]>(
-      () => [
-        {
-          accessorKey: "symbol",
-          header: "Symbol",
-          enableEditing: true,
-          size: 80,
+    const columns = [
+      {
+        accessorKey: "symbol",
+        header: "Symbol",
+        enableEditing: true,
+        size: 80,
+      },
+      {
+        accessorKey: "buy_date",
+        header: "Buy Date",
+        enableEditing: true,
+        size: 80,
+      },
+      {
+        accessorKey: "buyRate",
+        header: "Buy  Rate (in NRP)",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              buyRate: undefined,
+            }),
         },
-        {
-          accessorKey: "buyRate",
-          header: "Buy  Rate (in NRP)",
-          muiEditTextFieldProps: {
-            required: true,
-            error: !!validationErrors?.firstName,
-            helperText: validationErrors?.firstName,
-            //remove any previous validation errors when Stock focuses on the input
-            onFocus: () =>
-              setValidationErrors({
-                ...validationErrors,
-                buyRate: undefined,
-              }),
-            //optionally add validation checking for onBlur or onChange
-          },
+      },
+      {
+        accessorKey: "kitta",
+        header: "Kitta",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              kitta: undefined,
+            }),
         },
-        {
-          accessorKey: "kitta",
-          header: "Kitta",
-          muiEditTextFieldProps: {
-            required: true,
-            error: !!validationErrors?.lastName,
-            helperText: validationErrors?.lastName,
-            //remove any previous validation errors when Stock focuses on the input
-            onFocus: () =>
-              setValidationErrors({
-                ...validationErrors,
-                kitta: undefined,
-              }),
-          },
+      },
+      {
+        accessorKey: "ltp",
+        header: "LTP",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              kitta: undefined,
+            }),
         },
-        {
-          accessorKey: "ltp",
-          header: "LTP",
-          muiEditTextFieldProps: {
-            required: true,
-            error: !!validationErrors?.lastName,
-            helperText: validationErrors?.lastName,
-            //remove any previous validation errors when Stock focuses on the input
-            onFocus: () =>
-              setValidationErrors({
-                ...validationErrors,
-                kitta: undefined,
-              }),
-          },
+      },
+      {
+        accessorKey: "total",
+        header: "Total",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              total: undefined,
+            }),
         },
-        {
-          accessorKey: "total",
-          header: "Total",
-          muiEditTextFieldProps: {
-            required: true,
-            error: !!validationErrors?.email,
-            helperText: validationErrors?.email,
-            //remove any previous validation errors when Stock focuses on the input
-            onFocus: () =>
-              setValidationErrors({
-                ...validationErrors,
-                total: undefined,
-              }),
-          },
-        },
-      ],
-      [validationErrors]
-    );
+      },
+    ];
 
     //call CREATE hook
     const { mutateAsync: createStock, isPending: isCreatingStock } =
@@ -234,7 +222,7 @@ const usePortfolio = () => {
         </>
       ),
       renderRowActions: ({ row, table }) => (
-        <Box sx={{ display: "flex", gap: "1rem" }}>
+        <Box sx={{ display: "flex" }}>
           <Tooltip title="Edit">
             <IconButton onClick={() => table.setEditingRow(row)}>
               <EditIcon />
@@ -251,20 +239,14 @@ const usePortfolio = () => {
         </Box>
       ),
       renderTopToolbarCustomActions: ({ table }) => (
-        <Button
-          variant="contained"
+        <button
+          className="bg-sky-400 dark:bg-sky-700 px-4 py-2 rounded text-sm text-white"
           onClick={() => {
-            table.setCreatingRow(true); //simplest way to open the create row modal with no default values
-            //or you can pass in a row object to set default values with the `createRow` helper function
-            // table.setCreatingRow(
-            //   createRow(table, {
-            //     //optionally pass in default values for the new row, useful for nested data or other complex scenarios
-            //   }),
-            // );
+            table.setCreatingRow(true);
           }}
         >
           Add Stock
-        </Button>
+        </button>
       ),
       state: {
         isLoading: isLoadingStocks,

@@ -7,9 +7,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
  * Internal dependencies.
  */
 import { type Stocks } from "./types";
-import { fakeData } from "./data";
+import useEditableTableData from "./useEditableTableData";
 
 const useEditableTable = () => {
+  const { tableData } = useEditableTableData();
+
   //CREATE hook (post new Stock to api)
   const useCreateStock = () => {
     const queryClient = useQueryClient();
@@ -37,9 +39,7 @@ const useEditableTable = () => {
     return useQuery<Stocks[]>({
       queryKey: ["Stocks"],
       queryFn: async () => {
-        //send api request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve(fakeData);
+        return Promise.resolve(tableData) as unknown as Promise<Stocks[]>;
       },
       refetchOnWindowFocus: false,
     });
