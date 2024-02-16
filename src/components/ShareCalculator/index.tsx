@@ -43,7 +43,7 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
         <h1 className="flex font-medium text-sm mb-1">Transaction Type:</h1>
         <div className="mb-4">
           <select
-            className="block w-full h-10 p-2 rounded-md bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring focus:border-blue-300"
+            className="block w-full h-10 p-2 rounded-md bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring focus:border-blue-300 text-sm"
             onChange={handleTransactionTypeChange}
           >
             <option value="buy">Buy</option>
@@ -61,7 +61,7 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
                 type="text"
                 value={shareQuantity}
                 onChange={handleShareQuantityChange}
-                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
                 placeholder="Enter share quantity"
               />
             </div>
@@ -73,7 +73,7 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
                 type="text"
                 value={purchasePrice}
                 onChange={handlePurchasePriceChange}
-                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
                 placeholder="Enter purchase price"
               />
               <label className="block font-medium text-sm mb-1 mt-3">
@@ -83,17 +83,17 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
                 type="text"
                 value={sellingPrice}
                 onChange={handleSellingPriceChange}
-                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
                 placeholder="Enter purchase price"
               />
-              <label className="inline-block font-medium text-sm mb-1 mt-3">
+              <label className="inline-block font-medium text-sm mt-3">
                 <input
                   type="checkbox"
                   checked={isWACC}
                   onChange={handleIsWaccChange}
-                  className="mr-2"
+                  className="w-3.5 h-3.5 mr-2 mt-2"
                 />
-                Is WACC
+                <span>Is WACC</span>
               </label>
             </div>
             <div className="mb-4">
@@ -103,7 +103,7 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
               <select
                 value={investorType}
                 onChange={handleInvestorTypeChange}
-                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
               >
                 <option value="individual">Individual</option>
                 <option value="institutional">Institutional</option>
@@ -116,7 +116,7 @@ const ShareCalculator = ({ shareCalculatorProp }) => {
               <select
                 value={taxRate}
                 onChange={handleTaxRateChange}
-                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
               >
                 {investorType === "individual" ? (
                   <>
