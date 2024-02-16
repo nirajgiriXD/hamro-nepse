@@ -3,9 +3,10 @@
  */
 import SellReport from "./SellReport";
 import BuyReport from "./BuyReport";
-import useShareCalculator from "./useShareCalculator";
 
-const ShareCalculator = () => {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const ShareCalculator = ({ shareCalculatorProp }) => {
   const {
     transactionType,
     shareQuantity,
@@ -34,12 +35,12 @@ const ShareCalculator = () => {
     handlePurchasePriceChange,
     handleSellingPriceChange,
     handleInvestorTypeChange,
-  } = useShareCalculator();
+  } = shareCalculatorProp;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="p-10 border border-gray-300 dark:border-gray-600 rounded-lg">
-        <h1 className="flex font-bold mb-1">Transaction Type:</h1>
+        <h1 className="flex font-medium text-sm mb-1">Transaction Type:</h1>
         <div className="mb-4">
           <select
             className="block w-full h-10 p-2 rounded-md bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring focus:border-blue-300"
@@ -53,7 +54,9 @@ const ShareCalculator = () => {
         {transactionType === "sell" && (
           <>
             <div className="mb-4">
-              <label className="block font-bold mb-1">Share Quantity:</label>
+              <label className="block font-medium text-sm mb-1">
+                Share Quantity:
+              </label>
               <input
                 type="text"
                 value={shareQuantity}
@@ -63,7 +66,7 @@ const ShareCalculator = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block font-bold mb-1">
+              <label className="block font-medium text-sm mb-1">
                 Purchase Price (Rs):
               </label>
               <input
@@ -73,8 +76,8 @@ const ShareCalculator = () => {
                 className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                 placeholder="Enter purchase price"
               />
-              <label className="block font-bold mb-1">
-                Selling Price (Rs):
+              <label className="block font-medium text-sm mb-1 mt-3">
+                Selling Price (Rs)
               </label>
               <input
                 type="text"
@@ -83,7 +86,7 @@ const ShareCalculator = () => {
                 className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                 placeholder="Enter purchase price"
               />
-              <label className="inline-block font-bold mb-1 mt-3">
+              <label className="inline-block font-medium text-sm mb-1 mt-3">
                 <input
                   type="checkbox"
                   checked={isWACC}
@@ -94,7 +97,9 @@ const ShareCalculator = () => {
               </label>
             </div>
             <div className="mb-4">
-              <label className="block font-bold mb-1">Investor Type:</label>
+              <label className="block font-medium text-sm mb-1">
+                Investor Type:
+              </label>
               <select
                 value={investorType}
                 onChange={handleInvestorTypeChange}
@@ -105,7 +110,9 @@ const ShareCalculator = () => {
               </select>
             </div>
             <div>
-              <label className="block font-bold mb-1">Capital Gain Tax:</label>
+              <label className="block font-medium text-sm mb-1">
+                Capital Gain Tax:
+              </label>
               <select
                 value={taxRate}
                 onChange={handleTaxRateChange}
@@ -127,7 +134,9 @@ const ShareCalculator = () => {
         {transactionType === "buy" && (
           <div>
             <div className="mb-4">
-              <label className="block font-bold mb-1">Share Quantity:</label>
+              <label className="block font-medium text-sm mb-1">
+                Share Quantity:
+              </label>
               <input
                 type="text"
                 value={shareQuantity}
@@ -137,7 +146,7 @@ const ShareCalculator = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block font-bold mb-1">
+              <label className="block font-medium text-sm mb-1">
                 Purchase Price (Rs):
               </label>
               <input
