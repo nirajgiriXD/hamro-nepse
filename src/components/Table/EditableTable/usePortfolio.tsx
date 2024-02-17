@@ -53,7 +53,7 @@ const usePortfolio = () => {
         size: 80,
       },
       {
-        accessorKey: "buy_rate",
+        accessorKey: "buyRate",
         header: "Buy  Rate (in NRP)",
         muiEditTextFieldProps: {
           required: true,
@@ -65,7 +65,7 @@ const usePortfolio = () => {
         },
       },
       {
-        accessorKey: "quantity",
+        accessorKey: "kitta",
         header: "Kitta",
         muiEditTextFieldProps: {
           required: true,
@@ -77,12 +77,28 @@ const usePortfolio = () => {
         },
       },
       {
-        accessorKey: "close",
+        accessorKey: "ltp",
         header: "LTP",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              kitta: undefined,
+            }),
+        },
       },
       {
         accessorKey: "total",
         header: "Total",
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              total: undefined,
+            }),
+        },
       },
     ];
 
