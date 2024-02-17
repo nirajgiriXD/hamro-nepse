@@ -1,7 +1,7 @@
 export interface Stocks {
   symbol: string;
   buyRate: number;
-  quantity: number;
+  kitta: number;
   ltp: number;
   total: number;
 }
