@@ -1,6 +1,7 @@
-export interface Stocks {
+export interface Stock {
   symbol: string;
-  buyRate: number;
+  buy_rate: number;
+  buy_date: string;
   quantity: number;
   close: number;
   total: number;

@@ -23,11 +23,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 /**
  * Internal dependencies.
  */
-import { type Stocks } from "./types";
+import { type Stock } from "./types";
 import useEditableTable from "./useEditableTable";
 
 const usePortfolio = () => {
   const {
+    toastNotification,
     useCreateStock,
     useGetStock,
     useUpdateStock,
@@ -104,7 +105,7 @@ const usePortfolio = () => {
       useDeleteStock();
 
     //CREATE action
-    const handleCreateStock: MRT_TableOptions<Stocks>["onCreatingRowSave"] =
+    const handleCreateStock: MRT_TableOptions<Stock>["onCreatingRowSave"] =
       async ({ values, table }) => {
         const newValidationErrors = validateStock(values);
         if (Object.values(newValidationErrors).some((error) => error)) {
@@ -117,7 +118,7 @@ const usePortfolio = () => {
       };
 
     //UPDATE action
-    const handleSaveStock: MRT_TableOptions<Stocks>["onEditingRowSave"] =
+    const handleSaveStock: MRT_TableOptions<Stock>["onEditingRowSave"] =
       async ({ values, table }) => {
         const newValidationErrors = validateStock(values);
         if (Object.values(newValidationErrors).some((error) => error)) {
@@ -130,7 +131,7 @@ const usePortfolio = () => {
       };
 
     //DELETE action
-    const openDeleteConfirmModal = (row: MRT_Row<Stocks>) => {
+    const openDeleteConfirmModal = (row: MRT_Row<Stock>) => {
       if (window.confirm("Are you sure you want to delete this stock?")) {
         deleteStock(row.original.symbol);
       }
@@ -243,7 +244,7 @@ const usePortfolio = () => {
     return <MaterialReactTable table={table} />;
   };
 
-  return { Portfolio };
+  return { Portfolio, toastNotification };
 };
 
 export default usePortfolio;

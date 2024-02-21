@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 /**
  * Internal dependencies.
  */
-import { type Stocks } from "./types";
+import { type Stock } from "./types";
 import useAppData from "../../../store/useAppData";
 import { GET_STOCK_PORTFOLIO_ENDPOINT } from "../../../store/apiEndpoints";
 
 const useEditableTableData = () => {
-  const [tableData, setTableData] = useState([] as unknown as Stocks);
+  const [tableData, setTableData] = useState([] as unknown as Stock);
   const { marketData } = useAppData();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const useEditableTableData = () => {
         const json = await response.json();
         const data = json.data;
 
-        const preparedData = data.map((item: Stocks) => {
+        const preparedData = data.map((item: Stock) => {
           const close = Number(
             marketData.find((newItem: Record<string, string>) => {
               return newItem.symbol === item.symbol;
@@ -49,7 +49,7 @@ const useEditableTableData = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         console.error("Error fetching data:", error.message);
-        setTableData([] as unknown as Stocks);
+        setTableData([] as unknown as Stock);
       }
     };
     fetchData();
