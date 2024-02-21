@@ -37,10 +37,6 @@ export const navSubMenuItems = [
   },
   { label: "Chart", href: "/chart" },
   {
-    label: "Company Analyzer",
-    href: "/company-analyzer",
-  },
-  {
     label: "Compare Company",
     href: "/compare-company",
   },
