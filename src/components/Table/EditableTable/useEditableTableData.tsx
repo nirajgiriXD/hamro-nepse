@@ -36,11 +36,14 @@ const useEditableTableData = () => {
             })?.close ?? 0
           );
           const total = item.quantity * close;
+          const profit_loss =
+            item.quantity * close - item.quantity * item.buy_rate;
 
           return {
             ...item,
             close,
             total,
+            profit_loss,
           };
         });
 

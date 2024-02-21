@@ -83,7 +83,11 @@ const usePortfolio = () => {
       },
       {
         accessorKey: "total",
-        header: "Total",
+        header: "Amount",
+      },
+      {
+        accessorKey: "profit_loss",
+        header: "Profit / Loss",
       },
     ];
 
