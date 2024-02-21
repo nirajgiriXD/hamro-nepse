@@ -1,7 +1,7 @@
 /**
  * External dependencies.
  */
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { ReactElement, useState } from "react";
 import Alert from "@mui/material/Alert";
@@ -11,7 +11,10 @@ import Alert from "@mui/material/Alert";
  */
 import { type Stock } from "./types";
 import useEditableTableData from "./useEditableTableData";
-import { ADD_STOCK_PORTFOLIO_ENDPOINT } from "../../../store/apiEndpoints";
+import {
+  ADD_STOCK_PORTFOLIO_ENDPOINT,
+  REMOVE_STOCK_PORTFOLIO_ENDPOINT,
+} from "../../../store/apiEndpoints";
 import extractTextFromHTML from "../../../utilities/extractTextFromHTML";
 
 const useEditableTable = () => {
@@ -24,9 +27,8 @@ const useEditableTable = () => {
 
   //CREATE hook (post new Stock to api)
   const useCreateStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: async (formData) => {
+      mutationFn: async (formData: Stock) => {
         // Data to be sent
         const data = new FormData();
         data.append("symbol", formData.symbol);
@@ -66,16 +68,8 @@ const useEditableTable = () => {
             );
           });
       },
-      //client side optimistic update
-      onMutate: (newStockInfo: Stock) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stock[] | undefined) =>
-            prevStocks ? [...prevStocks, newStockInfo] : [newStockInfo]
-        );
-      },
-
-      onSettled: () => navigate(0), //refetch Stocks after mutation, disabled for demo
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
@@ -92,47 +86,59 @@ const useEditableTable = () => {
 
   //UPDATE hook (put Stock in api)
   const useUpdateStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
       mutationFn: async () => {
         //send api update request here
         await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
         return Promise.resolve();
       },
-      //client side optimistic update
-      onMutate: (newStockInfo: Stock) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stock[] | undefined) =>
-            prevStocks?.map((prevStock: Stock) =>
-              prevStock.symbol === newStockInfo.symbol
-                ? newStockInfo
-                : prevStock
-            )
-        );
-      },
-      // onSettled: () => queryClient.invalidateQueries({ queryKey: ['Stocks'] }), //refetch Stocks after mutation, disabled for demo
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
   //DELETE hook (delete Stock in api)
   const useDeleteStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: async () => {
-        //send api update request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve();
+      mutationFn: async (formData: string) => {
+        // Data to be sent
+        const data = new FormData();
+        data.append("symbol", formData);
+
+        // Send the request
+        fetch(REMOVE_STOCK_PORTFOLIO_ENDPOINT, {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity={data.isEverythingOk ? "success" : "error"}
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(data.responseMessage)}
+              </Alert>
+            );
+          })
+          .catch((error) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity="error"
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(error.message)}
+              </Alert>
+            );
+          });
       },
-      //client side optimistic update
-      onMutate: (stockSymbol: string) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stock[] | undefined) =>
-            prevStocks?.filter((stock: Stock) => stock.symbol !== stockSymbol)
-        );
-      },
-      // onSettled: () => queryClient.invalidateQueries({ queryKey: ['Stocks'] }), //refetch Stocks after mutation, disabled for demo
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
