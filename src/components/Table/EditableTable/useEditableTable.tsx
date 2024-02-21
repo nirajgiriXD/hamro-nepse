@@ -1,45 +1,85 @@
 /**
  * External dependencies.
  */
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { ReactElement, useState } from "react";
+import Alert from "@mui/material/Alert";
 
 /**
  * Internal dependencies.
  */
-import { type Stocks } from "./types";
+import { type Stock } from "./types";
 import useEditableTableData from "./useEditableTableData";
+import {
+  ADD_STOCK_PORTFOLIO_ENDPOINT,
+  REMOVE_STOCK_PORTFOLIO_ENDPOINT,
+  UPDATE_STOCK_PORTFOLIO_ENDPOINT,
+} from "../../../store/apiEndpoints";
+import extractTextFromHTML from "../../../utilities/extractTextFromHTML";
 
 const useEditableTable = () => {
   const { tableData } = useEditableTableData();
+  const navigate = useNavigate();
+
+  const [toastNotification, setToastNotification] = useState<ReactElement>(
+    <></>
+  );
 
   //CREATE hook (post new Stock to api)
   const useCreateStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: async () => {
-        //send api update request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve();
-      },
-      //client side optimistic update
-      onMutate: (newStockInfo: Stocks) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stocks[] | undefined) =>
-            prevStocks ? [...prevStocks, newStockInfo] : [newStockInfo]
-        );
-      },
+      mutationFn: async (formData: Stock) => {
+        // Data to be sent
+        const data = new FormData();
+        data.append("symbol", formData.symbol);
+        data.append("buy_date", formData.buy_date);
+        data.append("buy_rate", String(formData.buy_rate));
+        data.append("quantity", String(formData.quantity));
 
-      // onSettled: () => queryClient.invalidateQueries({ queryKey: ['Stocks'] }), //refetch Stocks after mutation, disabled for demo
+        // Send the request
+        fetch(ADD_STOCK_PORTFOLIO_ENDPOINT, {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity={data.isEverythingOk ? "success" : "error"}
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(data.responseMessage)}
+              </Alert>
+            );
+          })
+          .catch((error) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity="error"
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(error.message)}
+              </Alert>
+            );
+          });
+      },
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
   //READ hook (get Stocks from api)
   const useGetStock = () => {
-    return useQuery<Stocks[]>({
+    return useQuery<Stock[]>({
       queryKey: ["Stocks"],
       queryFn: async () => {
-        return Promise.resolve(tableData) as unknown as Promise<Stocks[]>;
+        return Promise.resolve(tableData) as unknown as Promise<Stock[]>;
       },
       refetchOnWindowFocus: false,
     });
@@ -47,58 +87,106 @@ const useEditableTable = () => {
 
   //UPDATE hook (put Stock in api)
   const useUpdateStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: async () => {
-        //send api update request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve();
+      mutationFn: async (formData: Stock) => {
+        // Data to be sent
+        const data = new FormData();
+        data.append("symbol", formData.symbol);
+        data.append("buy_date", formData.buy_date);
+        data.append("buy_rate", String(formData.buy_rate));
+        data.append("quantity", String(formData.quantity));
+
+        // Send the request
+        fetch(UPDATE_STOCK_PORTFOLIO_ENDPOINT, {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity={data.isEverythingOk ? "success" : "error"}
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(data.responseMessage)}
+              </Alert>
+            );
+          })
+          .catch((error) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity="error"
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(error.message)}
+              </Alert>
+            );
+          });
       },
-      //client side optimistic update
-      onMutate: (newStockInfo: Stocks) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stocks[] | undefined) =>
-            prevStocks?.map((prevStock: Stocks) =>
-              prevStock.symbol === newStockInfo.symbol
-                ? newStockInfo
-                : prevStock
-            )
-        );
-      },
-      // onSettled: () => queryClient.invalidateQueries({ queryKey: ['Stocks'] }), //refetch Stocks after mutation, disabled for demo
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
   //DELETE hook (delete Stock in api)
   const useDeleteStock = () => {
-    const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: async () => {
-        //send api update request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve();
+      mutationFn: async (formData: string) => {
+        // Data to be sent
+        const data = new FormData();
+        data.append("symbol", formData);
+
+        // Send the request
+        fetch(REMOVE_STOCK_PORTFOLIO_ENDPOINT, {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity={data.isEverythingOk ? "success" : "error"}
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(data.responseMessage)}
+              </Alert>
+            );
+          })
+          .catch((error) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity="error"
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(error.message)}
+              </Alert>
+            );
+          });
       },
-      //client side optimistic update
-      onMutate: (stockSymbol: string) => {
-        queryClient.setQueryData(
-          ["Stocks"],
-          (prevStocks: Stocks[] | undefined) =>
-            prevStocks?.filter((stock: Stocks) => stock.symbol !== stockSymbol)
-        );
-      },
-      // onSettled: () => queryClient.invalidateQueries({ queryKey: ['Stocks'] }), //refetch Stocks after mutation, disabled for demo
+      //refetch Stocks after mutation, disabled for demo
+      onSettled: () => setTimeout(() => navigate(0), 500),
     });
   };
 
   const validateRequired = (value: string) => !!value.length;
-  const validateStock = (stock: Stocks) => {
+  const validateStock = (stock: Stock) => {
     return {
       Symbol: !validateRequired(stock.symbol) ? "Symbol is Required" : "",
     };
   };
 
   return {
+    toastNotification,
     useCreateStock,
     validateStock,
     useGetStock,
