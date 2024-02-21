@@ -14,6 +14,7 @@ import useEditableTableData from "./useEditableTableData";
 import {
   ADD_STOCK_PORTFOLIO_ENDPOINT,
   REMOVE_STOCK_PORTFOLIO_ENDPOINT,
+  UPDATE_STOCK_PORTFOLIO_ENDPOINT,
 } from "../../../store/apiEndpoints";
 import extractTextFromHTML from "../../../utilities/extractTextFromHTML";
 
@@ -87,10 +88,45 @@ const useEditableTable = () => {
   //UPDATE hook (put Stock in api)
   const useUpdateStock = () => {
     return useMutation({
-      mutationFn: async () => {
-        //send api update request here
-        await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
-        return Promise.resolve();
+      mutationFn: async (formData: Stock) => {
+        // Data to be sent
+        const data = new FormData();
+        data.append("symbol", formData.symbol);
+        data.append("buy_date", formData.buy_date);
+        data.append("buy_rate", String(formData.buy_rate));
+        data.append("quantity", String(formData.quantity));
+
+        // Send the request
+        fetch(UPDATE_STOCK_PORTFOLIO_ENDPOINT, {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity={data.isEverythingOk ? "success" : "error"}
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(data.responseMessage)}
+              </Alert>
+            );
+          })
+          .catch((error) => {
+            setToastNotification(
+              <Alert
+                variant="outlined"
+                severity="error"
+                icon={false}
+                onClose={() => setToastNotification(<></>)}
+              >
+                {extractTextFromHTML(error.message)}
+              </Alert>
+            );
+          });
       },
       //refetch Stocks after mutation, disabled for demo
       onSettled: () => setTimeout(() => navigate(0), 500),

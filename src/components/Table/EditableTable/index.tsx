@@ -15,7 +15,7 @@ const EditableTable = () => {
 
   return (
     <>
-      <div className="md-4">{toastNotification}</div>
+      <div className="mb-4">{toastNotification}</div>
       <QueryClientProvider client={queryClient}>
         <Portfolio />
       </QueryClientProvider>
