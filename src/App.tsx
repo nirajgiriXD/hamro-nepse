@@ -11,7 +11,6 @@ import { Navbar, Footer } from "./components";
 import {
   AboutPage,
   ChartPage,
-  CompanyAnalyzerPage,
   CompareCompanyPage,
   CompanyDetailPage,
   ContactPage,
@@ -41,10 +40,6 @@ function App() {
             <Routes>
               <Route path="/about" element={<AboutPage />} />
               <Route path="/chart" element={<ChartPage />} />
-              <Route
-                path="/company-analyzer"
-                element={<CompanyAnalyzerPage />}
-              />
               <Route path="/stock/:symbol" element={<CompanyDetailPage />} />
               <Route path="/compare-company" element={<CompareCompanyPage />} />
               <Route path="/contact" element={<ContactPage />} />

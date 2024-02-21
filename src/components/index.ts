@@ -1,5 +1,10 @@
 export { default as About } from "./About";
-export { SimpleTable, AdvanceTable, EditableTable } from "./Table";
+export {
+  SimpleTable,
+  AdvanceTable,
+  EditableTable,
+  ComparisionTable,
+} from "./Table";
 export { default as Chart } from "./Chart";
 export { default as Contact } from "./Contact";
 export { default as Footer } from "./Footer";
