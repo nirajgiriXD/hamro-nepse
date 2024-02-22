@@ -2,9 +2,6 @@
  * External dependencies.
  */
 import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
   createContext,
   useCallback,
   useEffect,
@@ -21,51 +18,18 @@ import { useMediaQuery } from "@mui/material";
  */
 import logo from "../assets/img/logo.png";
 import userAvatar from "../assets/img/user_avatar.png";
-
-interface MarketDataProp {
-  id: string;
-  symbol: string;
-  name: string;
-  sector: string;
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-  percentage_change: string;
-  volume: string;
-  date: string;
-}
-
-interface StockProfileDataProp {
-  id: string;
-  symbol: string;
-  name: string;
-  sector: string;
-}
-
-interface UserDataProp {
-  isLoggedIn: boolean;
-  name: string;
-  email: string;
-  img_url: string;
-}
-
-interface AppDataContextProp {
-  name: string;
-  logo: string;
-  userAvatar: string;
-  userData: UserDataProp;
-  stockProfileData: StockProfileDataProp[];
-  marketData: MarketDataProp[];
-  activeNavItem: string;
-  setActiveNavItem: Dispatch<SetStateAction<string>>;
-  fetchUserData: () => void;
-  prefersDarkMode: boolean;
-}
-
-interface AppDataProviderProp {
-  children: ReactNode;
-}
+import {
+  FETCH_USER_ENDPOINT,
+  FETCH_MARKET_DATA_ENDPOINT,
+  FETCH_STOCK_PROFILE_ENDPOINT,
+} from "./constant";
+import {
+  type AppDataContextProp,
+  type MarketDataProp,
+  type AppDataProviderProp,
+  type StockProfileDataProp,
+  type UserDataProp,
+} from "./types";
 
 export const AppDataContext = createContext({} as AppDataContextProp);
 
@@ -80,7 +44,6 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const name = "HamroNepse";
 
   const initialUserData = useMemo(() => {
-    // return { isLoggedIn: false, name: "", email: "", img_url: "" };
     return {
       isLoggedIn: false,
       name: "",
@@ -121,10 +84,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
 
   const fetchUserData = useCallback(() => {
     const fetchData = async () => {
-      const url = "https://sam.superintegratedapp.com/wp-json/api/user/data";
-
       try {
-        const response = await fetch(url, {
+        const response = await fetch(FETCH_USER_ENDPOINT, {
           method: "POST",
           credentials: "include",
         });
@@ -142,7 +103,7 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
       } catch (error) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        console.error("Error fetching data:", error.message);
+        console.log("Error fetching data:", error.message);
         setUserData(initialUserData);
       }
     };
@@ -156,11 +117,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
 
   useEffect(() => {
     const fetchMarketData = async () => {
-      const url =
-        "https://sam.superintegratedapp.com/wp-json/api/stock-data/?selector=stock&selection=all";
-
       try {
-        const response = await fetch(url, {
+        const response = await fetch(FETCH_MARKET_DATA_ENDPOINT, {
           credentials: "include",
         });
 
@@ -184,11 +142,8 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url =
-        "https://sam.superintegratedapp.com/wp-json/api/stock-data/profile";
-
       try {
-        const response = await fetch(url, {
+        const response = await fetch(FETCH_STOCK_PROFILE_ENDPOINT, {
           credentials: "include",
         });
 

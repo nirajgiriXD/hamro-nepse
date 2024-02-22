@@ -15,7 +15,7 @@ import {
   ADD_STOCK_PORTFOLIO_ENDPOINT,
   REMOVE_STOCK_PORTFOLIO_ENDPOINT,
   UPDATE_STOCK_PORTFOLIO_ENDPOINT,
-} from "../../../store/apiEndpoints";
+} from "../../../store/constant";
 import extractTextFromHTML from "../../../utilities/extractTextFromHTML";
 
 const useEditableTable = () => {

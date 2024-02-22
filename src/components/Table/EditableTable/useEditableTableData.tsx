@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  */
 import { type Stock } from "./types";
 import useAppData from "../../../store/useAppData";
-import { GET_STOCK_PORTFOLIO_ENDPOINT } from "../../../store/apiEndpoints";
+import { GET_STOCK_PORTFOLIO_ENDPOINT } from "../../../store/constant";
 
 const useEditableTableData = () => {
   const [tableData, setTableData] = useState([] as unknown as Stock);
