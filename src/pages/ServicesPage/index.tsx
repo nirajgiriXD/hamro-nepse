@@ -1,11 +1,14 @@
 /**
  * Internal Dependencies.
  */
-import ServiceItems from "./constants";
+import { navItems } from "../../store/constant";
 import { Services } from "../../components";
 
 const ServicesPage = () => {
-  return <Services ServiceItems={ServiceItems} />;
+  const serviceitems =
+    navItems.find((item) => item.label === "Services")?.subMenuItems ?? [];
+
+  return <Services ServiceItems={serviceitems} />;
 };
 
 export default ServicesPage;
