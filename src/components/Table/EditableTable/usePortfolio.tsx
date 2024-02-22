@@ -46,28 +46,46 @@ const usePortfolio = () => {
         header: "Symbol",
         enableEditing: true,
         size: 80,
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              symbol: undefined,
+            }),
+        },
       },
       {
         accessorKey: "buy_date",
         header: "Buy Date",
         enableEditing: true,
         size: 80,
+        muiEditTextFieldProps: {
+          required: false,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              buy_date: undefined,
+            }),
+        },
       },
       {
         accessorKey: "buy_rate",
         header: "Buy  Rate (in NRP)",
+        enableEditing: true,
         muiEditTextFieldProps: {
           required: true,
           onFocus: () =>
             setValidationErrors({
               ...validationErrors,
-              buyRate: undefined,
+              buy_rate: undefined,
             }),
         },
       },
       {
         accessorKey: "quantity",
         header: "Kitta",
+        enableEditing: true,
         muiEditTextFieldProps: {
           required: true,
           onFocus: () =>
@@ -80,14 +98,17 @@ const usePortfolio = () => {
       {
         accessorKey: "close",
         header: "LTP",
+        enableEditing: false,
       },
       {
         accessorKey: "total",
         header: "Amount",
+        enableEditing: false,
       },
       {
         accessorKey: "profit_loss",
         header: "Profit / Loss",
+        enableEditing: false,
       },
     ];
 
@@ -183,7 +204,7 @@ const usePortfolio = () => {
         internalEditComponents,
       }) => (
         <>
-          <DialogTitle variant="h5">Create New Stock</DialogTitle>
+          <DialogTitle>Create New Stock</DialogTitle>
           <DialogContent
             sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
@@ -198,7 +219,7 @@ const usePortfolio = () => {
       //optionally customize modal content
       renderEditRowDialogContent: ({ table, row, internalEditComponents }) => (
         <>
-          <DialogTitle variant="h3">Edit Stock</DialogTitle>
+          <DialogTitle>Edit Stock</DialogTitle>
           <DialogContent
             sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
           >

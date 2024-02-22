@@ -104,6 +104,19 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
         paper: prefersDarkMode ? "#111829" : "#fff",
       },
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            background: prefersDarkMode ? "#0369a1" : "#38bdf8",
+            color: "#fff",
+            ":hover": {
+              background: prefersDarkMode ? "#0369a1" : "#38bdf8",
+            },
+          },
+        },
+      },
+    },
   });
 
   const fetchUserData = useCallback(() => {
