@@ -12,6 +12,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
   height: 100%;
   width: 8px;
@@ -26,4 +27,9 @@ html {
 
 ::-webkit-scrollbar-track {
   border-radius: 3px;
+}
+
+/* Hide MUI Table disabled field */
+.Mui-disabled {
+  display: none !important;
 }
