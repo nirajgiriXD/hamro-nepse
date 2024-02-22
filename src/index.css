@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    font-family: "Poppins", sans-serif;
-  }
-}
-
 html {
   scroll-behavior: smooth;
 }
