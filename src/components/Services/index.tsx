@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 interface ServiceItemsProp {
   ServiceItems: {
     icon: React.ReactElement<SVGElement>;
-    title: string;
+    label: string;
     href: string;
     description: string;
   }[];
@@ -27,7 +27,7 @@ const Services = ({ ServiceItems }: ServiceItemsProp) => {
                 {serviceItem.icon}
               </div>
               <h2 className="text-lg font-medium title-font mb-2">
-                {serviceItem.title}
+                {serviceItem.label}
               </h2>
               <p className="leading-relaxed text-base text-gray-600 dark:text-gray-400">
                 {serviceItem.description}
