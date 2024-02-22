@@ -62,6 +62,10 @@ export const navItems = [
 
 export const userProfileDropdownItems = [
   {
+    label: "Privacy Policy",
+    href: "/privacy-policy",
+  },
+  {
     label: "Settings",
     href: "/setting",
   },
