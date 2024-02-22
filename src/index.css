@@ -27,3 +27,7 @@ html {
 ::-webkit-scrollbar-track {
   border-radius: 3px;
 }
+
+.Mui-disabled {
+  display: none !important;
+}
