@@ -24,6 +24,7 @@ import {
   ServicesPage,
   ShareCalculatorPage,
   TradingSignalsPage,
+  WatchlistPage,
 } from "./pages";
 import AppDataProvider from "./store/AppDataProvider";
 
@@ -48,6 +49,7 @@ function App() {
 
               <Route path="/ipo-fpo-updates" element={<IpoFpoUpdatesPage />} />
               <Route path="/market-watch" element={<MarketWatchPage />} />
+              <Route path="/watchlist" element={<WatchlistPage />} />
               <Route
                 path="/portfolio-tracker"
                 element={<PortfolioTrackerPage />}

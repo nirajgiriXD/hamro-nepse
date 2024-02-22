@@ -32,6 +32,10 @@ export const navSubMenuItems = [
     href: "/trading-signals",
   },
   {
+    label: "Watchlist",
+    href: "/watchlist",
+  },
+  {
     label: "Portfolio Tracker",
     href: "/portfolio-tracker",
   },
