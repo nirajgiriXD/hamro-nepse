@@ -1,20 +1,7 @@
 /**
- * API Endpoints.
+ * Navmenu and Submenu Items
  */
-
-export {
-  LOG_IN_ENDPOINT,
-  LOG_OUT_ENDPOINT,
-  CREATE_USER_ENDPOINT,
-  UPDATE_USER_ENDPOINT,
-  RESET_PASSWORD_ENDPOINT,
-  ADD_STOCK_PORTFOLIO_ENDPOINT,
-  UPDATE_STOCK_PORTFOLIO_ENDPOINT,
-  GET_STOCK_PORTFOLIO_ENDPOINT,
-  REMOVE_STOCK_PORTFOLIO_ENDPOINT,
-} from "./apiEndpoints";
-
-export const navSubMenuItems = [
+const servicesSubMenuItems = [
   {
     label: "Market Watch",
     href: "/market-watch",
@@ -79,7 +66,7 @@ export const navSubMenuItems = [
   },
 ];
 
-export const navItems = [
+const navItems = [
   { label: "About", href: "/about", subMenuItems: [] },
   {
     label: "Contact",
@@ -89,21 +76,8 @@ export const navItems = [
   {
     label: "Services",
     href: "/services",
-    subMenuItems: navSubMenuItems,
+    subMenuItems: servicesSubMenuItems,
   },
 ];
 
-export const userProfileDropdownItems = [
-  {
-    label: "Privacy Policy",
-    href: "/privacy-policy",
-  },
-  {
-    label: "Settings",
-    href: "/setting",
-  },
-  {
-    label: "Sign out",
-    href: "/signout",
-  },
-];
+export default navItems;
