@@ -7,10 +7,7 @@ import { Link } from "react-router-dom";
  * Internal dependencies.
  */
 import useAppData from "../../store/useAppData";
-
-interface LoginandSignupItemProp {
-  href: string;
-}
+import { LoginandSignupItemProp } from "./types";
 
 export const LoginAndSignupItem = ({ href }: LoginandSignupItemProp) => {
   const { userAvatar } = useAppData();

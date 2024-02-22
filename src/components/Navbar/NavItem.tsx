@@ -1,21 +1,14 @@
 /**
  * External dependencies.
  */
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 /**
  * Internal dependencies.
  */
 import SubMenu from "./SubMenu";
-
-interface NavItemProp {
-  label: string;
-  href: string;
-  subMenuItems: Record<string, string>[];
-  activeNavItem: string;
-  setActiveNavItem: Dispatch<SetStateAction<string>>;
-}
+import { NavItemProp } from "./types";
 
 const NavItem = ({
   label,

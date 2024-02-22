@@ -9,10 +9,7 @@ import { Link } from "react-router-dom";
 import { userProfileDropdownItems } from "../../store/constant";
 import useAppData from "../../store/useAppData";
 import useNavbar from "./useNavbar";
-
-interface UserProfileDropdownProps {
-  handleOnClick: () => void;
-}
+import { UserProfileDropdownProps } from "./types";
 
 const UserProfileMenu = ({ handleOnClick }: UserProfileDropdownProps) => {
   const { userData } = useAppData();

@@ -7,12 +7,7 @@ import { Link } from "react-router-dom";
  * Internal dependencies.
  */
 import useAppData from "../../store/useAppData";
-
-interface SubMenuProps {
-  handleDropdownMouseOver: () => void;
-  handleDropdownMouseOut: () => void;
-  subMenuItems: Record<string, string>[];
-}
+import { SubMenuProps } from "./types";
 
 const SubMenu = ({
   handleDropdownMouseOver,

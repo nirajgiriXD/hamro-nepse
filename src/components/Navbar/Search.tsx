@@ -9,11 +9,7 @@ import { useNavigate } from "react-router-dom";
  * Internal dependencies.
  */
 import useApp from "../../store/useAppData";
-
-interface SuggestionProp {
-  label: string;
-  value: string;
-}
+import { SuggestionProp } from "./types";
 
 const Search = () => {
   const { stockProfileData } = useApp();
