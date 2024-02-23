@@ -13,7 +13,7 @@ const servicesSubMenuItems = [
     href: "/ipo-checker",
     icon: <div className="text-xl text-center">✔️</div>,
     description:
-      "verify whether or not you were allotted the share and the number of shares being allotted.",
+      "Verify whether or not you were allotted the share and the number of shares being allotted.",
   },
   {
     label: "IPO/FPO Updates",
