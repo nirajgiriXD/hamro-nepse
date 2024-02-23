@@ -5,7 +5,7 @@ export { default as CompareCompanyPage } from "./CompareCompanyPage";
 export { default as ContactPage } from "./ContactPage";
 export { default as HomePage } from "./HomePage";
 export { default as IpoCheckerPage } from "./IpoCheckerPage";
-export { default as IpoFpoUpdatesPage } from "./IpoFpoUpdatesPage";
+export { default as InvestingCalendarPage } from "./InvestingCalendarPage";
 export { default as LoginAndSignupPage } from "./LoginAndSignupPage";
 export { default as MarketWatchPage } from "./MarketWatchPage";
 export { default as PortfolioTrackerPage } from "./PortfolioTrackerPage";

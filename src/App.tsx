@@ -16,7 +16,7 @@ import {
   ContactPage,
   HomePage,
   IpoCheckerPage,
-  IpoFpoUpdatesPage,
+  InvestingCalendarPage,
   LoginAndSignupPage,
   MarketWatchPage,
   PortfolioTrackerPage,
@@ -47,7 +47,10 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/ipo-checker" element={<IpoCheckerPage />} />
 
-              <Route path="/ipo-fpo-updates" element={<IpoFpoUpdatesPage />} />
+              <Route
+                path="/investing-calendar"
+                element={<InvestingCalendarPage />}
+              />
               <Route path="/market-watch" element={<MarketWatchPage />} />
               <Route path="/watchlist" element={<WatchlistPage />} />
               <Route

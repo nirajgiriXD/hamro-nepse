@@ -1,4 +1,4 @@
-const IpoFpoUpdatesPage = () => {
+const InvestingCalendarPage = () => {
   return (
     <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-md shadow-md text-center">
       <h1 className="text-2xl font-semibold mb-4">Under Construction</h1>
@@ -9,4 +9,4 @@ const IpoFpoUpdatesPage = () => {
   );
 };
 
-export default IpoFpoUpdatesPage;
+export default InvestingCalendarPage;

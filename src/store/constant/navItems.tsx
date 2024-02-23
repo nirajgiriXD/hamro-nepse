@@ -16,11 +16,11 @@ const servicesSubMenuItems = [
       "Verify whether or not you were allotted the share and the number of shares being allotted.",
   },
   {
-    label: "IPO/FPO Updates",
-    href: "/ipo-fpo-updates",
+    label: "Investing Calendar",
+    href: "/investing-calendar",
     icon: <div className="text-xl text-center">📰</div>,
     description:
-      "Timely updates on IPO and FPO to aid informed investment decisions.",
+      "Timely updates on investment related information to aid informed investment decisions.",
   },
   {
     label: "Trading Signals",
