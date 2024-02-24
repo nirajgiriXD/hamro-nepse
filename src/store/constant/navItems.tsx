@@ -37,6 +37,13 @@ const servicesSubMenuItems = [
       "Get to know the actual figures when buying and selling shares.",
   },
   {
+    label: "Investing Calendar",
+    href: "/investing-calendar",
+    icon: <div className="text-xl text-center">📰</div>,
+    description:
+      "Timely updates on investment related information to aid informed investment decisions.",
+  },
+  {
     label: "Chart",
     href: "/chart",
     icon: <div className="text-xl text-center">📈</div>,
@@ -49,13 +56,6 @@ const servicesSubMenuItems = [
     icon: <div className="text-xl text-center">✔️</div>,
     description:
       "Verify whether or not you were allotted the share and the number of shares being allotted.",
-  },
-  {
-    label: "Investing Calendar",
-    href: "/investing-calendar",
-    icon: <div className="text-xl text-center">📰</div>,
-    description:
-      "Timely updates on investment related information to aid informed investment decisions.",
   },
   {
     label: "Trading Signals",
