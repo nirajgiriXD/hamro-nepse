@@ -6,22 +6,9 @@ import { useState } from "react";
 /**
  * Internal dependencies.
  */
-import useApp from "../../../store/useAppData";
+import useApp from "../../store/useAppData";
 
-interface CompanyProp {
-  symbol: string;
-  name: string;
-  sector: string;
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-  percentage_change: string;
-  volume: string;
-  date: string;
-}
-
-const useComparisionTable = () => {
+const useCompareCompanyPage = () => {
   const initialCompanyData = {
     symbol: "*",
     name: "*",
@@ -36,8 +23,8 @@ const useComparisionTable = () => {
   };
 
   const { marketData } = useApp();
-  const [companyOne, setCompanyOne] = useState<CompanyProp>(initialCompanyData);
-  const [companyTwo, setCompanyTwo] = useState<CompanyProp>(initialCompanyData);
+  const [companyOne, setCompanyOne] = useState(initialCompanyData);
+  const [companyTwo, setCompanyTwo] = useState(initialCompanyData);
 
   const handleCompanyOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const company = marketData.find(
@@ -77,4 +64,4 @@ const useComparisionTable = () => {
   };
 };
 
-export default useComparisionTable;
+export default useCompareCompanyPage;

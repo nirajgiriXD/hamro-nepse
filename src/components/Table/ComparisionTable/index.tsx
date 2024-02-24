@@ -1,16 +1,29 @@
-/**
- * Internal dependencies.
- */
-import useComparisionTable from "./useComparisionTable";
+interface CompanyProp {
+  symbol: string;
+  name: string;
+  sector: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  percentage_change: string;
+  volume: string;
+  date: string;
+}
 
-const ComparisionTable = () => {
-  const {
-    companyOne,
-    companyTwo,
-    handleCompanyOneChange,
-    handleCompanyTwoChange,
-  } = useComparisionTable();
+interface ComparisionTableProp {
+  companyOne: CompanyProp;
+  companyTwo: CompanyProp;
+  handleCompanyOneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCompanyTwoChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
+const ComparisionTable = ({
+  companyOne,
+  companyTwo,
+  handleCompanyOneChange,
+  handleCompanyTwoChange,
+}: ComparisionTableProp) => {
   return (
     <>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
