@@ -2,7 +2,8 @@ export { default as About } from "./About";
 export {
   SimpleTable,
   AdvanceTable,
-  EditableTable,
+  WatchlistTable,
+  PortfolioTable,
   ComparisionTable,
 } from "./Table";
 export { default as Chart } from "./Chart";
@@ -12,7 +13,7 @@ export { default as ForgotPassword } from "./ForgotPassword";
 export { default as Login } from "./Login";
 export { default as MessageBox } from "./MessageBox";
 export { default as Navbar } from "./Navbar";
-export { default as PortfolioTracker } from "./Table/EditableTable";
+export { default as PortfolioTracker } from "./Table/EditableTable/PortfolioTable";
 export { default as PrivacyPolicy } from "./PrivacyPolicy";
 export { default as Services } from "./Services";
 export { default as ShareCalculator } from "./ShareCalculator";

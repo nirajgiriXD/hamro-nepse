@@ -1,14 +1,14 @@
 /**
  * Internal Dependencies.
  */
-import { EditableTable, MessageBox } from "../../components";
+import { WatchlistTable, MessageBox } from "../../components";
 import useAppData from "../../store/useAppData";
 
 const WatchlistPage = () => {
   const { userData } = useAppData();
 
   return userData.isLoggedIn ? (
-    <EditableTable />
+    <WatchlistTable />
   ) : (
     <MessageBox
       message="Please login to use this service."

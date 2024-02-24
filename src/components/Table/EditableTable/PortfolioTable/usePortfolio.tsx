@@ -1,7 +1,6 @@
 /**
  * External dependencies.
  */
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import {
   MRT_EditActionButtons,
@@ -24,28 +23,95 @@ import DeleteIcon from "@mui/icons-material/Delete";
 /**
  * Internal dependencies.
  */
-import useEditableTable, {
-  type Stock,
-} from "../../../pages/PortfolioTrackerPage/useEditableTable";
+import { type Stock } from "./types";
+import useEditableTable from "./useEditableTable";
 
-const queryClient = new QueryClient();
-
-const EditableTable = () => {
-  const [validationErrors, setValidationErrors] = useState<
-    Record<string, string | undefined>
-  >({});
-
+const usePortfolio = () => {
   const {
-    columns,
     toastNotification,
     useCreateStock,
     useGetStock,
     useUpdateStock,
     useDeleteStock,
     validateStock,
-  } = useEditableTable(validationErrors, setValidationErrors);
+  } = useEditableTable();
+  const Portfolio = () => {
+    const [validationErrors, setValidationErrors] = useState<
+      Record<string, string | undefined>
+    >({});
 
-  const Table = () => {
+    const columns = [
+      {
+        accessorKey: "symbol",
+        header: "Symbol",
+        enableEditing: true,
+        size: 80,
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              symbol: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: "buy_date",
+        header: "Buy Date",
+        enableEditing: true,
+        size: 80,
+        muiEditTextFieldProps: {
+          required: false,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              buy_date: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: "buy_rate",
+        header: "Buy Rate (in NRP)",
+        enableEditing: true,
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              buy_rate: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: "quantity",
+        header: "Kitta",
+        enableEditing: true,
+        muiEditTextFieldProps: {
+          required: true,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              kitta: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: "close",
+        header: "LTP",
+        enableEditing: false,
+      },
+      {
+        accessorKey: "total",
+        header: "Amount",
+        enableEditing: false,
+      },
+      {
+        accessorKey: "profit_loss",
+        header: "Profit / Loss",
+        enableEditing: false,
+      },
+    ];
+
     //call CREATE hook
     const { mutateAsync: createStock, isPending: isCreatingStock } =
       useCreateStock();
@@ -203,12 +269,7 @@ const EditableTable = () => {
     return <MaterialReactTable table={table} />;
   };
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <div className="mb-4">{toastNotification}</div>
-      <Table />
-    </QueryClientProvider>
-  );
+  return { Portfolio, toastNotification };
 };
 
-export default EditableTable;
+export default usePortfolio;
