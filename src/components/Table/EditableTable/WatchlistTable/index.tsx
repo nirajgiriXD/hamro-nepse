@@ -11,13 +11,13 @@ import useWatchlist from "./useWatchlist";
 const queryClient = new QueryClient();
 
 const EditableTable = () => {
-  const { Portfolio, toastNotification } = useWatchlist();
+  const { Watchlist, toastNotification } = useWatchlist();
 
   return (
     <>
       <div className="mb-4">{toastNotification}</div>
       <QueryClientProvider client={queryClient}>
-        <Portfolio />
+        <Watchlist />
       </QueryClientProvider>
     </>
   );

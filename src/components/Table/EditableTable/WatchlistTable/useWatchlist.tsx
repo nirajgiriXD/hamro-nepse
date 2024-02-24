@@ -34,7 +34,7 @@ const useWatchlist = () => {
     useDeleteStock,
     validateStock,
   } = useEditableTable();
-  const Portfolio = () => {
+  const Watchlist = () => {
     const [validationErrors, setValidationErrors] = useState<
       Record<string, string | undefined>
     >({});
@@ -258,7 +258,7 @@ const useWatchlist = () => {
     return <MaterialReactTable table={table} />;
   };
 
-  return { Portfolio, toastNotification };
+  return { Watchlist, toastNotification };
 };
 
 export default useWatchlist;
