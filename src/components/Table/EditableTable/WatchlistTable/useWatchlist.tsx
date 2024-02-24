@@ -17,7 +17,6 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 /**
@@ -26,7 +25,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { type Stock } from "./types";
 import useEditableTable from "./useEditableTable";
 
-const usePortfolio = () => {
+const useWatchlist = () => {
   const {
     toastNotification,
     useCreateStock,
@@ -35,7 +34,7 @@ const usePortfolio = () => {
     useDeleteStock,
     validateStock,
   } = useEditableTable();
-  const Portfolio = () => {
+  const Watchlist = () => {
     const [validationErrors, setValidationErrors] = useState<
       Record<string, string | undefined>
     >({});
@@ -56,59 +55,69 @@ const usePortfolio = () => {
         },
       },
       {
-        accessorKey: "buy_date",
-        header: "Buy Date",
-        enableEditing: true,
+        accessorKey: "name",
+        header: "Name",
+        enableEditing: false,
         size: 80,
         muiEditTextFieldProps: {
           required: false,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              buy_date: undefined,
-            }),
         },
       },
       {
-        accessorKey: "buy_rate",
-        header: "Buy  Rate (in NRP)",
-        enableEditing: true,
+        accessorKey: "open",
+        header: "Open",
+        enableEditing: false,
         muiEditTextFieldProps: {
-          required: true,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              buy_rate: undefined,
-            }),
+          required: false,
         },
       },
       {
-        accessorKey: "quantity",
-        header: "Kitta",
-        enableEditing: true,
+        accessorKey: "high",
+        header: "High",
+        enableEditing: false,
         muiEditTextFieldProps: {
-          required: true,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              kitta: undefined,
-            }),
+          required: false,
+        },
+      },
+      {
+        accessorKey: "low",
+        header: "Low",
+        enableEditing: false,
+        muiEditTextFieldProps: {
+          required: false,
         },
       },
       {
         accessorKey: "close",
-        header: "LTP",
+        header: "Close",
         enableEditing: false,
+        muiEditTextFieldProps: {
+          required: false,
+        },
       },
       {
-        accessorKey: "total",
-        header: "Amount",
+        accessorKey: "percentage_change",
+        header: "% Change",
         enableEditing: false,
+        muiEditTextFieldProps: {
+          required: false,
+        },
       },
       {
-        accessorKey: "profit_loss",
-        header: "Profit / Loss",
+        accessorKey: "volume",
+        header: "Volume",
         enableEditing: false,
+        muiEditTextFieldProps: {
+          required: false,
+        },
+      },
+      {
+        accessorKey: "turnover",
+        header: "Turnover",
+        enableEditing: false,
+        muiEditTextFieldProps: {
+          required: false,
+        },
       },
     ];
 
@@ -151,7 +160,7 @@ const usePortfolio = () => {
           return;
         }
         setValidationErrors({});
-        await updateStock(values);
+        await updateStock();
         table.setEditingRow(null); //exit editing mode
       };
 
@@ -216,28 +225,8 @@ const usePortfolio = () => {
           </DialogActions>
         </>
       ),
-      //optionally customize modal content
-      renderEditRowDialogContent: ({ table, row, internalEditComponents }) => (
-        <>
-          <DialogTitle>Edit Stock</DialogTitle>
-          <DialogContent
-            sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-          >
-            {internalEditComponents}{" "}
-            {/* or render custom edit components here */}
-          </DialogContent>
-          <DialogActions>
-            <MRT_EditActionButtons variant="text" table={table} row={row} />
-          </DialogActions>
-        </>
-      ),
-      renderRowActions: ({ row, table }) => (
+      renderRowActions: ({ row }) => (
         <Box sx={{ display: "flex" }}>
-          <Tooltip title="Edit">
-            <IconButton onClick={() => table.setEditingRow(row)}>
-              <EditIcon />
-            </IconButton>
-          </Tooltip>
           <Tooltip title="Delete">
             <IconButton
               color="error"
@@ -269,7 +258,7 @@ const usePortfolio = () => {
     return <MaterialReactTable table={table} />;
   };
 
-  return { Portfolio, toastNotification };
+  return { Watchlist, toastNotification };
 };
 
-export default usePortfolio;
+export default useWatchlist;

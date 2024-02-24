@@ -36,3 +36,12 @@ export const GET_STOCK_PORTFOLIO_ENDPOINT =
 
 export const REMOVE_STOCK_PORTFOLIO_ENDPOINT =
   "https://sam.superintegratedapp.com/wp-json/api/stock-portfolio/remove";
+
+export const ADD_STOCK_WATCHLIST_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/stock-watchlist/add";
+
+export const GET_STOCK_WATCHLIST_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/stock-watchlist/get";
+
+export const REMOVE_STOCK_WATCHLIST_ENDPOINT =
+  "https://sam.superintegratedapp.com/wp-json/api/stock-watchlist/remove";
