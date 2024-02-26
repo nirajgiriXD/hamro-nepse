@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
  * Internal dependencies.
  */
 import { type Stock } from "./types";
-import useAppData from "../../../store/useAppData";
-import { GET_STOCK_PORTFOLIO_ENDPOINT } from "../../../store/constant";
+import useAppData from "../../../../store/useAppData";
+import { GET_STOCK_WATCHLIST_ENDPOINT } from "../../../../store/constant";
 
 const useEditableTableData = () => {
   const [tableData, setTableData] = useState([] as unknown as Stock);
@@ -17,7 +17,7 @@ const useEditableTableData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(GET_STOCK_PORTFOLIO_ENDPOINT, {
+        const response = await fetch(GET_STOCK_WATCHLIST_ENDPOINT, {
           method: "POST",
           credentials: "include",
         });
@@ -30,21 +30,21 @@ const useEditableTableData = () => {
         const data = json.data;
 
         const preparedData = data.map((item: Stock) => {
-          const close = Number(
+          return (
             marketData.find((newItem: Record<string, string>) => {
               return newItem.symbol === item.symbol;
-            })?.close ?? 0
+            }) ?? {
+              ...item,
+              name: "*",
+              open: "*",
+              high: "*",
+              low: "*",
+              close: "*",
+              percentage_change: "*",
+              volume: "*",
+              turnover: "*",
+            }
           );
-          const total = item.quantity * close;
-          const profit_loss =
-            item.quantity * close - item.quantity * item.buy_rate;
-
-          return {
-            ...item,
-            close,
-            total,
-            profit_loss,
-          };
         });
 
         setTableData(preparedData);
