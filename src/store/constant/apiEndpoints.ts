@@ -47,4 +47,4 @@ export const REMOVE_STOCK_WATCHLIST_ENDPOINT =
   "https://sam.superintegratedapp.com/wp-json/api/stock-watchlist/remove";
 
 export const FETCH_IPO_DATA_ENDPOINT =
-  "http://sam.superintegratedapp.com/wp-json/api/stock-investment-data/ipo";
+  "https://sam.superintegratedapp.com/wp-json/api/stock-investment-data/ipo";

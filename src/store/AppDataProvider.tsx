@@ -184,7 +184,6 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
           const data = json.data.ipo_data;
           setIpoData(data);
         } else {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           console.error("Error fetching data:", json.response_message);
         }
       } catch (error) {
