@@ -22,19 +22,22 @@ import {
   FETCH_USER_ENDPOINT,
   FETCH_MARKET_DATA_ENDPOINT,
   FETCH_STOCK_PROFILE_ENDPOINT,
+  FETCH_IPO_DATA_ENDPOINT,
 } from "./constant";
-import {
-  type AppDataContextProp,
-  type MarketDataProp,
-  type AppDataProviderProp,
-  type StockProfileDataProp,
-  type UserDataProp,
+import type {
+  AppDataContextProp,
+  IpoDataProp,
+  MarketDataProp,
+  AppDataProviderProp,
+  StockProfileDataProp,
+  UserDataProp,
 } from "./types";
 
 export const AppDataContext = createContext({} as AppDataContextProp);
 
 const AppDataProvider = ({ children }: AppDataProviderProp) => {
   const [marketData, setMarketData] = useState([] as MarketDataProp[]);
+  const [ipoData, setIpoData] = useState([] as IpoDataProp[]);
   const [stockProfileData, setStockProfileData] = useState(
     [] as StockProfileDataProp[]
   );
@@ -164,12 +167,43 @@ const AppDataProvider = ({ children }: AppDataProviderProp) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(FETCH_IPO_DATA_ENDPOINT, {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const json = await response.json();
+
+        if (json.isEverythingOk) {
+          const data = json.data.ipo_data;
+          setIpoData(data);
+        } else {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          console.error("Error fetching data:", json.response_message);
+        }
+      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const valueToProvide: AppDataContextProp = {
     name,
     logo,
     userAvatar,
     userData,
     stockProfileData,
+    ipoData,
     marketData,
     activeNavItem,
     setActiveNavItem,

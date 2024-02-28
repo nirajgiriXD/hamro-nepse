@@ -1,10 +1,19 @@
+/**
+ * Internal Dependencies.
+ */
+import { SimpleTable } from "../../components";
+import useInvestingCalendarPage from "./useInvestingCalendarPage";
+
 const InvestingCalendarPage = () => {
+  const { ipo_columns, ipo_data } = useInvestingCalendarPage();
+
   return (
-    <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-md shadow-md text-center">
-      <h1 className="text-2xl font-semibold mb-4">Under Construction</h1>
-      <p className="text-gray-600 dark:text-gray-400">
-        This component is currently under construction. Check back soon!
-      </p>
+    <div>
+      {/* IPO */}
+      <div>
+        <h4 className="mb-4 font-semibold">Upcoming IPOs</h4>
+        <SimpleTable data={ipo_data} columns={ipo_columns} />
+      </div>
     </div>
   );
 };
