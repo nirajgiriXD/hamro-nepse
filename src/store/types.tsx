@@ -3,6 +3,20 @@
  */
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
+export interface IpoDataProp {
+  id: string;
+  symbol: string;
+  name: string;
+  sector: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  percentage_change: string;
+  volume: string;
+  date: string;
+}
+
 export interface MarketDataProp {
   id: string;
   symbol: string;
@@ -37,6 +51,7 @@ export interface AppDataContextProp {
   userAvatar: string;
   userData: UserDataProp;
   stockProfileData: StockProfileDataProp[];
+  ipoData: IpoDataProp[];
   marketData: MarketDataProp[];
   activeNavItem: string;
   setActiveNavItem: Dispatch<SetStateAction<string>>;
