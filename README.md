@@ -25,7 +25,7 @@ It is a comprehensive web application designed for stock enthusiasts, investors,
 - **Installation:**
 
 ```bash
-git clone https://github.com/your-username/hamro-nepse.git
+git clone https://github.com/nirajgiriXD/hamro-nepse.git
 cd hamro-nepse
 ```
 
@@ -59,7 +59,7 @@ We welcome contributions from the community! Whether you're a developer, designe
 
 - If you'd like to contribute, fork the repository, make your changes, and create a pull request. We appreciate your efforts in improving Stock Analyzer!
 
-- If you have any ideas or suggestions, feel free to share them in the [discussions](https://github.com/ChandraByte/hamro-nepse/discussions) section. We appreciate your feedback and are open to collaborative discussions to enhance Stock Analyzer!
+- If you have any ideas or suggestions, feel free to share them in the [discussions](https://github.com/nirajgiriXD/hamro-nepse/discussions) section. We appreciate your feedback and are open to collaborative discussions to enhance Stock Analyzer!
 
 ## Acknowledgement 🙏
 
