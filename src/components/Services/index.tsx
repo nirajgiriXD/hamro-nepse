@@ -1,5 +1,5 @@
 /**
- * External Dependencies.
+ * External dependencies.
  */
 import React from "react";
 import { Link } from "react-router-dom";

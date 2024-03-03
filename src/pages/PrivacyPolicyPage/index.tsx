@@ -1,5 +1,5 @@
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import { PrivacyPolicy } from "../../components";
 import PrivacyPolicyItems from "./constant";

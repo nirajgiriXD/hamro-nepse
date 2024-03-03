@@ -1,11 +1,11 @@
 /**
- * External Dependencies.
+ * External dependencies.
  */
 import { useState, useMemo, useEffect } from "react";
 import { MRT_RowData, createMRTColumnHelper } from "material-react-table";
 
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import useAppData from "../../store/useAppData";
 

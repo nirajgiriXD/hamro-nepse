@@ -1,5 +1,5 @@
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import { WatchlistTable, MessageBox } from "../../components";
 import useAppData from "../../store/useAppData";

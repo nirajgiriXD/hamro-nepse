@@ -1,5 +1,5 @@
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import { SimpleTable } from "../../components";
 import useInvestingCalendarPage from "./useInvestingCalendarPage";

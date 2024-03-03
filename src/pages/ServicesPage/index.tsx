@@ -1,5 +1,5 @@
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import { navItems } from "../../store/constant";
 import { Services } from "../../components";

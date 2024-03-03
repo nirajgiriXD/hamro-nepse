@@ -1,5 +1,5 @@
 /**
- * Internal Dependencies.
+ * Internal dependencies.
  */
 import useHomePage from "./useHomePage";
 import { SimpleTable } from "../../components";
